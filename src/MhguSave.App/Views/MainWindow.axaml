@@ -1,155 +1,85 @@
-<?xml version='1.0' encoding='utf-8'?>
-<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:fmt="using:MhguSave.Format" xmlns:services="using:MhguSave.App.Services" xmlns:views="using:MhguSave.App.Views" x:Class="MhguSave.App.Views.MainWindow" x:DataType="vm:MainViewModel" Width="1380" Height="900" MinWidth="1120" MinHeight="740" Title="{Binding ApplicationTitle}" Background="#0E1623" FontFamily="Inter" FontSize="14" RequestedThemeVariant="Dark">
+<?xml version="1.0" encoding="utf-8"?>
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:fmt="using:MhguSave.Format" xmlns:services="using:MhguSave.App.Services" xmlns:views="using:MhguSave.App.Views" x:Class="MhguSave.App.Views.MainWindow" x:DataType="vm:MainViewModel" Width="1440" Height="900" WindowStartupLocation="CenterScreen" MinWidth="1120" MinHeight="740" Title="{Binding ApplicationTitle}" Icon="/Assets/app-icon.ico" Background="#101920" FontFamily="Inter" FontSize="14" RequestedThemeVariant="Dark">
   <Window.Resources>
     <services:GameIconConverter x:Key="GameIcon"/>
   </Window.Resources>
-  <Window.Styles>
-    <Style Selector="TextBlock">
-      <Setter Property="Foreground" Value="#E9EEF5"/>
-    </Style>
-    <Style Selector="TextBlock.muted">
-      <Setter Property="Foreground" Value="#9EADC1"/>
-      <Setter Property="FontSize" Value="13"/>
-      <Setter Property="LineHeight" Value="21"/>
-    </Style>
-    <Style Selector="TextBlock.small">
-      <Setter Property="Foreground" Value="#8D9DB3"/>
-      <Setter Property="FontSize" Value="12"/>
-    </Style>
-    <Style Selector="TextBlock.label">
-      <Setter Property="FontWeight" Value="Medium"/>
-      <Setter Property="FontSize" Value="13"/>
-    </Style>
-    <Style Selector="TextBlock.section">
-      <Setter Property="FontSize" Value="17"/>
-      <Setter Property="FontWeight" Value="SemiBold"/>
-    </Style>
-    <Style Selector="TextBlock.pageTitle">
-      <Setter Property="FontSize" Value="26"/>
-      <Setter Property="FontWeight" Value="SemiBold"/>
-    </Style>
-    <Style Selector="Border.card">
-      <Setter Property="Background" Value="#172131"/>
-      <Setter Property="BorderBrush" Value="#28364B"/>
-      <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="CornerRadius" Value="12"/>
-      <Setter Property="Padding" Value="20"/>
-    </Style>
-    <Style Selector=":is(Button)">
-      <Setter Property="CornerRadius" Value="7"/>
-      <Setter Property="Padding" Value="14,9"/>
-      <Setter Property="MinHeight" Value="40"/>
-      <Setter Property="HorizontalContentAlignment" Value="Center"/>
-    </Style>
-    <Style Selector=":is(Button).primary">
-      <Setter Property="Background" Value="#61D6C3"/>
-      <Setter Property="Foreground" Value="#092C2B"/>
-      <Setter Property="FontWeight" Value="SemiBold"/>
-    </Style>
-    <Style Selector="WrapPanel &gt; :is(Button)">
-      <Setter Property="Margin" Value="0,0,8,8"/>
-    </Style>
-    <Style Selector="TextBox">
-      <Setter Property="CornerRadius" Value="6"/>
-      <Setter Property="MinHeight" Value="40"/>
-      <Setter Property="Background" Value="#101927"/>
-    </Style>
-    <Style Selector=":is(NumericUpDown)">
-      <Setter Property="MinHeight" Value="40"/>
-      <Setter Property="HorizontalAlignment" Value="Stretch"/>
-      <Setter Property="AllowSpin" Value="True"/>
-      <Setter Property="ClipValueToMinMax" Value="False"/>
-    </Style>
-    <Style Selector="ComboBox">
-      <Setter Property="MinHeight" Value="40"/>
-    </Style>
-    <Style Selector="ListBox.records">
-      <Setter Property="Background" Value="#131D2B"/>
-      <Setter Property="BorderBrush" Value="#28364B"/>
-      <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="CornerRadius" Value="8"/>
-    </Style>
-    <Style Selector="ListBoxItem">
-      <Setter Property="Padding" Value="10,6"/>
-      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-    </Style>
-    <Style Selector="ListBox.nav">
-      <Setter Property="Background" Value="Transparent"/>
-    </Style>
-    <Style Selector="ListBox.nav ListBoxItem">
-      <Setter Property="Padding" Value="16,14"/>
-      <Setter Property="Margin" Value="0,3"/>
-      <Setter Property="CornerRadius" Value="8"/>
-    </Style>
-    <Style Selector="ListBox.nav ListBoxItem:selected">
-      <Setter Property="Background" Value="#203D43"/>
-      <Setter Property="Foreground" Value="#7CE3D1"/>
-    </Style>
-    <Style Selector="TabControl.pages">
-      <Setter Property="Template">
-        <ControlTemplate>
-          <ContentPresenter Name="PART_SelectedContentHost" Content="{TemplateBinding SelectedContent}" ContentTemplate="{TemplateBinding SelectedContentTemplate}"/>
-        </ControlTemplate>
-      </Setter>
-    </Style>
-    <Style Selector="TabControl.inner TabItem">
-      <Setter Property="FontSize" Value="14"/>
-      <Setter Property="Padding" Value="16,10"/>
-    </Style>
-    <Style Selector="TextBlock.eyebrow">
-      <Setter Property="Foreground" Value="#8D9DB3"/>
-      <Setter Property="FontSize" Value="11"/>
-      <Setter Property="FontWeight" Value="SemiBold"/>
-      <Setter Property="LetterSpacing" Value="1"/>
-    </Style>
-    <Style Selector="Border.inset">
-      <Setter Property="Background" Value="#111B29"/>
-      <Setter Property="CornerRadius" Value="8"/>
-      <Setter Property="Padding" Value="14"/>
-    </Style>
-    <Style Selector="ListBox.records ListBoxItem:selected">
-      <Setter Property="Background" Value="#26434A"/>
-    </Style>
-  </Window.Styles>
-  <Grid ColumnDefinitions="208,*" RowDefinitions="*,Auto">
-    <Border Grid.RowSpan="2" Background="#111C2A" BorderBrush="#28364B" BorderThickness="0,0,1,0" Padding="16,26,16,20">
+  <Grid ColumnDefinitions="216,*" RowDefinitions="*,Auto">
+    <Border Grid.RowSpan="2" BorderBrush="#394246" BorderThickness="0,0,1,0" Padding="16,26,16,20">
+      <Border.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+          <GradientStop Color="#1C2A32" Offset="0"/>
+          <GradientStop Color="#10191F" Offset="0.65"/>
+          <GradientStop Color="#242422" Offset="1"/>
+        </LinearGradientBrush>
+      </Border.Background>
       <Grid RowDefinitions="Auto,Auto,*,Auto">
-        <StackPanel Margin="12,0,0,28" Spacing="5">
-          <TextBlock Text="MHGU" FontSize="29" FontWeight="Bold" Foreground="#7CE3D1"/>
-          <TextBlock Text="SAVE EDITOR" FontSize="11" LetterSpacing="3" Foreground="#8D9DB3"/>
+        <StackPanel Margin="12,0,12,32" Spacing="8">
+          <views:GuildEmblem Width="66" Height="66" HorizontalAlignment="Left" Margin="0,0,0,8"/>
+          <TextBlock Text="MONSTER HUNTER" FontSize="10" LetterSpacing="1.6" Foreground="#B3BEC5"/>
+          <TextBlock Text="GENERATIONS" FontSize="19" FontWeight="Bold" LetterSpacing="0.2"/>
+          <TextBlock Text="ULTIMATE" FontSize="24" FontWeight="Bold" Foreground="#E6C990" LetterSpacing="1.2" Margin="0,-6,0,0"/>
+          <Border Height="1" Background="#77664B" Margin="0,6,0,4"/>
+          <TextBlock Text="SAVE EDITOR" FontSize="10" LetterSpacing="3" Foreground="#9CAEB9"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Spacing="8">
-          <TextBlock Text="WORKSPACE" Classes="small" Margin="16,0,0,6"/>
-          <ListBox Classes="nav" SelectedIndex="{Binding SelectedSection, Mode=TwoWay}">
-            <ListBoxItem Content="Hunter profile"/>
-            <ListBoxItem Content="Item inventory"/>
-            <ListBoxItem Content="Equipment"/>
-            <ListBoxItem Content="Quest progress"/>
-            <ListBoxItem Content="Unlocks &amp; rewards"/>
+          <TextBlock Text="YOUR WORKSPACE" Classes="eyebrow" Margin="14,0,0,8" FontSize="10"/>
+          <ListBox Classes="nav" SelectedIndex="{Binding SelectedSection, Mode=TwoWay}" IsEnabled="{Binding IsLoaded}">
+            <ListBoxItem AutomationProperties.Name="Hunter profile">
+              <Grid ColumnDefinitions="30,*">
+                <Path StrokeThickness="1.5" Stretch="Uniform" VerticalAlignment="Center" Data="M12,2 L20,7 20,16 12,22 4,16 4,7 Z M8,9 L16,9 16,15 8,15 Z" Width="18" Height="18" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="1" Text="Hunter profile" VerticalAlignment="Center" FontSize="13"/>
+              </Grid>
+            </ListBoxItem>
+            <ListBoxItem AutomationProperties.Name="Item inventory">
+              <Grid ColumnDefinitions="30,*">
+                <Path StrokeThickness="1.5" Stretch="Uniform" VerticalAlignment="Center" Data="M3,7 L12,2 21,7 21,18 12,23 3,18 Z M3,7 L12,12 21,7 M12,12 L12,23" Width="18" Height="18" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="1" Text="Item inventory" VerticalAlignment="Center" FontSize="13"/>
+              </Grid>
+            </ListBoxItem>
+            <ListBoxItem AutomationProperties.Name="Equipment">
+              <Grid ColumnDefinitions="30,*">
+                <Path StrokeThickness="1.5" Stretch="Uniform" VerticalAlignment="Center" Data="M5,3 L10,3 18,16 21,16 21,20 17,20 17,17 4,9 Z M5,19 L11,13 M2,17 L7,22" Width="18" Height="18" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="1" Text="Equipment" VerticalAlignment="Center" FontSize="13"/>
+              </Grid>
+            </ListBoxItem>
+            <ListBoxItem AutomationProperties.Name="Quest progress">
+              <Grid ColumnDefinitions="30,*">
+                <Path StrokeThickness="1.5" Stretch="Uniform" VerticalAlignment="Center" Data="M6,2 L18,2 20,5 20,22 4,22 4,5 Z M8,8 L16,8 M8,12 L16,12 M8,16 L13,16" Width="18" Height="18" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="1" Text="Quest progress" VerticalAlignment="Center" FontSize="13"/>
+              </Grid>
+            </ListBoxItem>
+            <ListBoxItem AutomationProperties.Name="Unlocks &amp; rewards">
+              <Grid ColumnDefinitions="30,*">
+                <Path StrokeThickness="1.5" Stretch="Uniform" VerticalAlignment="Center" Data="M4,4 L20,4 20,9 16,14 8,14 4,9 Z M8,14 L8,18 16,18 16,14 M6,22 L18,22 M12,18 L12,22" Width="18" Height="18" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="1" Text="Unlocks &amp; rewards" VerticalAlignment="Center" FontSize="13"/>
+              </Grid>
+            </ListBoxItem>
           </ListBox>
         </StackPanel>
-        <StackPanel Grid.Row="3" Spacing="8" Margin="10,0">
-          <TextBlock Text="LOCAL SAVE FILE" Classes="small"/>
-          <TextBlock Text="Backups before every write" Classes="muted"/>
-          <TextBlock Text="Switch · Generations Ultimate" Classes="small"/>
-        </StackPanel>
+        <Border Grid.Row="3" BorderBrush="#394246" BorderThickness="0,1,0,0" Padding="10,18,4,0">
+          <StackPanel Spacing="8">
+            <TextBlock Text="LOCAL SAVE WORKSPACE" Classes="eyebrow" FontSize="9"/>
+            <TextBlock Text="Automatic backups on save" Classes="small" TextWrapping="Wrap"/>
+            <TextBlock Text="Switch · Early access" Classes="small" Foreground="#7F919D"/>
+          </StackPanel>
+        </Border>
       </Grid>
     </Border>
-    <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,*" Margin="28,22,28,20">
-      <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+    <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,*" Margin="28,20,28,20">
+      <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
         <StackPanel Spacing="5">
-          <TextBlock Text="Save workspace" FontSize="16" Classes="section"/>
-          <TextBlock Text="{Binding FilePath}" Classes="small" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding FilePath}" HorizontalAlignment="Left" MaxWidth="700"/>
+          <TextBlock Text="HUNTER’S WORKSPACE" Classes="eyebrow" FontSize="12"/>
+          <TextBlock Text="{Binding FilePath}" Classes="small" TextTrimming="CharacterEllipsis" ToolTip.Tip="{Binding FilePath}" HorizontalAlignment="Stretch" Margin="0,0,24,0"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
-          <Button Content="Open save…" Click="OnOpenClick"/>
+          <Button Content="Open save…" Click="OnOpenClick" ToolTip.Tip="Open a system or system_backup file · Ctrl+O"/>
           <Button Content="Save changes" Classes="primary" Click="OnSaveClick" IsEnabled="{Binding IsLoaded}" ToolTip.Tip="Save all characters · Ctrl+S" Name="SaveButton"/>
         </StackPanel>
       </Grid>
-      <Border Grid.Row="1" Classes="card" Padding="20,12" Margin="0,0,0,20" IsVisible="{Binding IsLoaded}">
-        <Grid ColumnDefinitions="1.6*,*,*,*">
-          <StackPanel Spacing="4">
-            <ComboBox ItemsSource="{Binding Characters}" SelectedItem="{Binding SelectedCharacter, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,24,4" Name="SelectedCharacterPicker" ToolTip.Tip="{Binding PlayTimeLine}">
+      <Border Grid.Row="1" Classes="card" Padding="20,12" Margin="0,0,0,20" IsVisible="{Binding IsLoaded}" BorderBrush="#605640">
+        <Grid ColumnDefinitions="1.7*,*,*,*">
+          <StackPanel Spacing="6" Margin="0,0,20,0">
+            <ComboBox ItemsSource="{Binding Characters}" SelectedItem="{Binding SelectedCharacter, Mode=TwoWay}" HorizontalAlignment="Stretch" Name="SelectedCharacterPicker" ToolTip.Tip="{Binding PlayTimeLine}">
               <ComboBox.ItemTemplate>
                 <DataTemplate x:DataType="vm:CharacterChoice">
                   <TextBlock Text="{Binding Label}"/>
@@ -158,18 +88,27 @@
             </ComboBox>
             <TextBlock Text="{Binding RankLine}" Classes="small"/>
           </StackPanel>
-          <StackPanel Grid.Column="1" Spacing="8" VerticalAlignment="Center">
-            <TextBlock Text="ITEM BOX" Classes="small"/>
-            <TextBlock Text="{Binding BoxStat}" FontSize="20" FontWeight="SemiBold"/>
-          </StackPanel>
-          <StackPanel Grid.Column="2" Spacing="8" VerticalAlignment="Center">
-            <TextBlock Text="EQUIPMENT" Classes="small"/>
-            <TextBlock Text="{Binding EquipStat}" FontSize="20" FontWeight="SemiBold"/>
-          </StackPanel>
-          <StackPanel Grid.Column="3" Spacing="8" VerticalAlignment="Center">
-            <TextBlock Text="QUESTS CLEARED" Classes="small"/>
-            <TextBlock Text="{Binding QuestStat}" FontSize="20" FontWeight="SemiBold"/>
-          </StackPanel>
+          <Border Grid.Column="1" Classes="statCell">
+            <StackPanel Spacing="5" VerticalAlignment="Center">
+              <TextBlock Text="ITEM BOX" Classes="eyebrow" FontSize="9"/>
+              <TextBlock Text="{Binding BoxStat}" Classes="stat"/>
+              <TextBlock Text="Storage slots used" Classes="small"/>
+            </StackPanel>
+          </Border>
+          <Border Grid.Column="2" Classes="statCell">
+            <StackPanel Spacing="5" VerticalAlignment="Center">
+              <TextBlock Text="EQUIPMENT" Classes="eyebrow" FontSize="9"/>
+              <TextBlock Text="{Binding EquipStat}" Classes="stat"/>
+              <TextBlock Text="Pieces in your box" Classes="small"/>
+            </StackPanel>
+          </Border>
+          <Border Grid.Column="3" Classes="statCell">
+            <StackPanel Spacing="5" VerticalAlignment="Center">
+              <TextBlock Text="QUESTS" Classes="eyebrow" FontSize="9"/>
+              <TextBlock Text="{Binding QuestStat}" Classes="stat"/>
+              <TextBlock Text="Unique quests cleared" Classes="small"/>
+            </StackPanel>
+          </Border>
         </Grid>
       </Border>
       <TextBlock Grid.Row="2" Text="{Binding EmulatorWarning}" Foreground="#F2C777" TextWrapping="Wrap" Margin="0,0,0,12" IsVisible="{Binding EmulatorWarning, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
@@ -177,24 +116,36 @@
         <Grid IsVisible="{Binding IsLoaded}">
           <Grid IsVisible="{Binding IsProfileSection}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-              <StackPanel Spacing="0" MaxWidth="1120" HorizontalAlignment="Left">
+              <StackPanel Spacing="0" HorizontalAlignment="Stretch">
                 <StackPanel Spacing="5" Margin="0,0,0,18">
+                  <TextBlock Text="01 / HUNTER RECORD" Classes="eyebrow" FontSize="10"/>
                   <TextBlock Text="Hunter profile" Classes="pageTitle" TextWrapping="Wrap"/>
                   <TextBlock Text="Manage your identity, currencies, and progression." Classes="muted" TextWrapping="Wrap"/>
                 </StackPanel>
-                <Border Classes="card" Padding="0" Margin="0,0,0,20" IsVisible="{Binding HasGameVisuals}" ClipToBounds="True">
-                  <Grid ColumnDefinitions="*,300" MinHeight="168">
-                    <StackPanel Margin="22" Spacing="10" VerticalAlignment="Center">
-                      <TextBlock Text="The hunter's journey" Classes="section"/>
-                      <TextBlock Text="{Binding HunterName}" FontSize="24" FontWeight="SemiBold"/>
-                      <TextBlock Text="{Binding PlayTimeLine}" Classes="small"/>
-                      <TextBlock Text="Static game artwork · not an equipment preview" Classes="small" TextWrapping="Wrap"/>
+                <Border Classes="card" Padding="0" Margin="0,0,0,24" ClipToBounds="True" BorderBrush="#605640">
+                  <Grid ColumnDefinitions="*,240" MinHeight="132">
+                    <Grid.Background>
+                      <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
+                        <GradientStop Color="#202D34" Offset="0"/>
+                        <GradientStop Color="#243E4A" Offset="0.65"/>
+                        <GradientStop Color="#15212A" Offset="1"/>
+                      </LinearGradientBrush>
+                    </Grid.Background>
+                    <StackPanel Margin="26,20" Spacing="8" VerticalAlignment="Center">
+                      <TextBlock Text="HUNTER’S GUILD · CHARACTER RECORD" Classes="eyebrow" FontSize="10"/>
+                      <TextBlock Text="{Binding HunterName}" FontSize="30" FontWeight="SemiBold"/>
+                      <TextBlock Text="{Binding PlayTimeLine}" Classes="muted"/>
                     </StackPanel>
-                    <Image Grid.Column="1" Source="{Binding HunterArtworkKey, Converter={StaticResource GameIcon}}" Height="168" Stretch="UniformToFill"/>
+                    <views:GuildEmblem Grid.Column="1" Width="156" Height="156" Opacity="0.28" Margin="0,-12,0,-12"/>
+                    <Image Grid.Column="1" Source="{Binding HunterArtworkKey, Converter={StaticResource GameIcon}}" Height="132" Stretch="UniformToFill" IsVisible="{Binding HasGameVisuals}"/>
+                    <Border Grid.Column="1" Background="#C0101920" Padding="8,4" VerticalAlignment="Bottom" IsVisible="{Binding HasGameVisuals}">
+                      <TextBlock Text="Static artwork · not a gear preview" FontSize="9" TextAlignment="Center" Foreground="#B3BEC5"/>
+                    </Border>
+                    <Border Height="2" Background="#D8B976" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="104"/>
                   </Grid>
                 </Border>
-                <Grid ColumnDefinitions="*,20,*">
-                  <StackPanel>
+                <Grid ColumnDefinitions="*,24,*">
+                  <StackPanel Spacing="24">
                     <Border Classes="card">
                       <StackPanel>
                         <StackPanel Spacing="16">
@@ -212,8 +163,30 @@
                         </StackPanel>
                       </StackPanel>
                     </Border>
+                    <Border Classes="card">
+                      <StackPanel>
+                        <StackPanel Spacing="14">
+                          <TextBlock Text="Progression" Classes="section" TextWrapping="Wrap"/>
+                          <Grid ColumnDefinitions="*,20,*">
+                            <StackPanel>
+                              <StackPanel Spacing="6">
+                                <TextBlock Text="Village stars" Classes="label" TextWrapping="Wrap"/>
+                                <views:IntegerInput Value="{Binding VillageStar, Mode=TwoWay}" Minimum="1" Maximum="10" Increment="1" FormatString="0" Name="VillageStarInput"/>
+                              </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                              <StackPanel Spacing="6">
+                                <TextBlock Text="Hub stars" Classes="label" TextWrapping="Wrap"/>
+                                <views:IntegerInput Value="{Binding HubStar, Mode=TwoWay}" Minimum="0" Maximum="13" Increment="1" FormatString="0" Name="HubStarInput"/>
+                              </StackPanel>
+                            </StackPanel>
+                          </Grid>
+                          <TextBlock Text="Star levels and quest flags are separate. Changing stars does not complete urgent quests." Classes="muted" TextWrapping="Wrap"/>
+                        </StackPanel>
+                      </StackPanel>
+                    </Border>
                   </StackPanel>
-                  <StackPanel Grid.Column="2">
+                  <StackPanel Grid.Column="2" Spacing="24">
                     <Border Classes="card">
                       <StackPanel>
                         <StackPanel Spacing="14">
@@ -231,39 +204,17 @@
                         </StackPanel>
                       </StackPanel>
                     </Border>
+                    <Border Classes="card">
+                      <StackPanel>
+                        <StackPanel Spacing="14">
+                          <TextBlock Text="Save workflow" Classes="section" TextWrapping="Wrap"/>
+                          <TextBlock Text="Profile changes are staged as you type. For items and equipment, choose a row, edit its fields, then select Apply. Use Save changes to write all characters to disk." Classes="muted" TextWrapping="Wrap"/>
+                          <TextBlock Text="A backup is created for every existing save file before writing. Close the emulator before saving." Classes="muted" TextWrapping="Wrap"/>
+                        </StackPanel>
+                      </StackPanel>
+                    </Border>
                   </StackPanel>
                 </Grid>
-                <Border Classes="card" Margin="0,20,0,0">
-                  <StackPanel>
-                    <StackPanel Spacing="14">
-                      <TextBlock Text="Progression" Classes="section" TextWrapping="Wrap"/>
-                      <Grid ColumnDefinitions="*,20,*">
-                        <StackPanel>
-                          <StackPanel Spacing="6">
-                            <TextBlock Text="Village stars" Classes="label" TextWrapping="Wrap"/>
-                            <views:IntegerInput Value="{Binding VillageStar, Mode=TwoWay}" Minimum="1" Maximum="10" Increment="1" FormatString="0" Name="VillageStarInput"/>
-                          </StackPanel>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2">
-                          <StackPanel Spacing="6">
-                            <TextBlock Text="Hub stars" Classes="label" TextWrapping="Wrap"/>
-                            <views:IntegerInput Value="{Binding HubStar, Mode=TwoWay}" Minimum="0" Maximum="13" Increment="1" FormatString="0" Name="HubStarInput"/>
-                          </StackPanel>
-                        </StackPanel>
-                      </Grid>
-                      <TextBlock Text="Star levels and quest flags are separate. Changing stars does not complete urgent quests." Classes="muted" TextWrapping="Wrap"/>
-                    </StackPanel>
-                  </StackPanel>
-                </Border>
-                <Border Classes="card" Margin="0,20,0,0">
-                  <StackPanel>
-                    <StackPanel Spacing="14">
-                      <TextBlock Text="Save workflow" Classes="section" TextWrapping="Wrap"/>
-                      <TextBlock Text="Profile changes are staged as you type. For items and equipment, choose a row, edit its fields, then select Apply. Use Save changes to write all characters to disk." Classes="muted" TextWrapping="Wrap"/>
-                      <TextBlock Text="A backup is created for every existing save file before writing. Close the emulator before saving." Classes="muted" TextWrapping="Wrap"/>
-                    </StackPanel>
-                  </StackPanel>
-                </Border>
               </StackPanel>
             </ScrollViewer>
           </Grid>
@@ -271,6 +222,7 @@
             <Grid RowDefinitions="Auto,*,Auto">
               <StackPanel>
                 <StackPanel Spacing="5" Margin="0,0,0,18">
+                  <TextBlock Text="02 / ITEM STORAGE" Classes="eyebrow" FontSize="10"/>
                   <TextBlock Text="Item inventory" Classes="pageTitle" TextWrapping="Wrap"/>
                   <TextBlock Text="Search your storage, manage stacks, or add items by name." Classes="muted" TextWrapping="Wrap"/>
                 </StackPanel>
@@ -278,7 +230,7 @@
               <Grid Grid.Row="1">
                 <TabControl Classes="inner" Name="InventoryTabs">
                   <TabItem Header="Item box · 2,300 slots">
-                    <Grid ColumnDefinitions="*,20,340" RowDefinitions="*" Margin="0,16,0,0">
+                    <Grid ColumnDefinitions="*,24,340" RowDefinitions="*" Margin="0,16,0,0">
                       <Grid RowDefinitions="Auto,Auto,*">
                         <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
                           <TextBox Text="{Binding ItemFilter, Mode=TwoWay}" PlaceholderText="Search item name, ID, or slot…"/>
@@ -286,7 +238,7 @@
                         </Grid>
                         <TextBlock Grid.Row="1" Text="{Binding BoxView.Count, StringFormat='{}Shown: {0} slots'}" Classes="small" Margin="0,0,0,8"/>
                         <Grid Grid.Row="2">
-                          <ListBox ItemsSource="{Binding BoxView}" SelectedItem="{Binding SelectedBox, Mode=TwoWay}" Classes="records">
+                          <ListBox ItemsSource="{Binding BoxView}" SelectedItem="{Binding SelectedBox, Mode=TwoWay}" Classes="records" Name="BoxItemsList" SelectionChanged="OnInventorySlotSelected">
                             <ListBox.ItemTemplate>
                               <DataTemplate x:DataType="vm:ItemRow">
                                 <Grid ColumnDefinitions="38,44,*,68" Margin="4,5">
@@ -303,75 +255,83 @@
                           </ListBox>
                         </Grid>
                       </Grid>
-                      <ScrollViewer Grid.Column="2">
-                        <StackPanel Spacing="16">
-                          <Border Classes="card inputForm">
-                            <StackPanel>
-                              <StackPanel Spacing="12">
-                                <TextBlock Text="Selected slot" Classes="section" TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding SelectedBox.Name, FallbackValue=Select an item from the list, TargetNullValue=Select an item from the list}" Classes="label" TextWrapping="Wrap"/>
-                                <Grid ColumnDefinitions="*,20,*">
-                                  <StackPanel>
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding EditBoxId, Mode=TwoWay}" Minimum="0" Maximum="4095" Increment="1" FormatString="0" Name="EditBoxIdInput"/>
-                                    </StackPanel>
+                      <Border Grid.Column="2" Classes="card" Padding="18,12,18,16">
+                        <TabControl Name="BoxEditorTabs" Classes="inner">
+                          <TabItem Header="Edit slot">
+                            <Grid RowDefinitions="*,Auto" Classes="inputForm" Margin="0,12,0,0">
+                              <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                <StackPanel>
+                                  <StackPanel Spacing="12">
+                                    <TextBlock Text="Selected slot" Classes="section" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding SelectedBox.Name, FallbackValue=Select an item from the list, TargetNullValue=Select an item from the list}" Classes="label" TextWrapping="Wrap"/>
+                                    <Grid ColumnDefinitions="*,20,*">
+                                      <StackPanel>
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding EditBoxId, Mode=TwoWay}" Minimum="0" Maximum="4095" Increment="1" FormatString="0" Name="EditBoxIdInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                      <StackPanel Grid.Column="2">
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding EditBoxCount, Mode=TwoWay}" Minimum="0" Maximum="127" Increment="1" FormatString="0" Name="EditBoxCountInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="Apply updates this slot in memory. Save changes writes it to disk." Classes="muted" TextWrapping="Wrap"/>
                                   </StackPanel>
-                                  <StackPanel Grid.Column="2">
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding EditBoxCount, Mode=TwoWay}" Minimum="0" Maximum="127" Increment="1" FormatString="0" Name="EditBoxCountInput"/>
-                                    </StackPanel>
+                                </StackPanel>
+                              </ScrollViewer>
+                              <WrapPanel Grid.Row="1" Margin="0,12,0,0" Orientation="Horizontal">
+                                <views:ValidatedButton Content="Apply to slot" Command="{Binding ApplySelectedBoxCommand}" Classes="primary" IsEnabled="{Binding HasBoxSelection}"/>
+                                <Button Content="Clear slot" Command="{Binding ClearSelectedBoxCommand}" Classes="danger" IsEnabled="{Binding HasBoxSelection}"/>
+                              </WrapPanel>
+                            </Grid>
+                          </TabItem>
+                          <TabItem Header="Add item">
+                            <Grid RowDefinitions="*,Auto" Classes="inputForm" Tag="CreationDraft" Margin="0,12,0,0">
+                              <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                <StackPanel>
+                                  <StackPanel Spacing="10" Tag="CreationDraft">
+                                    <TextBlock Text="Add an item" Classes="section" TextWrapping="Wrap"/>
+                                    <TextBox Text="{Binding ItemNameQuery, Mode=TwoWay}" PlaceholderText="Find an item by name…" Name="BoxItemSearchInput"/>
+                                    <ListBox ItemsSource="{Binding ItemNameMatches}" SelectedItem="{Binding SelectedItemPick, Mode=TwoWay}" Height="130" Classes="records" Name="BoxItemCatalogList">
+                                      <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ItemPick">
+                                          <Grid ColumnDefinitions="30,*">
+                                            <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="24" Height="24" Stretch="Uniform"/>
+                                            <TextBlock Text="{Binding Display}" TextTrimming="CharacterEllipsis" Grid.Column="1" VerticalAlignment="Center"/>
+                                          </Grid>
+                                        </DataTemplate>
+                                      </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <Grid ColumnDefinitions="*,20,*">
+                                      <StackPanel>
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding AddItemId, Mode=TwoWay}" Minimum="1" Maximum="4095" Increment="1" FormatString="0" Name="AddBoxIdInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                      <StackPanel Grid.Column="2">
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding AddItemCount, Mode=TwoWay}" Minimum="1" Maximum="127" Increment="1" FormatString="0" Name="AddBoxCountInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="Adds to the first empty slot." Classes="muted" TextWrapping="Wrap"/>
                                   </StackPanel>
-                                </Grid>
-                                <WrapPanel Orientation="Horizontal">
-                                  <views:ValidatedButton Content="Apply to slot" Command="{Binding ApplySelectedBoxCommand}" Classes="primary" IsEnabled="{Binding HasBoxSelection}"/>
-                                  <Button Content="Clear slot" Command="{Binding ClearSelectedBoxCommand}" Classes="secondary" IsEnabled="{Binding HasBoxSelection}"/>
-                                </WrapPanel>
-                                <TextBlock Text="Apply updates this slot in memory. Save changes writes it to disk." Classes="muted" TextWrapping="Wrap"/>
-                              </StackPanel>
-                            </StackPanel>
-                          </Border>
-                          <Border Classes="card inputForm">
-                            <StackPanel>
-                              <StackPanel Spacing="10" Tag="CreationDraft">
-                                <TextBlock Text="Add an item" Classes="section" TextWrapping="Wrap"/>
-                                <TextBox Text="{Binding ItemNameQuery, Mode=TwoWay}" PlaceholderText="Find an item by name…" Name="BoxItemSearchInput"/>
-                                <ListBox ItemsSource="{Binding ItemNameMatches}" SelectedItem="{Binding SelectedItemPick, Mode=TwoWay}" Height="130" Classes="records" Name="BoxItemCatalogList">
-                                  <ListBox.ItemTemplate>
-                                    <DataTemplate x:DataType="vm:ItemPick">
-                                      <Grid ColumnDefinitions="30,*">
-                                        <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="24" Height="24" Stretch="Uniform"/>
-                                        <TextBlock Text="{Binding Display}" TextTrimming="CharacterEllipsis" Grid.Column="1" VerticalAlignment="Center"/>
-                                      </Grid>
-                                    </DataTemplate>
-                                  </ListBox.ItemTemplate>
-                                </ListBox>
-                                <Grid ColumnDefinitions="*,20,*">
-                                  <StackPanel>
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding AddItemId, Mode=TwoWay}" Minimum="1" Maximum="4095" Increment="1" FormatString="0" Name="AddBoxIdInput"/>
-                                    </StackPanel>
-                                  </StackPanel>
-                                  <StackPanel Grid.Column="2">
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding AddItemCount, Mode=TwoWay}" Minimum="1" Maximum="127" Increment="1" FormatString="0" Name="AddBoxCountInput"/>
-                                    </StackPanel>
-                                  </StackPanel>
-                                </Grid>
-                                <views:ValidatedButton Content="Add to item box" Command="{Binding AddToBoxCommand}" Classes="primary" Name="AddBoxItemButton"/>
-                                <TextBlock Text="Adds to the first empty slot." Classes="muted" TextWrapping="Wrap"/>
-                              </StackPanel>
-                            </StackPanel>
-                          </Border>
-                        </StackPanel>
-                      </ScrollViewer>
+                                </StackPanel>
+                              </ScrollViewer>
+                              <views:ValidatedButton Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,12,0,0" Content="Add to item box" Command="{Binding AddToBoxCommand}" Classes="primary" Name="AddBoxItemButton"/>
+                            </Grid>
+                          </TabItem>
+                        </TabControl>
+                      </Border>
                     </Grid>
                   </TabItem>
                   <TabItem Header="Pouch · 32 slots">
-                    <Grid ColumnDefinitions="*,20,340" RowDefinitions="*" Margin="0,16,0,0">
+                    <Grid ColumnDefinitions="*,24,340" RowDefinitions="*" Margin="0,16,0,0">
                       <Grid RowDefinitions="Auto,Auto,*">
                         <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,12">
                           <TextBox Text="{Binding ItemFilter, Mode=TwoWay}" PlaceholderText="Search item name, ID, or slot…"/>
@@ -379,7 +339,7 @@
                         </Grid>
                         <TextBlock Grid.Row="1" Text="{Binding PouchView.Count, StringFormat='{}Shown: {0} slots'}" Classes="small" Margin="0,0,0,8"/>
                         <Grid Grid.Row="2">
-                          <ListBox ItemsSource="{Binding PouchView}" SelectedItem="{Binding SelectedPouch, Mode=TwoWay}" Classes="records">
+                          <ListBox ItemsSource="{Binding PouchView}" SelectedItem="{Binding SelectedPouch, Mode=TwoWay}" Classes="records" Name="PouchItemsList" SelectionChanged="OnInventorySlotSelected">
                             <ListBox.ItemTemplate>
                               <DataTemplate x:DataType="vm:ItemRow">
                                 <Grid ColumnDefinitions="38,44,*,68" Margin="4,5">
@@ -396,71 +356,79 @@
                           </ListBox>
                         </Grid>
                       </Grid>
-                      <ScrollViewer Grid.Column="2">
-                        <StackPanel Spacing="16">
-                          <Border Classes="card inputForm">
-                            <StackPanel>
-                              <StackPanel Spacing="12">
-                                <TextBlock Text="Selected slot" Classes="section" TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding SelectedPouch.Name, FallbackValue=Select an item from the list, TargetNullValue=Select an item from the list}" Classes="label" TextWrapping="Wrap"/>
-                                <Grid ColumnDefinitions="*,20,*">
-                                  <StackPanel>
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding EditPouchId, Mode=TwoWay}" Minimum="0" Maximum="4095" Increment="1" FormatString="0" Name="EditPouchIdInput"/>
-                                    </StackPanel>
+                      <Border Grid.Column="2" Classes="card" Padding="18,12,18,16">
+                        <TabControl Name="PouchEditorTabs" Classes="inner">
+                          <TabItem Header="Edit slot">
+                            <Grid RowDefinitions="*,Auto" Classes="inputForm" Margin="0,12,0,0">
+                              <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                <StackPanel>
+                                  <StackPanel Spacing="12">
+                                    <TextBlock Text="Selected slot" Classes="section" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding SelectedPouch.Name, FallbackValue=Select an item from the list, TargetNullValue=Select an item from the list}" Classes="label" TextWrapping="Wrap"/>
+                                    <Grid ColumnDefinitions="*,20,*">
+                                      <StackPanel>
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding EditPouchId, Mode=TwoWay}" Minimum="0" Maximum="4095" Increment="1" FormatString="0" Name="EditPouchIdInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                      <StackPanel Grid.Column="2">
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding EditPouchCount, Mode=TwoWay}" Minimum="0" Maximum="127" Increment="1" FormatString="0" Name="EditPouchCountInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="Apply updates this slot in memory. Save changes writes it to disk." Classes="muted" TextWrapping="Wrap"/>
                                   </StackPanel>
-                                  <StackPanel Grid.Column="2">
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding EditPouchCount, Mode=TwoWay}" Minimum="0" Maximum="127" Increment="1" FormatString="0" Name="EditPouchCountInput"/>
-                                    </StackPanel>
+                                </StackPanel>
+                              </ScrollViewer>
+                              <WrapPanel Grid.Row="1" Margin="0,12,0,0" Orientation="Horizontal">
+                                <views:ValidatedButton Content="Apply to slot" Command="{Binding ApplySelectedPouchCommand}" Classes="primary" IsEnabled="{Binding HasPouchSelection}"/>
+                                <Button Content="Clear slot" Command="{Binding ClearSelectedPouchCommand}" Classes="danger" IsEnabled="{Binding HasPouchSelection}"/>
+                              </WrapPanel>
+                            </Grid>
+                          </TabItem>
+                          <TabItem Header="Add item">
+                            <Grid RowDefinitions="*,Auto" Classes="inputForm" Tag="CreationDraft" Margin="0,12,0,0">
+                              <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                <StackPanel>
+                                  <StackPanel Spacing="10" Tag="CreationDraft">
+                                    <TextBlock Text="Add an item" Classes="section" TextWrapping="Wrap"/>
+                                    <TextBox Text="{Binding ItemNameQuery, Mode=TwoWay}" PlaceholderText="Find an item by name…" Name="PouchItemSearchInput"/>
+                                    <ListBox ItemsSource="{Binding ItemNameMatches}" SelectedItem="{Binding SelectedItemPick, Mode=TwoWay}" Height="130" Classes="records" Name="PouchItemCatalogList">
+                                      <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="vm:ItemPick">
+                                          <Grid ColumnDefinitions="30,*">
+                                            <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="24" Height="24" Stretch="Uniform"/>
+                                            <TextBlock Text="{Binding Display}" TextTrimming="CharacterEllipsis" Grid.Column="1" VerticalAlignment="Center"/>
+                                          </Grid>
+                                        </DataTemplate>
+                                      </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <Grid ColumnDefinitions="*,20,*">
+                                      <StackPanel>
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding AddItemId, Mode=TwoWay}" Minimum="1" Maximum="4095" Increment="1" FormatString="0" Name="AddPouchIdInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                      <StackPanel Grid.Column="2">
+                                        <StackPanel Spacing="6">
+                                          <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
+                                          <views:IntegerInput Value="{Binding AddItemCount, Mode=TwoWay}" Minimum="1" Maximum="127" Increment="1" FormatString="0" Name="AddPouchCountInput"/>
+                                        </StackPanel>
+                                      </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="Adds to the first empty slot." Classes="muted" TextWrapping="Wrap"/>
                                   </StackPanel>
-                                </Grid>
-                                <WrapPanel Orientation="Horizontal">
-                                  <views:ValidatedButton Content="Apply to slot" Command="{Binding ApplySelectedPouchCommand}" Classes="primary" IsEnabled="{Binding HasPouchSelection}"/>
-                                  <Button Content="Clear slot" Command="{Binding ClearSelectedPouchCommand}" Classes="secondary" IsEnabled="{Binding HasPouchSelection}"/>
-                                </WrapPanel>
-                                <TextBlock Text="Apply updates this slot in memory. Save changes writes it to disk." Classes="muted" TextWrapping="Wrap"/>
-                              </StackPanel>
-                            </StackPanel>
-                          </Border>
-                          <Border Classes="card inputForm">
-                            <StackPanel>
-                              <StackPanel Spacing="10" Tag="CreationDraft">
-                                <TextBlock Text="Add an item" Classes="section" TextWrapping="Wrap"/>
-                                <TextBox Text="{Binding ItemNameQuery, Mode=TwoWay}" PlaceholderText="Find an item by name…" Name="PouchItemSearchInput"/>
-                                <ListBox ItemsSource="{Binding ItemNameMatches}" SelectedItem="{Binding SelectedItemPick, Mode=TwoWay}" Height="130" Classes="records" Name="PouchItemCatalogList">
-                                  <ListBox.ItemTemplate>
-                                    <DataTemplate x:DataType="vm:ItemPick">
-                                      <Grid ColumnDefinitions="30,*">
-                                        <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="24" Height="24" Stretch="Uniform"/>
-                                        <TextBlock Text="{Binding Display}" TextTrimming="CharacterEllipsis" Grid.Column="1" VerticalAlignment="Center"/>
-                                      </Grid>
-                                    </DataTemplate>
-                                  </ListBox.ItemTemplate>
-                                </ListBox>
-                                <Grid ColumnDefinitions="*,20,*">
-                                  <StackPanel>
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Item ID" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding AddItemId, Mode=TwoWay}" Minimum="1" Maximum="4095" Increment="1" FormatString="0" Name="AddPouchIdInput"/>
-                                    </StackPanel>
-                                  </StackPanel>
-                                  <StackPanel Grid.Column="2">
-                                    <StackPanel Spacing="6">
-                                      <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
-                                      <views:IntegerInput Value="{Binding AddItemCount, Mode=TwoWay}" Minimum="1" Maximum="127" Increment="1" FormatString="0" Name="AddPouchCountInput"/>
-                                    </StackPanel>
-                                  </StackPanel>
-                                </Grid>
-                                <views:ValidatedButton Content="Add to pouch" Command="{Binding AddToPouchCommand}" Classes="primary" Name="AddPouchItemButton"/>
-                                <TextBlock Text="Adds to the first empty slot." Classes="muted" TextWrapping="Wrap"/>
-                              </StackPanel>
-                            </StackPanel>
-                          </Border>
-                        </StackPanel>
-                      </ScrollViewer>
+                                </StackPanel>
+                              </ScrollViewer>
+                              <views:ValidatedButton Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,12,0,0" Content="Add to pouch" Command="{Binding AddToPouchCommand}" Classes="primary" Name="AddPouchItemButton"/>
+                            </Grid>
+                          </TabItem>
+                        </TabControl>
+                      </Border>
                     </Grid>
                   </TabItem>
                 </TabControl>
@@ -478,11 +446,12 @@
             <Grid RowDefinitions="Auto,*">
               <StackPanel>
                 <StackPanel Spacing="5" Margin="0,0,0,18">
+                  <TextBlock Text="04 / QUEST JOURNAL" Classes="eyebrow" FontSize="10"/>
                   <TextBlock Text="Quest progress" Classes="pageTitle" TextWrapping="Wrap"/>
                   <TextBlock Text="Find quests and manage completion flags for this character." Classes="muted" TextWrapping="Wrap"/>
                 </StackPanel>
               </StackPanel>
-              <Grid Grid.Row="1" ColumnDefinitions="*,20,320">
+              <Grid Grid.Row="1" ColumnDefinitions="*,24,320">
                 <Grid RowDefinitions="Auto,*">
                   <Grid ColumnDefinitions="*,160" Margin="0,0,0,12">
                     <TextBox Text="{Binding QuestFilter, Mode=TwoWay}" PlaceholderText="Search quest name or index…" Name="QuestFilterInput"/>
@@ -525,8 +494,8 @@
                         <StackPanel Spacing="10">
                           <TextBlock Text="Filtered quests" Classes="section" TextWrapping="Wrap"/>
                           <TextBlock Text="{Binding QuestView.Count, StringFormat=Shown quests: {0}}" Classes="muted" TextWrapping="Wrap"/>
-                          <Button Content="Clear all shown" Command="{Binding ClearVisibleQuestsCommand}" Classes="secondary"/>
-                          <Button Content="Unclear all shown" Command="{Binding UnclearVisibleQuestsCommand}" Classes="secondary"/>
+                          <Button Content="Mark shown quests cleared" Command="{Binding ClearVisibleQuestsCommand}" Classes="secondary"/>
+                          <Button Content="Reset shown quest flags" Command="{Binding UnclearVisibleQuestsCommand}" Classes="secondary"/>
                         </StackPanel>
                       </StackPanel>
                     </Border>
@@ -552,74 +521,96 @@
           </Grid>
           <Grid IsVisible="{Binding IsUnlocksSection}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-              <StackPanel Spacing="0" MaxWidth="1120" HorizontalAlignment="Left">
+              <StackPanel Spacing="0" HorizontalAlignment="Stretch">
                 <StackPanel Spacing="5" Margin="0,0,0,18">
+                  <TextBlock Text="05 / COLLECTIONS" Classes="eyebrow" FontSize="10"/>
                   <TextBlock Text="Unlocks &amp; rewards" Classes="pageTitle" TextWrapping="Wrap"/>
                   <TextBlock Text="Apply collection unlocks to the selected character." Classes="muted" TextWrapping="Wrap"/>
                 </StackPanel>
-                <Border Classes="card">
-                  <StackPanel>
-                    <StackPanel Spacing="14">
-                      <TextBlock Text="{Binding UnlockLine}" Classes="label" TextWrapping="Wrap"/>
-                    </StackPanel>
+                <Border Classes="inset" Margin="0,0,0,24" Padding="18,14">
+                  <StackPanel Spacing="6">
+                    <TextBlock Text="COLLECTION RECORD" Classes="eyebrow" FontSize="10"/>
+                    <TextBlock Text="{Binding UnlockLine}" Classes="muted" TextWrapping="Wrap"/>
                   </StackPanel>
                 </Border>
-                <Border Classes="card" Margin="0,16,0,0">
-                  <StackPanel>
-                    <Grid ColumnDefinitions="*,24,230">
-                      <StackPanel Spacing="8">
+                <Grid ColumnDefinitions="*,20,*,20,*">
+                  <Border Classes="card">
+                    <Grid RowDefinitions="Auto,*,Auto" MinHeight="270">
+                      <StackPanel Spacing="16">
+                        <TextBlock Text="01 / SMITHY" Classes="eyebrow" FontSize="10"/>
                         <TextBlock Text="Material knowledge" Classes="section" TextWrapping="Wrap"/>
-                        <TextBlock Text="Reveal obtained materials to the Smithy, shops, Trader, and Palico smithy. This does not add items to your inventory." Classes="muted" TextWrapping="Wrap"/>
                       </StackPanel>
-                      <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                        <Button Content="Unlock all materials" Command="{Binding UnlockAllMaterialsCommand}" Classes="secondary"/>
-                      </StackPanel>
+                      <TextBlock Grid.Row="1" Text="Reveal obtained materials to the Smithy, shops, Trader, and Palico smithy. This does not add items to your inventory." Classes="muted" TextWrapping="Wrap" Margin="0,16,0,24"/>
+                      <Button Grid.Row="2" Content="Unlock all materials" Command="{Binding UnlockAllMaterialsCommand}" HorizontalAlignment="Stretch"/>
                     </Grid>
-                  </StackPanel>
-                </Border>
-                <Border Classes="card" Margin="0,16,0,0">
-                  <StackPanel>
-                    <Grid ColumnDefinitions="*,24,230">
-                      <StackPanel Spacing="8">
+                  </Border>
+                  <Border Grid.Column="2" Classes="card">
+                    <Grid RowDefinitions="Auto,*,Auto" MinHeight="270">
+                      <StackPanel Spacing="16">
+                        <TextBlock Text="02 / GUILD CARD" Classes="eyebrow" FontSize="10"/>
                         <TextBlock Text="Guild Card awards" Classes="section" TextWrapping="Wrap"/>
-                        <TextBlock Text="Grant all 132 award flags for the selected character." Classes="muted" TextWrapping="Wrap"/>
                       </StackPanel>
-                      <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                        <Button Content="Grant all awards" Command="{Binding GrantAllAwardsCommand}" Classes="secondary"/>
-                      </StackPanel>
+                      <TextBlock Grid.Row="1" Text="Celebrate every milestone. Grant all 132 award flags for the selected hunter’s Guild Card." Classes="muted" TextWrapping="Wrap" Margin="0,16,0,24"/>
+                      <Button Grid.Row="2" Content="Grant all awards" Command="{Binding GrantAllAwardsCommand}" HorizontalAlignment="Stretch"/>
                     </Grid>
-                  </StackPanel>
-                </Border>
-                <Border Classes="card" Margin="0,16,0,0">
-                  <StackPanel>
-                    <Grid ColumnDefinitions="*,24,230">
-                      <StackPanel Spacing="8">
+                  </Border>
+                  <Border Grid.Column="4" Classes="card">
+                    <Grid RowDefinitions="Auto,*,Auto" MinHeight="270">
+                      <StackPanel Spacing="16">
+                        <TextBlock Text="03 / HUNTING ARTS" Classes="eyebrow" FontSize="10"/>
                         <TextBlock Text="Hunter Arts" Classes="section" TextWrapping="Wrap"/>
-                        <TextBlock Text="Unlock all supported Hunter Art flags." Classes="muted" TextWrapping="Wrap"/>
                       </StackPanel>
-                      <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                        <Button Content="Unlock all Hunter Arts" Command="{Binding UnlockAllArtsCommand}" Classes="secondary"/>
-                      </StackPanel>
+                      <TextBlock Grid.Row="1" Text="Expand your hunting repertoire. Unlock all supported Hunter Art flags for this character." Classes="muted" TextWrapping="Wrap" Margin="0,16,0,24"/>
+                      <Button Grid.Row="2" Content="Unlock all Hunter Arts" Command="{Binding UnlockAllArtsCommand}" HorizontalAlignment="Stretch"/>
                     </Grid>
-                  </StackPanel>
-                </Border>
+                  </Border>
+                </Grid>
                 <TextBlock Text="These actions are staged in memory. Use Revert changes before saving to discard them." Classes="muted" TextWrapping="Wrap" Margin="0,20,0,0"/>
               </StackPanel>
             </ScrollViewer>
           </Grid>
         </Grid>
-        <StackPanel IsVisible="{Binding !IsLoaded}" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="560" Spacing="18">
-          <Image Source="{Binding VillageArtworkKey, Converter={StaticResource GameIcon}}" Width="430" Height="180" Stretch="Uniform" IsVisible="{Binding HasGameVisuals}"/>
-          <TextBlock Text="Your next hunt starts here." FontSize="32" FontWeight="SemiBold" TextAlignment="Center"/>
-          <TextBlock Text="Open an MHGU Switch save to manage your hunter, inventory, equipment, and quest progress." Classes="muted" TextWrapping="Wrap" TextAlignment="Center"/>
-          <Button Content="Open a save file" Click="OnOpenClick" Classes="primary" HorizontalAlignment="Center"/>
-          <TextBlock Text="Choose the file named system or system_backup. Keep the emulator closed while editing." Classes="small" TextWrapping="Wrap" TextAlignment="Center"/>
-        </StackPanel>
+        <Border IsVisible="{Binding !IsLoaded}" Classes="card" Padding="0" ClipToBounds="True" VerticalAlignment="Center" MaxWidth="1000" HorizontalAlignment="Stretch" BorderBrush="#605640">
+          <Grid RowDefinitions="3,*,Auto">
+            <Border>
+              <Border.Background>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                  <GradientStop Color="#C86E55" Offset="0"/>
+                  <GradientStop Color="#D8B976" Offset="0.45"/>
+                  <GradientStop Color="#8AC6D4" Offset="1"/>
+                </LinearGradientBrush>
+              </Border.Background>
+            </Border>
+            <Grid Grid.Row="1" ColumnDefinitions="*,220" Margin="36,36,28,36">
+              <StackPanel Spacing="18" VerticalAlignment="Center">
+                <TextBlock Text="PREPARE FOR THE NEXT HUNT" Classes="eyebrow"/>
+                <TextBlock Text="Every great hunt
+begins with preparation." FontSize="36" LineHeight="44" FontWeight="SemiBold" LetterSpacing="-1" TextWrapping="Wrap"/>
+                <TextBlock Text="Your hunter, your loadout, your next adventure. Manage your MHGU save in one organized workspace." Classes="muted" TextWrapping="Wrap" MaxWidth="470" HorizontalAlignment="Left"/>
+                <Button Content="Open your save file  →" Click="OnOpenClick" Classes="primary" HorizontalAlignment="Left" Margin="0,6,0,0"/>
+                <TextBlock Text="Choose system or system_backup · MHGU for Nintendo Switch" Classes="small" TextWrapping="Wrap"/>
+              </StackPanel>
+              <views:GuildEmblem Grid.Column="1" Width="196" Height="196" VerticalAlignment="Center" Opacity="0.85"/>
+            </Grid>
+            <Border Grid.Row="2" Background="#111C24" Padding="30,20" BorderBrush="#36444D" BorderThickness="0,1,0,0">
+              <Grid ColumnDefinitions="*,24,*">
+                <StackPanel Spacing="6">
+                  <TextBlock Text="01  OPEN &amp; EXPLORE" Classes="eyebrow" FontSize="10"/>
+                  <TextBlock Text="Select a character. Browse your inventory, gear, and quest progress." Classes="small" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Spacing="6">
+                  <TextBlock Text="02  EDIT &amp; SAVE" Classes="eyebrow" FontSize="10"/>
+                  <TextBlock Text="Stage changes, then save. Existing files are backed up automatically." Classes="small" TextWrapping="Wrap"/>
+                </StackPanel>
+              </Grid>
+            </Border>
+          </Grid>
+        </Border>
       </Grid>
     </Grid>
-    <Border Grid.Column="1" Grid.Row="1" Background="#111C2A" BorderBrush="#28364B" BorderThickness="0,1,0,0" Padding="28,12">
+    <Border Grid.Column="1" Grid.Row="1" Background="#10191F" BorderBrush="#36444D" BorderThickness="0,1,0,0" Padding="28,14">
       <Grid ColumnDefinitions="Auto,*,Auto">
-        <TextBlock Text="{Binding SaveState}" Foreground="#7CE3D1" FontSize="12" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding SaveState}" Foreground="#8AC6D4" FontSize="12" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1" Text="{Binding Status}" TextWrapping="Wrap" Classes="small" Margin="20,0" VerticalAlignment="Center"/>
         <Button Grid.Column="2" Content="Revert changes" Click="OnRevertClick" IsEnabled="{Binding HasUnsavedChanges}"/>
       </Grid>

@@ -1,202 +1,117 @@
+<p align="center">
+  <img src="src/MhguSave.App/Assets/app-logo.png" alt="MHGU Save Editor crest" width="96" height="96">
+</p>
+
 # MHGU Save Editor
 
-Desktop save editor for **Monster Hunter Generations Ultimate** (Nintendo Switch, title id
-`0100770008DD8000`) saves from emulators (yuzu-family layout: `user/nand/user/save/...`) or
-from a copied console backup.
+**A desktop save editor for Monster Hunter Generations Ultimate, by Dalrymple.**
 
-Status: **active development; known equipment issues and in-game validation remain.**
-The armor ID correction is included. Read [the known issues](docs/KNOWN_ISSUES.md)
-for remaining Palico storage, loadout-reference, decoration, and talisman problems.
+Manage your hunter profile, inventory, equipment, and quest progress in a focused
+Windows workspace. Built for Nintendo Switch saves, with searchable catalogs,
+character switching, and automatic backups.
 
-Windows x64 early-access downloads are available under
-[GitHub Releases](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases).
-Choose the per-user Setup installer or extract the portable ZIP. Both include the
-.NET runtime. See [the early-access instructions](packaging/EARLY-ACCESS.txt).
-The redesigned desktop UI includes sidebar navigation, searchable inventories, contextual
-equipment fields, character selection, an empty state, and unsaved-change prompts.
-The local visual build also includes original game item/material and equipment-class
-icons, distinct armor-part symbols, static hunter artwork, and village artwork. See [the import notes](tools/GAME_VISUALS.md)
-for sources and rebuilding the optional local asset pack.
-The UI exposes the following workflows; automated storage tests do not cover every
-gameplay constraint described in the known issues:
+## Download
 
-- Hunter name, zenny, Wycademy points, HR points, village/hub star, quest counter
-- Item box (2300 slots) and pouch (32 slots): edit id/count, clear, add by id or by name search
-- Equipment box (2000 × 36 B): list with real names, choose type on creation, edit id/level, decorations,
-  talisman skills/points/slots/charm, add weapons, armor, talismans or Palico gear
-- Equipment Edit/Create/Decorations tabs with pinned actions, named jewel and skill pickers,
-  configured talisman creation, and dedicated jewel addition to the item box
-- Armor appearance ID/source level and Insect Glaive kinsect ID/level
-- All occupied characters; edits are kept when switching and saved together
-- Quest board: all 1508 rows listed with names, checkbox per quest, bulk clear/un-clear by
-  category or filter, quest sets
-- Unlocks: all materials (item-obtained flags), all 132 awards, all Hunter Arts
+**[Early Access · v0.1.0-alpha.2](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/tag/v0.1.0-alpha.2)**
 
-Not implemented: equipment sets (My Sets), Palico companion data, monster
-tallies, Guild Card details.
+| Package | Best for |
+| --- | --- |
+| [Windows installer](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.1.0-alpha.2/MHGU-Save-Editor-0.1.0-alpha.2-win-x64-Setup.exe) | Install for your Windows user with Start menu and optional desktop shortcuts. |
+| [Portable ZIP](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.1.0-alpha.2/MHGU-Save-Editor-0.1.0-alpha.2-win-x64-Portable.zip) | Extract the complete archive and run `MhguSave.App.exe`. |
+| [SHA-256 checksums](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.1.0-alpha.2/SHA256SUMS.txt) | Verify the downloaded installer or ZIP. |
 
-Build a Windows executable using the publish command below. It accepts either a
-`system` file or its containing folder as a command-line argument.
-Generated executables and the optional locally extracted game artwork are not
-included in this repository. The editor builds without the extracted artwork.
-The original game save is not modified by the test suite. Local QA copies are under
-`artifacts/`, which is excluded from source control.
+Requires **Windows 10 or later, x64**. Both packages include the .NET runtime;
+no separate runtime installation is needed. Release notes accompany each build.
 
-Profile fields are staged as you type. **Save changes** applies valid pending item,
-pouch, and equipment edits and writes all occupied characters together. **Apply**
-updates the selected record in memory without writing the file. Changing a selected
-row or its filter applies valid pending edits; invalid drafts keep the current selection.
-Invalid typed numbers stay visible and block the relevant Add/Apply/Save action.
-Unused creation forms do not block saving other edits. **Revert changes** offers
-Save, Discard, and Cancel before reloading the file from disk.
-Importing item names refreshes labels without reloading or discarding the session.
+## Features
 
-See [REVIEW.md](REVIEW.md) for the review findings and verification limits.
+- **Hunter profile** — edit your hunter name, currencies, HR points, and village/hub progression.
+- **Item inventory** — search, add, edit, and clear item-box and pouch stacks.
+- **Equipment workspace** — browse named gear, create weapons, armor, and talismans, and edit supported equipment fields.
+- **Decorations and talismans** — named jewel and skill pickers, talisman configuration, and jewel inventory creation.
+- **Quest journal** — search quests, manage completion flags, and apply filtered or bulk updates.
+- **Collections** — manage material knowledge, Guild Card awards, and Hunter Art unlocks.
+- **Multiple characters** — switch between occupied slots and save their changes together.
+- **Save protection** — timestamped backups, paired save writing, external-change detection, and a guard for recognized emulator processes.
 
-## Layout
+The cover-inspired interface combines dark steel, gold, and pale blue with clear
+section headings, contextual editors, and action buttons that stay visible while
+fields scroll. The crest is used throughout the app and Windows packaging.
 
-```
-src/MhguSave.Format        # parser/writer, no UI dependencies
-src/MhguSave.App           # Avalonia desktop app (MVVM, CommunityToolkit)
-tests/MhguSave.Format.Tests# unit tests + optional real-save tests
-tests/MhguSave.App.Tests   # synthetic view-model and headless window workflow tests
-```
+## Getting started
 
-## Build and run
+1. Close the game or emulator and copy your save folder to a separate working folder.
+2. Launch the editor and select **Open save** (`Ctrl+O`).
+3. Choose `system` or `system_backup` for the Nintendo Switch title `0100770008DD8000`.
+4. Select your hunter, then browse the workspace and make your changes.
+5. Select **Save changes** (`Ctrl+S`) to write all edited characters.
+
+Profile edits are staged as you type. **Apply** stages an item or equipment record
+without writing to disk; **Save changes** also applies valid pending record edits.
+**Revert changes** lets you save, discard, or cancel before reloading the file.
+Existing save files receive timestamped backups before they are replaced.
+
+## Build from source
+
+Install the **.NET 9 SDK**, then run:
 
 ```powershell
-dotnet build
-dotnet run --project src/MhguSave.App
+git clone https://github.com/ramosdalrymple-afk/mhgu-save-editor.git
+cd mhgu-save-editor
+dotnet build -c Release
+dotnet run --project src/MhguSave.App -c Release
 ```
 
-Or start it with a save straight away:
+Open a save directly from the command line:
 
 ```powershell
-MhguSave.App.exe "C:\path\to\0100770008DD8000\system"
+dotnet run --project src/MhguSave.App -c Release -- "C:\path\to\system"
 ```
 
-Release single file:
+Run the automated checks:
 
 ```powershell
-dotnet publish src/MhguSave.App -c Release -r win-x64 --self-contained `
-  -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true `
-  -o artifacts/release/win-x64-desktop
+dotnet test -c Release
 ```
 
-To create the public installer, portable ZIP, notices, and SHA-256 checksums from a
-clean Git commit, install Inno Setup and run:
+Two optional integration tests use `MHGU_TEST_SAVE` when it points to an offline
+`system` fixture. All writes in those tests target temporary copies.
+
+To produce the Windows installer, portable ZIP, notices, and checksums from a
+clean commit, install Inno Setup and run:
 
 ```powershell
 ./tools/build-release.ps1 -InnoCompiler "C:\path\to\Inno Setup\ISCC.exe"
 ```
 
-The release script exports tracked source before building, so local game assets
-and private saves cannot be picked up from the development workspace. Public
-downloads are experimental prereleases; the current equipment issues still apply.
+The release builder exports tracked source before packaging. Private saves,
+keys, game archives, and locally imported game artwork are excluded.
 
-Tests (131 cases; 129 run using synthetic fixtures, and 2 real-save cases explicitly skip
-unless `MHGU_TEST_SAVE` is configured). Real-save tests write only to temporary copies:
+## Project structure
 
-```powershell
-dotnet test
-$env:MHGU_TEST_SAVE="C:\path\to\0100770008DD8000\system"; dotnet test
-```
+| Directory | Purpose |
+| --- | --- |
+| `src/MhguSave.App` | Avalonia desktop UI and view models. |
+| `src/MhguSave.Format` | Save parsing, editing, serialization, and catalogs. |
+| `tests` | Format, workflow, and desktop layout checks. |
+| `packaging` | Windows installer, release notes, and bundled notices. |
+| `tools` | Release builds, catalog imports, and optional asset tooling. |
 
-## Safety rules the code enforces
+## Documentation
 
-1. **The emulator must be closed.** It holds the save in memory and overwrites it on exit.
-   `EmulatorGuard` refuses to write while Ryujinx/yuzu/Sudachi/Suyu/Citron runs.
-2. **Both files are kept in sync.** Editing writes the body into `system` and into
-   `system_backup`, keeping each file's own container header (the entry keys differ).
-3. **Unique timestamped backups** (`system.bak-<timestamp>-<suffix>`) are written before any change.
-4. **The container header is never rewritten.** It carries the entry key, size and type.
-5. All existing sibling containers are validated and staged before either is replaced.
-   Each replacement is atomic at the individual-file level. If the second fails, the
-   first is restored from a recovery copy. This is not a filesystem transaction across
-   both files: power loss can still require manual recovery from backups.
-6. A save changed on disk since opening is rejected. Reopen it before editing further.
-7. Rejected equipment edits do not partially mutate the in-memory save. Unknown flag
-   bits and unrelated payload bytes are preserved.
+- [Interface design](docs/UI_DESIGN.md)
+- [Technical reference](docs/REFERENCE.md)
+- [Armor catalog mapping](tools/ARMOR_CATALOG.md)
+- [Optional local game visuals](tools/GAME_VISUALS.md)
+- [Third-party notices](packaging/THIRD-PARTY-NOTICES.md)
 
-Quest completion flags and the lifetime completion counter are edited separately:
-the counter includes repeat hunts, so clearing flags does not recalculate it.
-The embedded equipment level table supplies weapon limits; armor entries contain
-placeholder levels and are not used to reject existing armor upgrades.
+## Credits
 
-There is no checksum and no encryption, so a bad write is only detectable by playing the
-game. Back up the folder yourself as well.
+Created by **Dalrymple**. Built with .NET and Avalonia.
 
-## Save format (verified against a real save)
+Community catalog data and category icons retain their respective licenses and
+notices. Public builds include the original crest and community category symbols;
+original game artwork and locally extracted sprites are optional local resources.
 
-All offsets absolute unless marked `base +`. Slot base comes from the pointer table, never
-hard-coded.
-
-| Offset | Field |
-|---|---|
-| `0x00`–`0x23` | `sSavedata` container header: 0, version 0, table size 4, entry offset `0x14`, entry key `0x14` (= JAMCRC of the file name), type 12 at `0x18`, blob size at `0x1C` |
-| `0x24` + 0 | body version, `0xC6` |
-| `0x28` + 0 | 3 × u8 slot in use; `0x2B` last slot |
-| `0x2C` / `0x30` | block A / block B offsets (relative to `0x24`) |
-| `0x34` + 0 | 3 × u32 slot offsets (relative to `0x24`), stride `0x11F8C4` |
-
-Per character (`base +`):
-
-| Offset | Field |
-|---|---|
-| `0x000` | hunter name, char[32] UTF-8 |
-| `0x020` | play time, u32 seconds |
-| `0x024` | zenny (slot-header copy, rebuilt by the game) |
-| `0x028` | Hunter Rank, u16 (derived from HR points) |
-| `0x278` | item box, 2300 slots, 19 bits each (12 id + 7 count, LSB first) |
-| `0x27BF` | pouch, 32 slots, same packing |
-| `0x280B` | HR points, u32 |
-| `0x280F` | zenny, u32 (authoritative copy) |
-| `0x2817` | Wycademy points, u32 |
-| `0x2C13` | hunter arts bitfield (ids 1-70, 83-190) |
-| `0x2C4DA` | village star, u16 (1-10) |
-| `0x2C4DC` | hub star, u16 (0-13) |
-| `0x2C77` | quests cleared bitfield, 1509 bits |
-| `0x2D77` | quests seen bitfield |
-| `0x2E77` | quests failed bitfield |
-| `0x3187` | quest sets, 100 bits |
-| `0x5E4E` | quest counter, u16 |
-| `0x62EE` | equipment box, 2000 × 36 B |
-| `0xC8115` | guild card awards, 132 bits |
-| `0x22497` | items obtained bitfield (bit = item id 1-2990) |
-| `0x23B7D` | hunter name (player record copy) |
-
-Equipment record (36 bytes, `base + 0x62EE + i * 36`):
-
-| Offset | Field |
-|---|---|
-| `+0x00` u16 | bits 0-4 type (1 head, 2 chest, 3 arms, 4 waist, 5 legs, 6 talisman, 7-21 weapons, 22-24 Palico), bits 5-9 level - 1, bits 10-14 transmog-source level |
-| `+0x02` u16 | equipment id (armor series id, weapon-tree index or Palico record) |
-| `+0x04` u16 | transmog appearance id (armor only) |
-| `+0x06..` | 3 × u16 decoration ids |
-| `+0x0C..` | talisman: skill 1/2 ids, points, slot count, charm item id 353-356 (+`0x12` u16) |
-| `+0x0C..` | insect glaive: kinsect id, level - 1 |
-
-Container entry keys: `JAMCRC("system") = 0x36B2EE74`, `JAMCRC("system_backup") = 0xD0819B92`.
-
-## Provenance
-
-Offsets were cross-checked against the published notes of the `Scrimas/MHGU-Save-editor`
-project (GPL-3.0) and then re-verified byte by byte against a real save. No source code was
-copied from it. The embedded CSV data files do come from community projects and are GPL
-therefore:
-
-- `Data/item-names.csv` — from `Gicotto/Cotto-MHGU-Editor` (`core/game_data.json`)
-- `Data/quest-names.csv` — derived from `Scrimas/MHGU-Save-editor` `data/quest-index.csv`
-- `Data/equip-names.csv`, `Data/equip-types.csv` — from `Gicotto/Cotto-MHGU-Editor`
-  (`core/game_data.json`, weapon/armor name arrays and max levels). Armor uses the
-  parallel save-ID arrays, not name-array positions; see [the mapping audit](tools/ARMOR_CATALOG.md).
-- `Data/skill-names.csv`, `Data/deco-names.csv` — from the same source (jewel and skill lists)
-
-Anyone reusing those files must respect their GPL-3.0 licence.
-
-## Roadmap
-
-- My Sets (saved equipment sets): write box indices, names, pigment.
-- Palico tab: gear box, actions, fortes.
-- Monster tallies and Guild Card details.
-- Drag-and-drop a save folder, plus "open recent".
+Monster Hunter Generations Ultimate and related game assets belong to their
+respective owners. This is an independent community project.

@@ -25,9 +25,9 @@ unfixed. Passing save/reload tests does not establish complete in-game correctne
 
 ## Verification
 
-The last full regression run passed 131 tests with an offline real-save fixture.
-Review checks reproduced the issues using in-memory copies; the original game save
-was not written. Additional tests must verify destination offsets, equipped/set
+Automated checks cover serialized edits and desktop workflows. Review checks
+reproduced these issues using in-memory copies; the original game save was not
+written. Additional tests must verify destination offsets, equipped/set
 references, socket capacities, and talisman defaults against game data.
 
 Existing source references:

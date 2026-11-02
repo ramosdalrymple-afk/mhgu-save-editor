@@ -15,7 +15,7 @@ public partial class MainViewModel : ViewModelBase
 {
     public string ApplicationVersion => typeof(MainViewModel).Assembly
         .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+')[0] ?? "Development";
-    public string ApplicationTitle => $"MHGU Save Editor · {ApplicationVersion}" +
+    public string ApplicationTitle => $"MHGU Save Editor by Dalrymple · {ApplicationVersion}" +
         (ApplicationVersion.Contains('-') ? " · Early Access" : string.Empty);
     public string HunterArtworkKey => "artwork:hunter";
     public string VillageArtworkKey => "artwork:village";

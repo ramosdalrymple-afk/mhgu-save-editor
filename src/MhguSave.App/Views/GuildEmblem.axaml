@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MhguSave.App.Views.GuildEmblem"
+             IsHitTestVisible="False" Focusable="False">
+  <!-- Original geometric insignia; no game artwork is required by the theme. -->
+  <Viewbox Stretch="Uniform">
+    <Canvas Width="200" Height="200">
+      <Path Data="M100,5 L195,100 100,195 5,100 Z" Stroke="#77664B" StrokeThickness="1"/>
+      <Path Data="M100,21 L179,100 100,179 21,100 Z" Stroke="#D8B976" StrokeThickness="2"/>
+      <Path Data="M100,38 L162,100 100,162 38,100 Z" Fill="#1E2B34" Stroke="#756346" StrokeThickness="1"/>
+      <Path Data="M42,118 L74,100 59,68 86,82 100,48 114,82 141,68 126,100 158,118 121,117 100,151 79,117 Z" Fill="#D8B976"/>
+      <Path Data="M100,72 L111,100 100,128 89,100 Z" Fill="#10222C"/>
+      <Path Data="M26,153 L52,138 44,164 20,180 Z M174,47 L148,62 156,36 180,20 Z" Fill="#74BDCC"/>
+      <Path Data="M153,174 L138,148 164,156 180,180 Z M47,26 L62,52 36,44 20,20 Z" Fill="#C86E55"/>
+      <Path Data="M0,100 L13,100 M187,100 L200,100 M100,0 L100,13 M100,187 L100,200" Stroke="#D8B976" StrokeThickness="2"/>
+    </Canvas>
+  </Viewbox>
+</UserControl>

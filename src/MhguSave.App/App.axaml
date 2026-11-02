@@ -11,8 +11,9 @@
     <Application.Styles>
         <FluentTheme>
             <FluentTheme.Palettes>
-                <ColorPaletteResources x:Key="Dark" Accent="#61D6C3" />
+                <ColorPaletteResources x:Key="Dark" Accent="#D8B976" />
             </FluentTheme.Palettes>
         </FluentTheme>
+        <StyleInclude Source="avares://MhguSave.App/Styles/HunterTheme.axaml"/>
     </Application.Styles>
 </Application>

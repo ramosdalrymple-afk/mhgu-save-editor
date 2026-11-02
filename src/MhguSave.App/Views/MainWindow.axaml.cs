@@ -21,8 +21,19 @@ public partial class MainWindow : Window
     private bool _closeApproved;
     private bool _promptOpen;
 
+    private void OnInventorySlotSelected(object? sender, SelectionChangedEventArgs e)
+    {
+        if (sender is ListBox { SelectedItem: not null } list)
+            this.FindControl<TabControl>(list.Name == "BoxItemsList" ? "BoxEditorTabs" : "PouchEditorTabs")!.SelectedIndex = 0;
+    }
+
     protected override void OnKeyDown(KeyEventArgs e)
     {
+        if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.O)
+        {
+            OnOpenClick(this, e);
+            e.Handled = true;
+        }
         if (e.KeyModifiers == KeyModifiers.Control && e.Key == Key.S)
         {
             TrySave();
@@ -78,13 +89,15 @@ public partial class MainWindow : Window
             {
                 Title = "Unsaved changes",
                 Width = 470,
-                Height = 215,
+                Height = 250,
                 CanResize = false,
                 WindowStartupLocation = WindowStartupLocation.CenterOwner,
                 RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark,
             };
             var save = new Button { Content = "Save changes" };
+            save.Classes.Add("primary");
             var discard = new Button { Content = "Discard changes" };
+            discard.Classes.Add("danger");
             var cancel = new Button { Content = "Cancel" };
             save.Click += (_, _) => dialog.Close("save");
             discard.Click += (_, _) => dialog.Close("discard");
@@ -96,7 +109,8 @@ public partial class MainWindow : Window
                 Children =
                 {
                     new TextBlock { Text = "Save your changes before continuing?", FontSize = 18 },
-                    new TextBlock { Text = "Your edits have not been written to the save file." },
+                    new TextBlock { Text = "Your edits have not been written to the save file.",
+                        TextWrapping = Avalonia.Media.TextWrapping.Wrap, Classes = { "muted" } },
                     new StackPanel { Orientation = Avalonia.Layout.Orientation.Horizontal,
                         Spacing = 10, Children = { save, discard, cancel } },
                 },

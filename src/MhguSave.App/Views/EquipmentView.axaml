@@ -1,13 +1,14 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="using:MhguSave.App.Views" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:fmt="using:MhguSave.Format" xmlns:services="using:MhguSave.App.Services" x:Class="MhguSave.App.Views.EquipmentView" x:DataType="vm:MainViewModel">
   <UserControl.Resources>
     <services:GameIconConverter x:Key="GameIcon"/>
   </UserControl.Resources>
   <Grid RowDefinitions="Auto,*,Auto">
-    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,18">
-      <StackPanel Spacing="5">
+    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,22">
+      <StackPanel Spacing="6">
+        <TextBlock Text="03 / THE ARMORY" Classes="eyebrow" FontSize="10"/>
         <TextBlock Text="Equipment box" Classes="pageTitle"/>
-        <TextBlock Text="Browse your gear, create pieces, and manage decorations." Classes="muted"/>
+        <TextBlock Text="Build your loadout. Browse weapons, armor, talismans, and jewels." Classes="muted"/>
       </StackPanel>
       <Button Grid.Column="1" Content="+ Add equipment" Command="{Binding ShowAddEquipmentCommand}" Classes="primary" VerticalAlignment="Center"/>
     </Grid>
@@ -30,15 +31,15 @@
           <ListBox.ItemTemplate>
             <DataTemplate x:DataType="vm:EquipmentRow">
               <Grid ColumnDefinitions="44,42,*,64" Margin="2,7">
-                <Border Background="#1C2B3C" CornerRadius="8" Width="40" Height="40" VerticalAlignment="Center">
+                <Border Background="#253741" CornerRadius="8" Width="40" Height="40" VerticalAlignment="Center">
                   <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="30" Height="30" Stretch="Uniform"/>
                 </Border>
                 <TextBlock Grid.Column="1" Text="{Binding SlotNumber, StringFormat='# {0}'}" Classes="small" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <StackPanel Grid.Column="2" Spacing="5" VerticalAlignment="Center" Margin="6,0,12,0">
+                <StackPanel Grid.Column="2" Spacing="6" VerticalAlignment="Center" Margin="6,0,12,0">
                   <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                   <TextBlock Text="{Binding TypeName}" Classes="small"/>
                 </StackPanel>
-                <Border Grid.Column="3" Background="#1C2B3C" CornerRadius="5" Padding="8,5" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Border Grid.Column="3" Background="#253741" CornerRadius="5" Padding="8,5" VerticalAlignment="Center" HorizontalAlignment="Right">
                   <TextBlock Text="{Binding Level, StringFormat='Lv. {0}'}" Classes="small"/>
                 </Border>
               </Grid>
@@ -46,7 +47,7 @@
           </ListBox.ItemTemplate>
         </ListBox>
       </Grid>
-      <Border Grid.Column="2" Classes="card" Padding="20">
+      <Border Grid.Column="2" Classes="card" Padding="20,16">
         <TabControl Name="EquipmentEditorTabs" Classes="inner" SelectedIndex="{Binding EquipmentPane, Mode=TwoWay}">
           <TabItem Header="Edit selected">
             <Grid RowDefinitions="*,Auto" Margin="0,12,0,0" Classes="inputForm">
@@ -55,7 +56,7 @@
                   <Border Classes="inset" Margin="0,0,0,4">
                     <Grid ColumnDefinitions="48,*">
                       <Image Source="{Binding SelectedEquip.IconKey, Converter={StaticResource GameIcon}}" Width="36" Height="36" VerticalAlignment="Center"/>
-                      <StackPanel Grid.Column="1" Spacing="5">
+                      <StackPanel Grid.Column="1" Spacing="6">
                         <TextBlock Text="{Binding SelectedEquip.TypeName, FallbackValue=EQUIPMENT, TargetNullValue=EQUIPMENT}" Classes="eyebrow"/>
                         <TextBlock Text="{Binding SelectedEquip.Name, FallbackValue=Select a piece to edit, TargetNullValue=Select a piece to edit}" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap"/>
                       </StackPanel>
@@ -174,7 +175,7 @@
               <WrapPanel Grid.Row="1" Margin="0,10,0,0">
                 <views:ValidatedButton Name="ApplyEquipmentButton" Content="Apply" Command="{Binding ApplySelectedEquipCommand}" IsEnabled="{Binding HasEquipmentSelection}" Classes="primary"/>
                 <Button Content="Reset fields" Command="{Binding ResetEquipmentEditorCommand}" IsEnabled="{Binding HasEquipmentDraft}"/>
-                <Button Content="Clear slot" Command="{Binding ClearSelectedEquipCommand}" IsEnabled="{Binding HasEquipmentSelection}"/>
+                <Button Content="Clear slot" Classes="danger" Command="{Binding ClearSelectedEquipCommand}" IsEnabled="{Binding HasEquipmentSelection}"/>
               </WrapPanel>
             </Grid>
           </TabItem>

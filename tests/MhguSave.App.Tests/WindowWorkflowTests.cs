@@ -140,6 +140,7 @@ public class WindowWorkflowTests
             window.KeyRelease(Key.A, RawInputModifiers.Control, PhysicalKey.A, null);
             window.KeyTextInput(value);
             Settle();
+            if (input.Text != value) Capture("input-focus-failure");
             Assert.Equal(value, input.Text);
         }
         void TypeNumber(NumericUpDown input, string value)
@@ -208,6 +209,7 @@ public class WindowWorkflowTests
             Save();
 
             Navigate(1);
+            window.FindControl<TabControl>("BoxEditorTabs")!.SelectedIndex = 1; Settle();
             TypeText(window.FindControl<TextBox>("BoxItemSearchInput")!, "Mega Potion");
             var catalog = window.FindControl<ListBox>("BoxItemCatalogList")!;
             Click(catalog.GetVisualDescendants().OfType<ListBoxItem>().First());
@@ -231,6 +233,7 @@ public class WindowWorkflowTests
             TypeNumber(window.FindControl<NumericUpDown>("EditPouchCountInput")!, "6");
             Save();
             Assert.Equal(6, SaveContainer.Load(path).Slots[0].Pouch[0].Count);
+            window.FindControl<TabControl>("PouchEditorTabs")!.SelectedIndex = 1; Settle();
             TypeText(window.FindControl<TextBox>("PouchItemSearchInput")!, "Antidote");
             Click(window.FindControl<ListBox>("PouchItemCatalogList")!.GetVisualDescendants().OfType<ListBoxItem>().First());
             TypeNumber(window.FindControl<NumericUpDown>("AddPouchCountInput")!, "10");
@@ -275,6 +278,7 @@ public class WindowWorkflowTests
 
             Navigate(1);
             window.FindControl<TabControl>("InventoryTabs")!.SelectedIndex = 0; Settle();
+            window.FindControl<TabControl>("BoxEditorTabs")!.SelectedIndex = 1; Settle();
             var usedBeforeInvalidAdd = vm.BoxRows.Count(r => !r.IsEmpty);
             TypeNumber(window.FindControl<NumericUpDown>("AddBoxCountInput")!, "128");
             Click(window.FindControl<Button>("AddBoxItemButton")!);

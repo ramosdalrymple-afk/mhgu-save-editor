@@ -29,6 +29,7 @@ OutputBaseFilename=MHGU-Save-Editor-{#AppVersion}-win-x64-Setup
 Compression=lzma2/fast
 SolidCompression=yes
 WizardStyle=modern
+SetupIconFile=..\..\src\MhguSave.App\Assets\app-icon.ico
 SetupLogging=yes
 UninstallDisplayIcon={app}\MhguSave.App.exe
 CloseApplications=yes
