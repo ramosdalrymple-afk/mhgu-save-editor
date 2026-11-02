@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\item-names.csv" />
+    <EmbeddedResource Include="Data\quest-names.csv" />
+    <EmbeddedResource Include="Data\equip-types.csv" />
+    <EmbeddedResource Include="Data\equip-names.csv" />
+    <EmbeddedResource Include="Data\skill-names.csv" />
+    <EmbeddedResource Include="Data\deco-names.csv" />
+  </ItemGroup>
+
+</Project>

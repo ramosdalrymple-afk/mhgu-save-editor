@@ -1,0 +1,1509 @@
+index,category,rank,prowler,name
+1,Village,1,no,Find the Ferns
+2,Village,1,no,Due for Dragon Amber
+3,Village,1,no,Medicinal Moths
+4,Village,1,no,Horns o' Plenty
+5,Village,1,no,A Fungal Hunt
+6,Village,1,no,Wipe Out!
+7,Village,1,no,Another Pack Attack
+8,Village,2,no,Harvest Tour: Jurassic Frontier
+9,Village,2,no,Harvest Tour: Dunes
+10,Village,2,no,Harvest Tour: Verdant Hills
+11,Village,2,no,Harvest Tour: Arctic Ridge
+12,Village,2,no,Harvest Tour: Misty Peaks
+13,Village,2,no,Vaulting Outlaw
+14,Village,2,no,Rambunctious Rhenoplos
+15,Village,2,no,On the Rebound
+16,Village,2,no,A Berry Good Idea
+17,Village,2,no,A Fern is Forever
+18,Village,2,no,Jurassic Frontier Accounting
+19,Village,2,no,Gendrome Roadblock
+20,Village,2,no,The Land Sharq
+21,Village,2,no,Slay the Genprey!
+22,Village,2,no,Hermit Grab
+23,Village,2,no,Birthday Berries
+24,Village,2,no,Liver of Legend!
+25,Village,2,no,Dunes Accounting
+26,Village,2,no,Hunt Down the Velocidrome!
+27,Village,2,no,Slay the Velociprey!
+28,Village,2,no,Bullfango Tango
+29,Village,2,no,Prime Premium Sashimi
+30,Village,2,no,Verdant Hills Accounting
+31,Village,2,no,The Mountain Roughrider
+32,Village,2,no,Slay the Giaprey!
+33,Village,2,no,A Pack of Blangos
+34,Village,2,no,Medicinal Mountain Herbs
+35,Village,2,no,Arctic Ridge Accounting
+36,Village,2,no,Arzuros the Azure Beast
+37,Village,2,no,Bye Bye Jaggia
+38,Village,2,no,Howling Harassment
+39,Village,2,no,Fungal Fad
+40,Village,2,no,Sunsnug Sprout Courier
+41,Village,2,no,Misty Peaks Accounting
+42,Village,3,no,Harvest Tour: Deserted Island
+43,Village,3,no,Harvest Tour: Marshlands
+44,Village,3,no,Tusked Tantrum
+45,Village,3,no,Stomping Grounds
+46,Village,3,no,Chasing Tail
+47,Village,3,no,Jurassic Treasure: The Frog
+48,Village,3,no,Bit by the Fashion Bug
+49,Village,3,no,Tumultuous Sprouts
+50,Village,3,no,Tumultuous Sprouts
+51,Village,3,no,Fishy Favor
+52,Village,3,no,Crustacean Frustration
+53,Village,3,no,The Desert Gourmand
+54,Village,3,no,Konchu Collector
+55,Village,3,no,Cancer of the Dunes
+56,Village,3,no,Deliver the Liver
+57,Village,3,no,Farming Frustrations
+58,Village,3,no,Financial Focus on Fungus
+59,Village,3,no,Local Threat
+60,Village,3,no,Into the Wyvern's Den
+61,Village,3,no,Into the Wyvern's Den
+62,Village,3,no,Snow with Occasional Lagombi
+63,Village,3,no,Anteka Anticipation
+64,Village,3,no,The Shadow in the Mountains
+65,Village,3,no,No Go on the Popo
+66,Village,3,no,No Go on the Popo
+67,Village,3,no,Bully the Bullfango
+68,Village,3,no,For Whom the Egg Yolks
+69,Village,3,no,Royal Spit Take
+70,Village,3,no,A Forest Fracas
+71,Village,3,no,A Forest Fracas
+72,Village,3,no,Royal Honey Hunt
+73,Village,3,no,Current Events
+74,Village,3,no,The Crabbiest Catch
+75,Village,3,no,Pack Woes
+76,Village,3,no,The Fungus Among Us
+77,Village,3,no,Moofah Must-haves
+78,Village,3,no,Deserted Island Accounting
+79,Village,3,no,Sunsnug Isle Rescue!
+80,Village,3,no,Robbed Blind
+81,Village,3,no,Pest Control
+82,Village,3,no,Travelers in Trouble
+83,Village,3,no,Royal Rhinos Gone Wild
+84,Village,3,no,Marshlands Accounting
+85,Village,4,no,Harvest Tour: Volcano
+86,Village,4,no,The Nocturnal Enchanter
+87,Village,4,no,Wyvern of the Wind
+88,Village,4,no,Jurassic Treasure: The Bug
+89,Village,4,no,Unlock the Secret to...
+90,Village,4,no,A Unique Cuppa
+91,Village,4,no,Hunt-a-thon: Gendrome
+92,Village,4,no,Mining: The Final Frontier
+93,Village,4,no,Wrath of the Rathian
+94,Village,4,no,Noise Violation
+95,Village,4,no,Hunt-a-thon: Yian Kut-Ku
+96,Village,4,no,Hunt-a-thon: Velocidrome
+97,Village,4,no,The New Tenant
+98,Village,4,no,Lagombi Lair
+99,Village,4,no,Hungry Eyes
+100,Village,4,no,Royal Pains
+101,Village,4,no,Peddling Practice
+102,Village,4,no,Island Menace
+103,Village,4,no,Deviled Legs
+104,Village,4,no,Hunt-a-thon: Daimyo Hermitaur
+105,Village,4,no,Marshlands Mission
+106,Village,4,no,Serpentine Samba
+107,Village,4,no,Lurkin' in the Murk
+108,Village,4,no,Crustacean Infestation
+109,Village,4,no,Tumbling Troublemaker
+110,Village,4,no,Crustacean Infatuation
+111,Village,4,no,Rocking the Uroktor
+112,Village,4,no,Great Ore Discovery
+113,Village,4,no,Volcano Accounting
+114,Village,5,no,The Dark Age
+115,Village,5,no,Trifecta of Terror
+116,Village,5,no,Garuga of the Hills
+117,Village,5,no,The Thunderclaw Wyvern
+118,Village,5,no,Fungus Fetch
+119,Village,5,no,Two Roars in the Snow
+120,Village,5,no,Hunt-a-thon: Khezu
+121,Village,5,no,The Unwavering Colossus
+122,Village,5,no,Lagiacrus Fuss
+123,Village,5,no,The Entrancing Water Dancer
+124,Village,5,no,The Fisherman's Fiend
+125,Village,5,no,Island Heat
+126,Village,5,no,Double Vision
+127,Village,5,no,Hunt-a-thon: Gypceros
+128,Village,5,no,Behind Closed Ores
+129,Village,5,no,"A King, Robed in Smoke"
+130,Village,5,no,Fight or Uragaan!
+131,Village,5,no,Great Knuckleballs o' Fire!
+132,Village,5,no,Hunt-a-thon: Iodrome
+133,Village,5,no,Envoy to Disaster
+134,Village,5,no,A Late Jurassic Excursion
+135,Village,5,no,A Sandy Battle Royale
+136,Village,5,no,Scientific Method
+137,Village,6,no,The Scorching Blade
+138,Village,6,no,"Dark Wings, Dark Work"
+139,Village,6,no,Tuff Turf
+140,Village,6,no,From Beyond the Sands
+141,Village,6,no,Tigrex by the Tail
+142,Village,6,no,A Thousand Scales of Dread
+143,Village,6,no,The Perilous Pair
+144,Village,6,no,The Hero's Journey
+145,Village,6,no,The Bellowing Zinogre
+146,Village,6,no,Brachydios Mio!
+147,Village,6,no,Under the Gaze of Heaven
+148,Village,6,no,Break the Brachydios
+149,Village,6,no,Night Terrors
+150,Village,6,no,Bristly Fanged Beasts
+151,Village,6,no,Drawing the Waterline
+152,Village,6,no,The Cankerous Quagmire
+153,Village,6,no,Volcano Triple Play
+154,Village,6,no,It's Electric
+155,Village,6,no,The White Brute
+156,Village,6,no,Stop the Wheel
+157,Village,6,no,The Fated Four
+158,Village,6,no,Advanced: Fungus Fetchin'
+159,Village,6,no,Advanced: Jurassic Treasure
+160,Village,6,no,Advanced: Sly Swooper
+161,Village,6,no,Advanced: Invoking Rath
+162,Village,6,no,Advanced: Seismic Scares
+163,Village,6,no,Advanced: Twinkle Toes
+164,Village,6,no,Advanced: Seltas Queen
+165,Village,6,no,Advanced: The Goliaths
+166,Village,6,no,Advanced: Barrage of Blue
+167,Village,6,no,Advanced: Seeing Red
+168,Village,6,no,Advanced: Nothing is Sacred
+169,Village,6,no,Advanced: Snowtal Recall
+170,Village,6,no,Advanced: Invisible Thief
+171,Village,6,no,Advanced: Teostra's Return
+172,Village,6,no,Advanced: Might is Right
+173,Village,6,no,Advanced: State in Flux
+174,Village,6,no,Advanced: The Field's a Stage
+175,Village,6,no,Advanced: Wrath of Rath
+176,Village,6,no,Advanced: The Golden Pair
+177,Village,6,no,Advanced: Out of the Fry Pan
+178,Village,7,no,Harvest Tour: Ruined Pinnacle
+179,Village,7,no,Harvest Tour: Desert
+180,Village,7,no,Harvest Tour: Ancestral Steppe
+181,Village,7,no,Harvest Tour: Primal Forest
+182,Village,7,no,Harvest Tour: Jurassic Frontier
+183,Village,7,no,Harvest Tour: Dunes
+184,Village,7,no,Harvest Tour: Verdant Hills
+185,Village,7,no,Harvest Tour: Arctic Ridge
+186,Village,7,no,Harvest Tour: Misty Peaks
+187,Village,7,no,Defiant Maccao
+188,Village,7,no,Azure Azure Can Be
+189,Village,7,no,Kut-Ku Misunderstood
+190,Village,7,no,Research Team's First Rodeo
+191,Village,7,no,"Ruined Pinnacle, RUINED"
+192,Village,7,no,Brave New Ore
+193,Village,7,no,Husk Hunter
+194,Village,7,no,Wyvern Egg Delivery: Breakfast
+195,Village,7,no,Fashion Victim
+196,Village,7,no,A Friend in Need
+197,Village,7,no,March of the Genprey
+198,Village,7,no,On Burrowed Time
+199,Village,7,no,A Berry Dubious Idea
+200,Village,7,no,Bug Appétit Encore
+201,Village,7,no,Enough Monkeying Around
+202,Village,7,no,Poisoned for Action
+203,Village,7,no,Spit It Out
+204,Village,7,no,Eau de Congalala
+205,Village,7,no,Bag a Barroth!
+206,Village,7,no,Dune the Honors
+207,Village,7,no,Verdant Hills Horror
+208,Village,7,no,Investment Flanking
+209,Village,7,no,The Killer Rabbit of Arctic Ridge
+210,Village,7,no,Taking Royal Liberties
+211,Village,7,no,Season's Eatings
+212,Village,8,no,Harvest Tour: Jungle
+213,Village,8,no,Harvest Tour: Frozen Seaway
+214,Village,8,no,Harvest Tour: Volcanic Hollow
+215,Village,8,no,Harvest Tour: Deserted Island
+216,Village,8,no,Harvest Tour: Marshlands
+217,Village,8,no,Harvest Tour: Volcano
+218,Village,8,no,Dazed and Confused
+219,Village,8,no,Grapes of Rathian
+220,Village,8,no,Airship Upgrade: Plesioth
+221,Village,8,no,Naked Aggression
+222,Village,8,no,Mushroom for Improvement
+223,Village,8,no,I See It Rollin'...
+224,Village,8,no,It's Gonna Eat Me!
+225,Village,8,no,Airship Upgrade: Nargacuga
+226,Village,8,no,"Wrong Bird, Idiots..."
+227,Village,8,no,A Trace of Light
+228,Village,8,no,Shell Game
+229,Village,8,no,Wyvern Egg Delivery: Lunch
+230,Village,8,no,My New Life as a Maccao
+231,Village,8,no,Primal Forest Arachnids
+232,Village,8,no,Much Ado about Najarala
+233,Village,8,no,Bloof!
+234,Village,8,no,A Seaway Just for You
+235,Village,8,no,A Cure for Laziness
+236,Village,8,no,The Furtilizer That Time Furgot
+237,Village,8,no,Just Deserts
+238,Village,8,no,The Perils of Commerce
+239,Village,8,no,Khezu Deserve It
+240,Village,8,no,Whiteout
+241,Village,8,no,Fishing's Lure
+242,Village,8,no,A Royal Rumble
+243,Village,8,no,The Way of the Nargacuga
+244,Village,8,no,Deserted Island Missive
+245,Village,8,no,Perfectly Normal Rock
+246,Village,8,no,Marshlands Horror Story
+247,Village,8,no,Airship Upgrade: Lavasioth
+248,Village,8,no,"It's Not Uragaan's, It's Mine!"
+249,Village,8,no,Volcanic Vexations
+250,Village,9,no,Rathalos Topping
+251,Village,9,no,Taming of the Zinogre
+252,Village,9,no,Ore d'Oeuvres
+253,Village,9,no,Ruined and Tarnished
+254,Village,9,no,Desert Death Duel
+255,Village,9,no,Fearful Symmetry
+256,Village,9,no,The Fly in the Ointment
+257,Village,9,no,Lagiacrus x Width x Height
+258,Village,9,no,Whatdunnit
+259,Village,9,no,Soap Opera
+260,Village,9,no,Mt. Duramboros
+261,Village,9,no,A Jungle Just for You
+262,Village,9,no,Flappy Pest
+263,Village,9,no,Pheromone Moans
+264,Village,9,no,Primal Panic
+265,Village,9,no,Distress Signal
+266,Village,9,no,Airship Upgrade: Barioth
+267,Village,9,no,Snow Joke
+268,Village,9,no,Ruler of the Frozen Seaway
+269,Village,9,no,An Ice Surprise
+270,Village,9,no,You're under a Rath
+271,Village,9,no,Capture the Agnaktor
+272,Village,9,no,"Great, Glavenus Again"
+273,Village,9,no,Desert Double Act
+274,Village,9,no,"Alas, Astalos Again"
+275,Village,9,no,Interruption: Eggstra Delivery
+276,Village,9,no,Once upon a Barioth
+277,Village,9,no,"Groan, Gammoth Again"
+278,Village,9,no,Snowball Skirmish
+279,Village,9,no,"Man, Mizutsune Again?"
+280,Village,9,no,Sky Tribe: Rice to the Occasion
+281,Village,9,no,Wish upon a...Gravios?
+282,Village,9,no,Earn Your Gear
+283,Village,9,no,You Had One Job
+284,Village,9,no,Disaster on the Steppes
+285,Village,9,no,Jurassic Frontier Fracas
+286,Village,9,no,Just a Mirage...?
+287,Village,9,no,Trouble Comes in Threes
+288,Village,9,no,Impossible Standards
+289,Village,9,no,My Kirin for a Horse
+290,Village,10,no,Beware the Comet of Disaster
+291,Village,10,no,Beware the Comet of Disaster
+292,Village,10,no,The Baleful Comet
+293,Village,10,no,Turn That Frown Upside Down
+294,Village,10,no,An Almost-Certainly-Fine Comet
+295,Village,10,no,Deviljho Dispossession
+296,Village,10,no,Thousand-Blade Brouhaha
+297,Village,10,no,Duel With the Devil
+298,Village,10,no,Roar of the Rajang
+299,Village,10,no,Wyvern Egg Delivery: Dinner
+300,Village,10,no,"Red Dragon, Green Dragon"
+301,Village,10,no,Primal Panic
+302,Village,10,no,A Cure for Idleness
+303,Village,10,no,Bad Hair Day: Brachydios
+304,Village,10,no,Bring Me My Sword
+305,Village,10,no,Horned and Dangerous
+306,Village,10,no,Deviljho Food Cake
+307,Village,10,no,Barioth's Blizzard
+308,Village,10,no,Bag a Brachydios
+309,Village,10,no,Wheel of Time
+310,Village,10,no,Coalition of Chaos
+311,Village,10,no,Verdant Hills Just for You
+312,Village,10,no,Misty Peaks Missive
+313,Village,10,no,Deserted Islands Horror
+314,Village,10,no,The Marshlands Morass
+315,Village,10,no,Deserted Islands Horror
+316,Village,10,no,The Marshlands Morass
+317,Village,10,no,Grave Peril
+318,Village,10,no,King of Hellfire
+319,Village,10,no,The Seat of a God
+320,Village,10,no,Stormlord
+321,Village,10,no,Blazing Black of a Dark God
+322,Village,10,no,Advanced: Ranging Rathalos
+323,Village,10,no,Advanced: Roaring in the Ridge
+324,Village,10,no,Advanced: Moonlight Zinogre
+325,Village,10,no,Advanced: Wrong One Silver
+326,Village,10,no,Advanced: Heart of Gold
+327,Village,10,no,Advanced: Trial at the Pinnacle
+328,Village,10,no,Advanced: Steel Yourself
+329,Village,10,no,Advanced: Karma Chameleos
+330,Village,10,no,Advanced: Empire of the Sun
+331,Village,10,no,Advanced: Jurassic Pair
+332,Village,10,no,Advanced: Quarrel Quelling
+333,Village,10,no,Advanced: Monster Hunter!
+334,Village,10,no,Advanced: Proof of a Champion
+335,Village,10,no,Advanced: Wycademy Challenge
+336,Village,10,no,Advanced: Guild's Greatest Hit
+337,Village,10,no,Advanced: Ultimate Generation
+338,Hub,1,no,Harvest Tour: Jurassic Frontier
+339,Hub,1,no,Harvest Tour: Dunes
+340,Hub,1,no,Harvest Tour: Verdant Hills
+341,Hub,1,no,Harvest Tour: Arctic Ridge
+342,Hub,1,no,Harvest Tour: Misty Peaks
+343,Hub,1,no,Boot to the Head
+344,Hub,1,no,Tackling the Tetsucabra
+345,Hub,1,no,Lost in the Jurassic Frontier
+346,Hub,1,no,Red-Faced Ruffians
+347,Hub,1,no,A Fern is Forever
+348,Hub,1,no,Gendrome Roadblock
+349,Hub,1,no,In Pursuit of the Sand Wyvern
+350,Hub,1,no,Shells of Steel
+351,Hub,1,no,Hermitaur Party
+352,Hub,1,no,Ingredient Hunter
+353,Hub,1,no,Hunt Down the Velocidrome!
+354,Hub,1,no,Local Threat
+355,Hub,1,no,Financial Focus on Fungus
+356,Hub,1,no,Farming Frustrations
+357,Hub,1,no,Snow with Occasional Lagombi
+358,Hub,1,no,Preying on Giaprey
+359,Hub,1,no,Special Home Brew
+360,Hub,1,no,Bulldrome of the Peaks
+361,Hub,1,no,The Ingredient of Legend
+362,Hub,1,no,Royal Spit Take
+363,Hub,1,no,A Mother's Woes
+364,Hub,1,no,Jaggi Junket
+365,Hub,1,no,The Next Best Thing
+366,Hub,2,no,Harvest Tour: Deserted Island
+367,Hub,2,no,Harvest Tour: Marshlands
+368,Hub,2,no,Insomnia? Meet Hypnotism
+369,Hub,2,no,Walk 'n Roll
+370,Hub,2,no,Rocking Rhenoplos
+371,Hub,2,no,The Desert Gourmand
+372,Hub,2,no,Tongue-Tied
+373,Hub,2,no,The Poison-fanged Duo
+374,Hub,2,no,Konchu Collector
+375,Hub,2,no,Liver of Legend!
+376,Hub,2,no,Noise Violation
+377,Hub,2,no,In Search of the Yian Garuga
+378,Hub,2,no,Finishing the Job
+379,Hub,2,no,Fresh is Best
+380,Hub,2,no,The Shadow in the Mountains
+381,Hub,2,no,The New Tenant
+382,Hub,2,no,Blango Slaying Tactics
+383,Hub,2,no,Operation: Secure Specimen
+384,Hub,2,no,Royal Assassination
+385,Hub,2,no,Ahoy! Royal Ludroth!
+386,Hub,2,no,Bye Bye Jaggia
+387,Hub,2,no,Malfestio Festival
+388,Hub,2,no,Wyvern of the Wind
+389,Hub,2,no,Tetsucabra Bounty
+390,Hub,2,no,Deserted Island Dustup
+391,Hub,2,no,Bnahabra Bloodbath
+392,Hub,2,no,Poisonous Pest
+393,Hub,2,no,Pincer through the Sky
+394,Hub,2,no,Serpentine Samba
+395,Hub,2,no,Ioprey Hunting
+396,Hub,2,no,Attack of the Giant Bugs!
+397,Hub,2,no,Collect to Combine
+398,Hub,3,no,Harvest Tour: Volcano
+399,Hub,3,no,Flames of Glavenus Passion
+400,Hub,3,no,Tigrex by the Tail
+401,Hub,3,no,"Dark Wings, Dark Work"
+402,Hub,3,no,Fossilized Memories
+403,Hub,3,no,A Thousand Scales of Dread
+404,Hub,3,no,A Shocking Scoundrel
+405,Hub,3,no,The King's Domain
+406,Hub,3,no,Fury Run Afoul
+407,Hub,3,no,Lagiacrus Lethargy
+408,Hub,3,no,Moonlit Bubble Bath
+409,Hub,3,no,Topple the Monarch
+410,Hub,3,no,Lagiacrushed
+411,Hub,3,no,Tuff Turf
+412,Hub,3,no,Isle About that Bass
+413,Hub,3,no,Heaven and Earth
+414,Hub,3,no,Fro Shizzle
+415,Hub,3,no,Bladed Glavenus
+416,Hub,3,no,Fight or Uragaan!
+417,Hub,3,no,The Shogun's Encampment
+418,Hub,3,no,Crustacean Infestation
+419,Hub,3,no,Scavengers United
+420,Hub,3,no,More Coal Please
+421,Hub,3,no,An Early Jurassic Excursion
+422,Hub,3,no,Wyvern Sand Runners
+423,Hub,3,no,"Zinogre, Bearly Fazed"
+424,Hub,3,no,Making it Safe for Swine
+425,Hub,3,no,Rumble in the Volcano
+426,Hub,3,no,It's Electric
+427,Hub,3,no,The White Brute
+428,Hub,3,no,The Frozen Dictator
+429,Hub,3,no,The Elder Dragon of Mist
+430,Hub,3,no,Emperor of Flame
+431,Hub,3,no,Stop the Wheel
+432,Hub,3,no,Two-headed Carcass
+433,Hub,4,no,Harvest Tour: A. Steppe
+434,Hub,4,no,Harvest Tour: Primal Forest
+435,Hub,4,no,Harvest Tour: Jurassic Frontier
+436,Hub,4,no,Harvest Tour: Dunes
+437,Hub,4,no,Harvest Tour: Verdant Hills
+438,Hub,4,no,Harvest Tour: Arctic Ridge
+439,Hub,4,no,Harvest Tour: Misty Peaks
+440,Hub,4,no,Swing into Action
+441,Hub,4,no,Ruining the Ruins
+442,Hub,4,no,Bag the Bounding Bandit
+443,Hub,4,no,Jaggi of the Steppe
+444,Hub,4,no,Ancestral Steppe Fungus Run
+445,Hub,4,no,Bug Appétit
+446,Hub,4,no,Gendrome Roadblock
+447,Hub,4,no,Lost in the Primal Forest
+448,Hub,4,no,Hunt Down the Velocidrome!
+449,Hub,4,no,Poison Paralysis Pinch
+450,Hub,4,no,Crystal Bone Collector
+451,Hub,4,no,Hair of the Dog
+452,Hub,4,no,Tackling the Tetsucabra
+453,Hub,4,no,So Notable: Great Maccao
+454,Hub,4,no,The Land Sharq
+455,Hub,4,no,Shells of Steel
+456,Hub,4,no,Birds of a Feather
+457,Hub,4,no,Bullfango Brigade
+458,Hub,4,no,Delicious White Livers
+459,Hub,4,no,The Bulldrome Charges
+460,Hub,4,no,Enter the Giadrome
+461,Hub,4,no,Snow with Occasional Lagombi
+462,Hub,4,no,Arzuros Encroaches
+463,Hub,4,no,Royal Spit Take
+464,Hub,4,no,Netting Neopterons
+465,Hub,4,no,Clash of Rivals
+466,Hub,4,no,A Powerful Team
+467,Hub,5,no,Harvest Tour: Frozen Seaway
+468,Hub,5,no,Harvest Tour: Volcanic Hollow
+469,Hub,5,no,Harvest Tour: Deserted Island
+470,Hub,5,no,Harvest Tour: Marshlands
+471,Hub,5,no,Harvest Tour: Volcano
+472,Hub,5,no,So Notable: Kecha Wacha
+473,Hub,5,no,Ancestral Steppe Accounting
+474,Hub,5,no,Pink Stink
+475,Hub,5,no,Dragon Lady
+476,Hub,5,no,The Ioprey Leader
+477,Hub,5,no,The Intelligent Malfestio
+478,Hub,5,no,Serpentine Samba
+479,Hub,5,no,Spotted Beauty
+480,Hub,5,no,Primal Forest Accounting
+481,Hub,5,no,Fin Finder
+482,Hub,5,no,The Walls Have Eyes
+483,Hub,5,no,Must Love Lagombi
+484,Hub,5,no,Zamite Fight
+485,Hub,5,no,Stone-cold Stones
+486,Hub,5,no,Liver and Let Die
+487,Hub,5,no,Fight or Uragaan!
+488,Hub,5,no,Worst. Trip. Ever!
+489,Hub,5,no,Tetsucabra Bounty
+490,Hub,5,no,Close Coal
+491,Hub,5,no,Nargacuga Throwdown
+492,Hub,5,no,Insomnia? Meet Hypnotism x 2
+493,Hub,5,no,Brute of the Sands
+494,Hub,5,no,The Desert Gourmand
+495,Hub,5,no,Line in the Sand
+496,Hub,5,no,Wrath of the Rathian
+497,Hub,5,no,Twin Velocidrome
+498,Hub,5,no,The New Tenant
+499,Hub,5,no,A Plesioth in the Misty Peaks
+500,Hub,5,no,Awful Guest
+501,Hub,5,no,Web Sighting
+502,Hub,5,no,Poisonous Pair
+503,Hub,5,no,Attack of the Giant Bugs!
+504,Hub,5,no,Disruptive Eruption
+505,Hub,5,no,You Caught This? I Caught This
+506,Hub,5,no,Tumbling Troublemaker
+507,Hub,5,no,Shogun in the Flames
+508,Hub,5,no,The Most Dangerous Game
+509,Hub,5,no,Status: Effected
+510,Hub,5,no,Desert Brawlers
+511,Hub,5,no,The Hunter Games
+512,Hub,5,no,"Hunt, Sweat, and Tears"
+513,Hub,6,no,The Lightning Crown
+514,Hub,6,no,What a Girl Wants
+515,Hub,6,no,Rathalos Run
+516,Hub,6,no,Watch Your Steppe
+517,Hub,6,no,Bug Buffet
+518,Hub,6,no,A Bewitching Dance
+519,Hub,6,no,Dread Locked
+520,Hub,6,no,Barioth Hunt
+521,Hub,6,no,The Unshakable Mountain God
+522,Hub,6,no,Topple the Monarch
+523,Hub,6,no,Bedevil a Deviljho
+524,Hub,6,no,Frozen Seaway Accounting
+525,Hub,6,no,A Cure for Cowardice
+526,Hub,6,no,Master of the Molten Deep
+527,Hub,6,no,Duel in the Volcanic Hollow
+528,Hub,6,no,Volcanic Hollow Accounting
+529,Hub,6,no,Bug Bite
+530,Hub,6,no,Heaven and Earth
+531,Hub,6,no,From Beyond the Sands
+532,Hub,6,no,Legend of the Monkey King
+533,Hub,6,no,Astalos Territory
+534,Hub,6,no,Lord of the Skies
+535,Hub,6,no,The Rajang in the Snow
+536,Hub,6,no,Fury Run Afoul
+537,Hub,6,no,Bl-Bl-Blangongas!
+538,Hub,6,no,Surrounded by Bubbles
+539,Hub,6,no,The Moving Mountain
+540,Hub,6,no,The Fisherman's Fiend
+541,Hub,6,no,Open Season for Jaggia
+542,Hub,6,no,For Whom the Gong Tolls
+543,Hub,6,no,Quartz Rivalry
+544,Hub,6,no,We Can Dig It
+545,Hub,6,no,Coal Hearted
+546,Hub,6,no,River of Fire
+547,Hub,6,no,Dances with Wyverns
+548,Hub,6,no,Bugging Out
+549,Hub,6,no,A Three Hour Tour
+550,Hub,6,no,A Hollow Defense
+551,Hub,6,no,Wild Gunman
+552,Hub,6,no,Marshlands Rag
+553,Hub,6,no,Firefight to the Finish!
+554,Hub,6,no,At the Slayground
+555,Hub,6,no,It's Electric
+556,Hub,6,no,The White Brute
+557,Hub,6,no,A Scenic Locale
+558,Hub,6,no,Miasma Attack
+559,Hub,6,no,Stop the Wacha!
+560,Hub,6,no,We Are Not Amused
+561,Hub,6,no,Zamtrios Fight!
+562,Hub,6,no,The Frog of War
+563,Hub,6,no,Triple Toady Terror
+564,Hub,6,no,The Coal Still Burns
+565,Hub,6,no,Woe Malfestio
+566,Hub,6,no,Born of Darkness
+567,Hub,6,no,Nibeling on Apples
+568,Hub,6,no,Warning: Hyper Yian Garuga!
+569,Hub,6,no,Hyper for Holes
+570,Hub,6,no,The Plesioth Adventure
+571,Hub,6,no,Daimyo of the Deserted Island
+572,Hub,6,no,Where the Wild Manes Are
+573,Hub,6,no,Hyper Investigation
+574,Hub,6,no,The Khezu and the Shadow
+575,Hub,6,no,Bring On the Shogun
+576,Hub,6,no,Unnerving Najarala
+577,Hub,6,no,Eruption Embodied
+578,Hub,6,no,The Magma's Rage
+579,Hub,6,no,Minion Audition Imposition
+580,Hub,7,no,Stop the Wheel
+581,Hub,7,no,A Gathering of Wyverns
+582,Hub,7,no,A Song of White and Lapis
+583,Hub,7,no,A Cold Set of Armor
+584,Hub,7,no,Rocked and Rolled
+585,Hub,7,no,So Notable: Seregios
+586,Hub,7,no,Hammer vs. Blade
+587,Hub,7,no,A Roar to the Heavens
+588,Hub,7,no,The Hapless Bodyguard
+589,Hub,7,no,Seer of Swords
+590,Hub,7,no,Legendary Skills?
+591,Hub,7,no,The Yukumo Gal Special
+592,Hub,7,no,Repaying the Favor
+593,Hub,7,no,You Bet Your Life
+594,Hub,7,no,Wyvern's Way
+595,Hub,7,no,Bewitching Heat
+596,Hub,7,no,The Mountain God's Lightning
+597,Hub,7,no,A Man's Arena is His Castle
+598,Hub,7,no,The Hunter Games
+599,Hub,7,no,The Flames of War
+600,Hub,7,no,A Shocking Revelation!
+601,Hub,7,no,The Gathering Storm
+602,Hub,7,no,Hellfire Star
+603,Hub,7,no,Putting the Gore in Magala
+604,Hub,7,no,Steppe in the Right Direction
+605,Hub,7,no,"Tigrex, Tigrex, Burning Bright"
+606,Hub,7,no,A Thousand Blades of Wrath
+607,Hub,7,no,A Fiery Temper
+608,Hub,7,no,The Unassailable Seltas Queen
+609,Hub,7,no,Rajang's Black Spirit
+610,Hub,7,no,Savage Sword of the Desert
+611,Hub,7,no,Wyvernlit Evening
+612,Hub,7,no,Wyverns All Around Us
+613,Hub,7,no,"Wild Gods, Calm Rangers"
+614,Hub,7,no,Into the Maelstrom
+615,Hub,7,no,The Lithe and Unbreaking
+616,Hub,7,no,The Peril of the Land
+617,Hub,7,no,The Wolf and the Footbath
+618,Hub,7,no,The Thieving Gypceros
+619,Hub,7,no,Steam and Smoke
+620,Hub,7,no,The Glowing Embers
+621,Hub,7,no,Primal Forest Defense
+622,Hub,7,no,The End of the Trials
+623,Hub,7,no,The Descending Fog
+624,Hub,7,no,Searching for Secret Baths
+625,Hub,7,no,Show Me Your Shaka-Strength
+626,Hub,7,no,The Marshlands Nightmare
+627,Hub,7,no,The Birds of Prey
+628,Hub,7,no,The Fanged Beasts
+629,Hub,7,no,The Winged Wyverns
+630,Hub,7,no,The Foes of the Deep
+631,Hub,7,no,The Beasts of Brawn
+632,Hub,7,no,Ring of the Silver Sol
+633,Hub,7,no,Ring of the Golden Lune
+634,Hub,7,no,Usurpers of the Throne
+635,Hub,7,no,Following the Fallen
+636,Hub,7,no,Fool's Gold
+637,Hub,7,no,Shining Examples
+638,Hub,7,no,Child of Destruction
+639,Hub,7,no,A Shock in the Dark
+640,Hub,7,no,Triumphant Rage
+641,Hub,7,no,The Frozen Dictator
+642,Hub,7,no,Kushala Daora Strikes
+643,Hub,7,no,The Elder Dragon of Mist
+644,Hub,7,no,Beyond the Silence
+645,Hub,7,no,Emperor of Flame
+646,Hub,7,no,The Fires of Devastation
+647,Hub,7,no,Grim Tidings
+648,Hub,7,no,Absolute Zero
+649,Hub,7,no,The Looming Calamity
+650,Hub,7,no,The Brilliant Darkness
+651,Hub,G1,no,Harvest Tour: Ruined Pinnacle
+652,Hub,G1,no,Harvest Tour: Desert
+653,Hub,G1,no,Harvest Tour: Ancestral Steppe
+654,Hub,G1,no,Harvest Tour: Primal Forest
+655,Hub,G1,no,Harvest Tour: Jurassic Frontier
+656,Hub,G1,no,Harvest Tour: Dunes
+657,Hub,G1,no,Harvest Tour: Verdant Hills
+658,Hub,G1,no,Harvest Tour: Arctic Ridge
+659,Hub,G1,no,Harvest Tour: Misty Peaks
+660,Hub,G1,no,Pecking Order
+661,Hub,G1,no,After That Bird!
+662,Hub,G1,no,Sweetheart's Pick: Lofty Ludroth
+663,Hub,G1,no,Fangs for the Bath
+664,Hub,G1,no,"Ruined Pinnacle, RUINED"
+665,Hub,G1,no,Just Five Morel Minutes...
+666,Hub,G1,no,Daimyo Hermitaur Flambé
+667,Hub,G1,no,A Berry Dubious Idea
+668,Hub,G1,no,"Lost, But Not for Long"
+669,Hub,G1,no,Face Two Face
+670,Hub,G1,no,Enough Monkeying Around
+671,Hub,G1,no,Pleasantly Sozzled
+672,Hub,G1,no,Antony and Tetsucabra
+673,Hub,G1,no,A Brush with Bugs
+674,Hub,G1,no,Surprise!
+675,Hub,G1,no,The Bird Who Wood Be King
+676,Hub,G1,no,The Killer Rabbit of Arctic Ridge
+677,Hub,G1,no,Survival of the Biggest
+678,Hub,G1,no,Riverside Rumble
+679,Hub,G1,no,Water Fight
+680,Hub,G2,no,Harvest Tour: Jungle
+681,Hub,G2,no,Harvest Tour: Frozen Seaway
+682,Hub,G2,no,Harvest Tour: Deserted Island
+683,Hub,G2,no,Harvest Tour: Marshlands
+684,Hub,G2,no,Harvest Tour: Volcano
+685,Hub,G2,no,The Legend of King Apple
+686,Hub,G2,no,Treasure Pinnacle: Rice
+687,Hub,G2,no,Queen of the Ruined Pinnacle
+688,Hub,G2,no,Naked Aggression
+689,Hub,G2,no,Smithy Business
+690,Hub,G2,no,I See It Rollin'...
+691,Hub,G2,no,Dirty Deals
+692,Hub,G2,no,Share the Load (and the Reward)
+693,Hub,G2,no,Shadows in the Desert Lake
+694,Hub,G2,no,Not Mushroom to Swing a Congalala
+695,Hub,G2,no,Sky Tribe: Savior of the Skyway
+696,Hub,G2,no,Face-off in the Jungle
+697,Hub,G2,no,Hit the Lights
+698,Hub,G2,no,Shelling Out for Fashion
+699,Hub,G2,no,Royal Assassination
+700,Hub,G2,no,Feeding Time
+701,Hub,G2,no,Poisoned Primal Forest
+702,Hub,G2,no,Through Thick and Fin
+703,Hub,G2,no,Zamite Fright
+704,Hub,G2,no,Fishing's Lure
+705,Hub,G2,no,The Next Stage of E-Volvi-lution
+706,Hub,G2,no,Brute of the Sands
+707,Hub,G2,no,Trade Dispute
+708,Hub,G2,no,A Coil to Arms
+709,Hub,G2,no,Chilled to the Marrow
+710,Hub,G2,no,Earn Your Strength
+711,Hub,G2,no,We've Reached Peak Blangonga
+712,Hub,G2,no,Please Plesioth Me!
+713,Hub,G2,no,Jumping at Shadows
+714,Hub,G2,no,The Owled Man and the Sea
+715,Hub,G2,no,That's No Rock...
+716,Hub,G2,no,The Shadow in the Cave
+717,Hub,G2,no,March Melancolico
+718,Hub,G2,no,Interruption: Conga Line
+719,Hub,G2,no,Commission: Basarios
+720,Hub,G2,no,Afro Soul Is a Way of Life
+721,Hub,G2,no,Feeling Generally Crabby
+722,Hub,G2,no,Great Ore Discovery
+723,Hub,G2,no,Minion's Devotion
+724,Hub,G2,no,So Notable: Hyper Hermitaur
+725,Hub,G2,no,Revenge from the Skies
+726,Hub,G2,no,Commission: Hyper Kecha Wacha
+727,Hub,G2,no,"Frog's Face, Demon's Heart"
+728,Hub,G2,no,The Verdant Hills Are Alive
+729,Hub,G2,no,The Hype is Royal
+730,Hub,G3,no,Harvest Tour: Volcanic Hollow
+731,Hub,G3,no,The Unapproachable Yian Garuga
+732,Hub,G3,no,Paralyzing Peril
+733,Hub,G3,no,Return from the Pinnacle
+734,Hub,G3,no,Pinnacle Pioneering
+735,Hub,G3,no,Problem at the Pinnacle
+736,Hub,G3,no,The Boiling Broiling Desert
+737,Hub,G3,no,Strutting the Royal Runway
+738,Hub,G3,no,Water Kerfuffle
+739,Hub,G3,no,Hunt-a-Thon: Yian Garuga
+740,Hub,G3,no,Primal Forest Fears
+741,Hub,G3,no,Hunt-a-Thon: Gravios
+742,Hub,G3,no,The Lost Expedition
+743,Hub,G3,no,Ice Recovery
+744,Hub,G3,no,A Certain Gravitas
+745,Hub,G3,no,Hunter Dojo: Tail-do
+746,Hub,G3,no,It's Gotta Be Coal
+747,Hub,G3,no,The Royal Guard
+748,Hub,G3,no,Eclipse at Jurassic Frontier
+749,Hub,G3,no,PR Disaster
+750,Hub,G3,no,Predator in the Hills
+751,Hub,G3,no,I Hope It's Not Barioth Flavored
+752,Hub,G3,no,Hunter Dojo: Tusk-fu
+753,Hub,G3,no,Howl at the Moon
+754,Hub,G3,no,Hunter Dojo: Bubble-jitsu
+755,Hub,G3,no,Kiken Means Danger!
+756,Hub,G3,no,"The Sun, Also Wyverns"
+757,Hub,G3,no,Hunter Dojo: Lightning Wushu
+758,Hub,G3,no,Uragaan Grief
+759,Hub,G3,no,"Heavenly Fire, Earthly Flame"
+760,Hub,G3,no,Giant Dragon Invasion
+761,Hub,G3,no,Frontier Fisticuffs
+762,Hub,G3,no,Down With This Sort of Thing
+763,Hub,G3,no,Searing Sands
+764,Hub,G3,no,Arena Bakalaka-Battle! Woo!
+765,Hub,G3,no,Trial by Fart
+766,Hub,G3,no,The Pinnacle of Good Records
+767,Hub,G3,no,The Pinnacle of Terror
+768,Hub,G3,no,Eat in Pieces
+769,Hub,G3,no,Diabolical Deluge
+770,Hub,G3,no,Temnoceranophobia
+771,Hub,G3,no,...Or Just Wait for It to Poop
+772,Hub,G3,no,"Zamtrios, Right Ahead!"
+773,Hub,G3,no,Frozen Seaway Horror Story
+774,Hub,G3,no,Sweets for My Sweets
+775,Hub,G3,no,Nargacuga in the Jurassic Frontier
+776,Hub,G3,no,The Mud Must Flow
+777,Hub,G3,no,Shhhhut Up
+778,Hub,G3,no,No Place to Run
+779,Hub,G3,no,It's a Miner's Life
+780,Hub,G3,no,Let the Games Begin
+781,Hub,G3,no,Material Old Girl
+782,Hub,G3,no,A Pinnacle Just for You
+783,Hub,G3,no,Reality or Fantasy?
+784,Hub,G3,no,The Phantom Beast!
+785,Hub,G4,no,Sky Render
+786,Hub,G4,no,Hunter Dojo: Valstrax-ryu
+787,Hub,G4,no,Supersonic
+788,Hub,G4,no,Scales of Justice
+789,Hub,G4,no,Battle of 1001 Blades
+790,Hub,G4,no,Beware Twin Horns on the Sand
+791,Hub,G4,no,Deviljho Hunt
+792,Hub,G4,no,Paint It Gold
+793,Hub,G4,no,Tracing the Family Tree
+794,Hub,G4,no,Price Freeze
+795,Hub,G4,no,Seregios Scuffle
+796,Hub,G4,no,Slam Gunk
+797,Hub,G4,no,Diabolical Delight
+798,Hub,G4,no,Emergency at the Arctic Ridge!
+799,Hub,G4,no,Misty Opportunity?
+800,Hub,G4,no,Everything in Moderation
+801,Hub,G4,no,Lavaclad Beast
+802,Hub,G4,no,Brachydios Bypass
+803,Hub,G4,no,A Very Long Engravement
+804,Hub,G4,no,Ends of the Earth
+805,Hub,G4,no,A Titanic Clash
+806,Hub,G4,no,The Ol' Razzle Dazzle
+807,Hub,G4,no,Jurassic Skulduggery
+808,Hub,G4,no,Verdant Hills Missive
+809,Hub,G4,no,Quest of Friendship
+810,Hub,G4,no,Fiery Four-way Fracas
+811,Hub,G4,no,Castle on the Run
+812,Hub,G4,no,Pitched Pinnacle Battle
+813,Hub,G4,no,All Creatures Cleaved and Small
+814,Hub,G4,no,Backwater Battle
+815,Hub,G4,no,Rajang Against The Machine
+816,Hub,G4,no,Seeking the Sea King
+817,Hub,G4,no,If These Rocks Could Talk
+818,Hub,G4,no,Appeal from Authority
+819,Hub,G4,no,Neopteronophobia
+820,Hub,G4,no,It Takes Mizutsune to Tango
+821,Hub,G4,no,Something Wicked
+822,Hub,G4,no,Setting the Barioth High
+823,Hub,G4,no,The Big Push
+824,Hub,G4,no,What's Mine is Mine
+825,Hub,G4,no,Agnaktor's Deep
+826,Hub,G4,no,Garuga's Comeuppance
+827,Hub,G4,no,Seregios Exposé
+828,Hub,G4,no,Tigrex Trap
+829,Hub,G4,no,Zinogre-enthusiasm
+830,Hub,G4,no,Even Brachydios Need A Holiday
+831,Hub,G4,no,Marshland Fandango
+832,Hub,G4,no,Let's Get Igneous
+833,Hub,G4,no,R.I.P.
+834,Hub,G4,no,Death at My Greaves
+835,Hub,G4,no,Pinnacle Problems
+836,Hub,G4,no,A Bed of Sand
+837,Hub,G4,no,Jungle Funk
+838,Hub,G4,no,Arctic Ridge Allegiances
+839,Hub,G4,no,Arena Allegiances
+840,Hub,G4,no,Path of the Hunter
+841,Hub,G4,no,Silver-Tongued Storyteller
+842,Hub,G4,no,Gold Digger
+843,Hub,G4,no,The Sun and the Moon
+844,Hub,G4,no,By the Light of the Silvery Rath
+845,Hub,G4,no,A Jurassic Frontier Just for You
+846,Hub,G4,no,A Tragedy in Silver and Gold
+847,Hub,G4,no,Heaven and Hell
+848,Hub,G4,no,Primal Screams
+849,Hub,G4,no,The Jungle VIP
+850,Hub,G4,no,Deranged Desert Deviljho
+851,Hub,G4,no,Brachydios Brute Squad
+852,Hub,G4,no,Steel Yourself
+853,Hub,G4,no,Blizzard Blower
+854,Hub,G4,no,Out of Thin Air
+855,Hub,G4,no,Into Thin Air
+856,Hub,G4,no,Sandblasting
+857,Hub,G4,no,Explosion Marks the Spot
+858,Hub,G4,no,A Bone to Pick
+859,Hub,G4,no,Trial by Akantor
+860,Hub,G4,no,Polar Peril
+861,Hub,G4,no,Who Will Hunt the Rain?
+862,Hub,G4,no,Glory Glory Alatreon
+863,Hub,G4,no,Fade to Black
+864,Hub,G4,no,The End Is Nigh
+865,Hub,G4,no,Old Fatalis
+866,Village,2,yes,Prowler's First Errand
+867,Village,2,yes,Jurassic Fungologist
+868,Village,2,yes,Lucky Frontier Cat
+869,Village,3,yes,Verdant Hills Bully
+870,Village,3,yes,Lucky Hills Cat
+871,Village,3,yes,The Mining Drag
+872,Village,3,yes,Felyne Fishing Weekly
+873,Village,3,yes,Grooming the Moofahs
+874,Village,3,yes,Bug Reports
+875,Village,4,yes,Great Maccao Headbreaker
+876,Village,4,yes,Dash It All
+877,Village,4,yes,An Offer You Can't Refuse
+878,Village,4,yes,The Secret Ingredient
+879,Village,4,yes,Marshlands Fishing?
+880,Village,4,yes,Arctic Point Expedition
+881,Village,5,yes,Blood Red Marshlands
+882,Village,5,yes,An Offer You Can't Relieve
+883,Village,5,yes,Uroktor Hide 'n Seek
+884,Village,5,yes,Into the Volcano
+885,Village,5,yes,Kut-Ku Earbreaker
+886,Village,6,yes,The Right Cattitude
+887,Village,6,yes,D. Hermitaur Shellbreaker
+888,Village,6,yes,Surrounded by Blue and Green
+889,Village,6,yes,Poison and Fangs
+890,Village,7,yes,Prowler's Second Errand
+891,Village,7,yes,Conga Line
+892,Village,7,yes,Dashing Velocidrome
+893,Village,8,yes,Eggcellent Surprise
+894,Village,8,yes,Cold-Blooded Giadrome
+895,Village,8,yes,Picturesque Pinnacle
+896,Village,8,yes,Congalala Crestbreaker
+897,Village,9,yes,Innocent Curiosity
+898,Village,9,yes,A Poison Paradise
+899,Village,9,yes,Lucky Dunes Cat
+900,Village,9,yes,Basarios Chestbreaker
+901,Village,10,yes,Lucky Hills Cat
+902,Village,10,yes,Ludroth Lunacy
+903,Village,10,yes,Duramboros Humpbreaker
+904,Village,10,yes,Snow Festival
+905,Village,10,yes,Drome Rush!
+906,Hub,1,yes,Dance: The Final Frontier
+907,Hub,1,yes,Taste the Mountains
+908,Hub,1,yes,Lucky Mountain Cat
+909,Hub,2,yes,Running with the Night
+910,Hub,2,yes,A Cricket to Love
+911,Hub,2,yes,A Resplendent Dance
+912,Hub,3,yes,Hot Scales & Sharp Pincers
+913,Hub,3,yes,There's Always Room for Fish
+914,Hub,3,yes,Out of the Frying Pan
+915,Hub,4,yes,The Grandmeowster's Trials
+916,Hub,4,yes,We Cat All Be Heroes
+917,Hub,4,yes,Fois Gras Faux Pas
+918,Hub,4,yes,Splash in the Moonlight
+919,Hub,5,yes,"Calm, Cool, and Collected"
+920,Hub,5,yes,Kecha Wacha Earbreaker
+921,Hub,5,yes,Fish On!
+922,Hub,5,yes,Lucky Volcano Cat
+923,Hub,5,yes,Under the Blazing Sun
+924,Hub,6,yes,Everywhere You Look
+925,Hub,6,yes,Malfestio Headbreaker
+926,Hub,6,yes,The Snow Must Go On
+927,Hub,6,yes,Big Bro's Benevolence
+928,Hub,7,yes,The Ball's in Your Court
+929,Hub,7,yes,Uragaan Shellbreaker
+930,Hub,7,yes,"Poison, Poison, Go Away"
+931,Hub,7,yes,Meownster Hunter
+932,Hub,G1,yes,Bnahabra in the Stomach
+933,Hub,G1,yes,Lucky Steppe Cat
+934,Hub,G1,yes,Desert Furrontier
+935,Hub,G2,yes,Primal Furrontier
+936,Hub,G2,yes,Thank-You Gift
+937,Hub,G2,yes,Royal Ludroth Manebreaker
+938,Hub,G3,yes,Laughter is Not the Best Antidote
+939,Hub,G3,yes,Volcano Furrontier
+940,Hub,G3,yes,Lucky Jungle Cat
+941,Hub,G3,yes,Nerscylla Hidebreaker
+942,Hub,G4,yes,Lagiacrus Headbreaker
+943,Hub,G4,yes,Ninjadromes
+944,Hub,G4,yes,Seltas Spat
+945,Hub,G4,yes,Gravios Backbreaker
+946,Hub,G4,yes,Meownster Hunter Ultimate
+947,Special Permit,,no,Redhelm I: Hunt
+948,Special Permit,,no,Redhelm II: Capture
+949,Special Permit,,no,Redhelm III: Hunt
+950,Special Permit,,no,Redhelm IV: Hunt
+951,Special Permit,,no,Redhelm V: Hunt
+952,Special Permit,,no,Redhelm VI: Hunt
+953,Special Permit,,no,Redhelm VII: Capture
+954,Special Permit,,no,Redhelm VIII: Hunt
+955,Special Permit,,no,Redhelm IX: Hunt
+956,Special Permit,,no,Redhelm X: Hunt
+957,Special Permit,,no,Redhelm G1: Capture
+958,Special Permit,,no,Redhelm G2: Hunt
+959,Special Permit,,no,Redhelm G3: Hunt
+960,Special Permit,,no,Redhelm G4: Hunt
+961,Special Permit,,no,Redhelm G5: Hunt
+962,Special Permit,,no,Redhelm EX: Hunt
+963,Special Permit,,no,Snowbaron I: Hunt
+964,Special Permit,,no,Snowbaron II: Capture
+965,Special Permit,,no,Snowbaron III: Hunt
+966,Special Permit,,no,Snowbaron IV: Hunt
+967,Special Permit,,no,Snowbaron V: Hunt
+968,Special Permit,,no,Snowbaron VI: Hunt
+969,Special Permit,,no,Snowbaron VII: Capture
+970,Special Permit,,no,Snowbaron VIII: Hunt
+971,Special Permit,,no,Snowbaron IX: Hunt
+972,Special Permit,,no,Snowbaron X: Hunt
+973,Special Permit,,no,Snowbaron G1: Capture
+974,Special Permit,,no,Snowbaron G2: Hunt
+975,Special Permit,,no,Snowbaron G3: Hunt
+976,Special Permit,,no,Snowbaron G4: Hunt
+977,Special Permit,,no,Snowbaron G5: Hunt
+978,Special Permit,,no,Snowbaron EX: Hunt
+979,Special Permit,,no,Stonefist I: Hunt
+980,Special Permit,,no,Stonefist II: Capture
+981,Special Permit,,no,Stonefist III: Hunt
+982,Special Permit,,no,Stonefist IV: Hunt
+983,Special Permit,,no,Stonefist V: Hunt
+984,Special Permit,,no,Stonefist VI: Hunt
+985,Special Permit,,no,Stonefist VII: Capture
+986,Special Permit,,no,Stonefist VIII: Hunt
+987,Special Permit,,no,Stonefist IX: Hunt
+988,Special Permit,,no,Stonefist X: Hunt
+989,Special Permit,,no,Stonefist G1: Capture
+990,Special Permit,,no,Stonefist G2: Hunt
+991,Special Permit,,no,Stonefist G3: Hunt
+992,Special Permit,,no,Stonefist G4: Hunt
+993,Special Permit,,no,Stonefist G5: Hunt
+994,Special Permit,,no,Stonefist EX: Hunt
+995,Special Permit,,no,Dreadqueen I: Hunt
+996,Special Permit,,no,Dreadqueen II: Capture
+997,Special Permit,,no,Dreadqueen III: Hunt
+998,Special Permit,,no,Dreadqueen IV: Hunt
+999,Special Permit,,no,Dreadqueen V: Hunt
+1000,Special Permit,,no,Dreadqueen VI: Hunt
+1001,Special Permit,,no,Dreadqueen VII: Capture
+1002,Special Permit,,no,Dreadqueen VIII: Hunt
+1003,Special Permit,,no,Dreadqueen IX: Hunt
+1004,Special Permit,,no,Dreadqueen X: Hunt
+1005,Special Permit,,no,Dreadqueen G1: Capture
+1006,Special Permit,,no,Dreadqueen G2: Hunt
+1007,Special Permit,,no,Dreadqueen G3: Hunt
+1008,Special Permit,,no,Dreadqueen G4: Hunt
+1009,Special Permit,,no,Dreadqueen G5: Hunt
+1010,Special Permit,,no,Dreadqueen EX: Hunt
+1011,Special Permit,,no,Drilltusk I: Hunt
+1012,Special Permit,,no,Drilltusk II: Capture
+1013,Special Permit,,no,Drilltusk III: Hunt
+1014,Special Permit,,no,Drilltusk IV: Hunt
+1015,Special Permit,,no,Drilltusk V: Hunt
+1016,Special Permit,,no,Drilltusk VI: Hunt
+1017,Special Permit,,no,Drilltusk VII: Capture
+1018,Special Permit,,no,Drilltusk VIII: Hunt
+1019,Special Permit,,no,Drilltusk IX: Hunt
+1020,Special Permit,,no,Drilltusk X: Hunt
+1021,Special Permit,,no,Drilltusk G1: Capture
+1022,Special Permit,,no,Drilltusk G2: Hunt
+1023,Special Permit,,no,Drilltusk G3: Hunt
+1024,Special Permit,,no,Drilltusk G4: Hunt
+1025,Special Permit,,no,Drilltusk G5: Hunt
+1026,Special Permit,,no,Drilltusk EX: Hunt
+1027,Special Permit,,no,Silverwind I: Hunt
+1028,Special Permit,,no,Silverwind II: Capture
+1029,Special Permit,,no,Silverwind III: Hunt
+1030,Special Permit,,no,Silverwind IV: Hunt
+1031,Special Permit,,no,Silverwind V: Hunt
+1032,Special Permit,,no,Silverwind VI: Hunt
+1033,Special Permit,,no,Silverwind VII: Capture
+1034,Special Permit,,no,Silverwind VIII: Hunt
+1035,Special Permit,,no,Silverwind IX: Hunt
+1036,Special Permit,,no,Silverwind X: Hunt
+1037,Special Permit,,no,Silverwind G1: Capture
+1038,Special Permit,,no,Silverwind G2: Hunt
+1039,Special Permit,,no,Silverwind G3: Hunt
+1040,Special Permit,,no,Silverwind G4: Hunt
+1041,Special Permit,,no,Silverwind G5: Hunt
+1042,Special Permit,,no,Silverwind EX: Hunt
+1043,Special Permit,,no,Crystalbeard I: Hunt
+1044,Special Permit,,no,Crystalbeard II: Capture
+1045,Special Permit,,no,Crystalbeard III: Hunt
+1046,Special Permit,,no,Crystalbeard IV: Hunt
+1047,Special Permit,,no,Crystalbeard V: Hunt
+1048,Special Permit,,no,Crystalbeard VI: Hunt
+1049,Special Permit,,no,Crystalbeard VII: Capture
+1050,Special Permit,,no,Crystalbeard VIII: Hunt
+1051,Special Permit,,no,Crystalbeard IX: Hunt
+1052,Special Permit,,no,Crystalbeard X: Hunt
+1053,Special Permit,,no,Crystalbeard G1: Capture
+1054,Special Permit,,no,Crystalbeard G2: Hunt
+1055,Special Permit,,no,Crystalbeard G3: Hunt
+1056,Special Permit,,no,Crystalbeard G4: Hunt
+1057,Special Permit,,no,Crystalbeard G5: Hunt
+1058,Special Permit,,no,Crystalbeard EX: Hunt
+1059,Special Permit,,no,Deadeye I: Hunt
+1060,Special Permit,,no,Deadeye II: Capture
+1061,Special Permit,,no,Deadeye III: Hunt
+1062,Special Permit,,no,Deadeye IV: Hunt
+1063,Special Permit,,no,Deadeye V: Hunt
+1064,Special Permit,,no,Deadeye VI: Hunt
+1065,Special Permit,,no,Deadeye VII: Capture
+1066,Special Permit,,no,Deadeye VIII: Hunt
+1067,Special Permit,,no,Deadeye IX: Hunt
+1068,Special Permit,,no,Deadeye X: Hunt
+1069,Special Permit,,no,Deadeye G1: Capture
+1070,Special Permit,,no,Deadeye G2: Hunt
+1071,Special Permit,,no,Deadeye G3: Hunt
+1072,Special Permit,,no,Deadeye G4: Hunt
+1073,Special Permit,,no,Deadeye G5: Hunt
+1074,Special Permit,,no,Deadeye EX: Hunt
+1075,Special Permit,,no,Dreadking I: Hunt
+1076,Special Permit,,no,Dreadking II: Capture
+1077,Special Permit,,no,Dreadking III: Hunt
+1078,Special Permit,,no,Dreadking IV: Hunt
+1079,Special Permit,,no,Dreadking V: Hunt
+1080,Special Permit,,no,Dreadking VI: Hunt
+1081,Special Permit,,no,Dreadking VII: Capture
+1082,Special Permit,,no,Dreadking VIII: Hunt
+1083,Special Permit,,no,Dreadking IX: Hunt
+1084,Special Permit,,no,Dreadking X: Hunt
+1085,Special Permit,,no,Dreadking G1: Capture
+1086,Special Permit,,no,Dreadking G2: Hunt
+1087,Special Permit,,no,Dreadking G3: Hunt
+1088,Special Permit,,no,Dreadking G4: Hunt
+1089,Special Permit,,no,Dreadking G5: Hunt
+1090,Special Permit,,no,Dreadking EX: Hunt
+1091,Special Permit,,no,Thunderlord I: Hunt
+1092,Special Permit,,no,Thunderlord II: Capture
+1093,Special Permit,,no,Thunderlord III: Hunt
+1094,Special Permit,,no,Thunderlord IV: Hunt
+1095,Special Permit,,no,Thunderlord V: Hunt
+1096,Special Permit,,no,Thunderlord VI: Hunt
+1097,Special Permit,,no,Thunderlord VII: Hunt
+1098,Special Permit,,no,Thunderlord VIII: Capture
+1099,Special Permit,,no,Thunderlord IX: Hunt
+1100,Special Permit,,no,Thunderlord X: Hunt
+1101,Special Permit,,no,Thunderlord G1: Capture
+1102,Special Permit,,no,Thunderlord G2: Hunt
+1103,Special Permit,,no,Thunderlord G3: Hunt
+1104,Special Permit,,no,Thunderlord G4: Hunt
+1105,Special Permit,,no,Thunderlord G5: Hunt
+1106,Special Permit,,no,Thunderlord EX: Hunt
+1107,Special Permit,,no,Grimclaw I: Hunt
+1108,Special Permit,,no,Grimclaw II: Capture
+1109,Special Permit,,no,Grimclaw III: Hunt
+1110,Special Permit,,no,Grimclaw IV: Hunt
+1111,Special Permit,,no,Grimclaw V: Hunt
+1112,Special Permit,,no,Grimclaw VI: Hunt
+1113,Special Permit,,no,Grimclaw VII: Hunt
+1114,Special Permit,,no,Grimclaw VIII: Capture
+1115,Special Permit,,no,Grimclaw IX: Hunt
+1116,Special Permit,,no,Grimclaw X: Hunt
+1117,Special Permit,,no,Grimclaw G1: Capture
+1118,Special Permit,,no,Grimclaw G2: Hunt
+1119,Special Permit,,no,Grimclaw G3: Hunt
+1120,Special Permit,,no,Grimclaw G4: Hunt
+1121,Special Permit,,no,Grimclaw G5: Hunt
+1122,Special Permit,,no,Grimclaw EX: Hunt
+1123,Special Permit,,no,Hellblade I: Hunt
+1124,Special Permit,,no,Hellblade II: Capture
+1125,Special Permit,,no,Hellblade III: Hunt
+1126,Special Permit,,no,Hellblade IV: Hunt
+1127,Special Permit,,no,Hellblade V: Hunt
+1128,Special Permit,,no,Hellblade VI: Hunt
+1129,Special Permit,,no,Hellblade VII: Hunt
+1130,Special Permit,,no,Hellblade VIII: Capture
+1131,Special Permit,,no,Hellblade IX: Hunt
+1132,Special Permit,,no,Hellblade X: Hunt
+1133,Special Permit,,no,Hellblade G1: Capture
+1134,Special Permit,,no,Hellblade G2: Hunt
+1135,Special Permit,,no,Hellblade G3: Hunt
+1136,Special Permit,,no,Hellblade G4: Hunt
+1137,Special Permit,,no,Hellblade G5: Hunt
+1138,Special Permit,,no,Hellblade EX: Hunt
+1139,Special Permit,,no,Nightcloak G1: Capture
+1140,Special Permit,,no,Nightcloak G2: Hunt
+1141,Special Permit,,no,Nightcloak G3: Hunt
+1142,Special Permit,,no,Nightcloak G4: Hunt
+1143,Special Permit,,no,Nightcloak G5: Hunt
+1144,Special Permit,,no,Nightcloak EX: Hunt
+1145,Special Permit,,no,Rustrazor G1: Capture
+1146,Special Permit,,no,Rustrazor G2: Hunt
+1147,Special Permit,,no,Rustrazor G3: Hunt
+1148,Special Permit,,no,Rustrazor G4: Hunt
+1149,Special Permit,,no,Rustrazor G5: Hunt
+1150,Special Permit,,no,Rustrazor EX: Hunt
+1151,Special Permit,,no,Soulseer G1: Capture
+1152,Special Permit,,no,Soulseer G2: Hunt
+1153,Special Permit,,no,Soulseer G3: Hunt
+1154,Special Permit,,no,Soulseer G4: Hunt
+1155,Special Permit,,no,Soulseer G5: Hunt
+1156,Special Permit,,no,Soulseer EX: Hunt
+1157,Special Permit,,no,Boltreaver G1: Capture
+1158,Special Permit,,no,Boltreaver G2: Hunt
+1159,Special Permit,,no,Boltreaver G3: Hunt
+1160,Special Permit,,no,Boltreaver G4: Hunt
+1161,Special Permit,,no,Boltreaver G5: Hunt
+1162,Special Permit,,no,Boltreaver EX: Hunt
+1163,Special Permit,,no,Elderfrost G1: Capture
+1164,Special Permit,,no,Elderfrost G2: Hunt
+1165,Special Permit,,no,Elderfrost G3: Hunt
+1166,Special Permit,,no,Elderfrost G4: Hunt
+1167,Special Permit,,no,Elderfrost G5: Hunt
+1168,Special Permit,,no,Elderfrost EX: Hunt
+1169,Special Permit,,no,Bloodbath G1: Hunt
+1170,Special Permit,,no,Bloodbath G2: Capture
+1171,Special Permit,,no,Bloodbath G3: Hunt
+1172,Special Permit,,no,Bloodbath G4: Hunt
+1173,Special Permit,,no,Bloodbath G5: Hunt
+1174,Special Permit,,no,Bloodbath EX: Hunt
+1175,Training,,no,Hunter Training: The Basics
+1176,Training,,no,Hunter Training: Combining
+1177,Training,,no,Hunter Training: Mining
+1178,Training,,no,Hunter Training: Fishing
+1179,Training,,no,Hunter Training: Transporting
+1180,Training,,no,Hunter Training: Slaying
+1181,Training,,no,Hunter Training: Capturing
+1182,Training,,yes,Prowler Training: The Basics
+1183,Training,,yes,Prowler Training: Combining
+1184,Training,,yes,Prowler Training: Gathering
+1185,Training,,yes,Prowler Training: Fishing
+1186,Training,,yes,Prowler Training: Transporting
+1187,Training,,yes,Prowler Training: Slaying I
+1188,Training,,yes,Prowler Training: Slaying II
+1189,Training,,yes,Prowler Training: Capturing
+1190,Training,,no,Guild Style Training
+1191,Training,,no,Striker Style Training
+1192,Training,,no,Aerial Style Training
+1193,Training,,no,Adept Style Training
+1194,Training,,no,Guild Style Training
+1195,Training,,no,Striker Style Training
+1196,Training,,no,Aerial Style Training
+1197,Training,,no,Adept Style Training
+1198,Training,,no,Guild Style Training
+1199,Training,,no,Striker Style Training
+1200,Training,,no,Aerial Style Training
+1201,Training,,no,Adept Style Training
+1202,Training,,no,Guild Style Training
+1203,Training,,no,Striker Style Training
+1204,Training,,no,Aerial Style Training
+1205,Training,,no,Adept Style Training
+1206,Training,,no,Guild Style Training
+1207,Training,,no,Striker Style Training
+1208,Training,,no,Aerial Style Training
+1209,Training,,no,Adept Style Training
+1210,Training,,no,Guild Style Training
+1211,Training,,no,Striker Style Training
+1212,Training,,no,Aerial Style Training
+1213,Training,,no,Adept Style Training
+1214,Training,,no,Guild Style Training
+1215,Training,,no,Striker Style Training
+1216,Training,,no,Aerial Style Training
+1217,Training,,no,Adept Style Training
+1218,Training,,no,Guild Style Training
+1219,Training,,no,Striker Style Training
+1220,Training,,no,Aerial Style Training
+1221,Training,,no,Adept Style Training
+1222,Training,,no,Guild Style Training
+1223,Training,,no,Striker Style Training
+1224,Training,,no,Aerial Style Training
+1225,Training,,no,Adept Style Training
+1226,Training,,no,Guild Style Training
+1227,Training,,no,Striker Style Training
+1228,Training,,no,Aerial Style Training
+1229,Training,,no,Adept Style Training
+1230,Training,,no,Guild Style Training
+1231,Training,,no,Striker Style Training
+1232,Training,,no,Aerial Style Training
+1233,Training,,no,Adept Style Training
+1234,Training,,no,Guild Style Training
+1235,Training,,no,Striker Style Training
+1236,Training,,no,Aerial Style Training
+1237,Training,,no,Adept Style Training
+1238,Training,,no,Guild Style Training
+1239,Training,,no,Striker Style Training
+1240,Training,,no,Aerial Style Training
+1241,Training,,no,Adept Style Training
+1242,Training,,no,Guild Style Training
+1243,Training,,no,Striker Style Training
+1244,Training,,no,Aerial Style Training
+1245,Training,,no,Adept Style Training
+1246,Training,,no,Valor Style Training
+1247,Training,,no,Alchemy Style Training
+1248,Training,,no,SP Hunter Arts Training
+1249,Training,,no,Valor Style Training
+1250,Training,,no,Alchemy Style Training
+1251,Training,,no,SP Hunter Arts Training
+1252,Training,,no,Valor Style Training
+1253,Training,,no,Alchemy Style Training
+1254,Training,,no,SP Hunter Arts Training
+1255,Training,,no,Valor Style Training
+1256,Training,,no,Alchemy Style Training
+1257,Training,,no,SP Hunter Arts Training
+1258,Training,,no,Valor Style Training
+1259,Training,,no,Alchemy Style Training
+1260,Training,,no,SP Hunter Arts Training
+1261,Training,,no,Valor Style Training
+1262,Training,,no,Alchemy Style Training
+1263,Training,,no,SP Hunter Arts Training
+1264,Training,,no,Valor Style Training
+1265,Training,,no,Alchemy Style Training
+1266,Training,,no,SP Hunter Arts Training
+1267,Training,,no,Valor Style Training
+1268,Training,,no,Alchemy Style Training
+1269,Training,,no,SP Hunter Arts Training
+1270,Training,,no,Valor Style Training
+1271,Training,,no,Alchemy Style Training
+1272,Training,,no,SP Hunter Arts Training
+1273,Training,,no,Valor Style Training
+1274,Training,,no,Alchemy Style Training
+1275,Training,,no,SP Hunter Arts Training
+1276,Training,,no,Valor Style Training
+1277,Training,,no,Alchemy Style Training
+1278,Training,,no,SP Hunter Arts Training
+1279,Training,,no,Valor Style Training
+1280,Training,,no,Alchemy Style Training
+1281,Training,,no,SP Hunter Arts Training
+1282,Training,,no,Valor Style Training
+1283,Training,,no,Alchemy Style Training
+1284,Training,,no,SP Hunter Arts Training
+1285,Training,,no,Valor Style Training
+1286,Training,,no,Alchemy Style Training
+1287,Training,,no,SP Hunter Arts Training
+1288,Arena,,no,Grudge Match: Malfestio
+1289,Arena,,no,Grudge Match: Khezu
+1290,Arena,,no,Grudge Match: Najarala
+1291,Arena,,no,Grudge Match: Rathalos
+1292,Arena,,no,Grudge Match: Kecha Wacha
+1293,Arena,,no,Grudge Match: Plesioth
+1294,Arena,,no,Grudge Match: Brachydios
+1295,Arena,,no,Grudge Match: Barioth
+1296,Arena,,no,Grudge Match: Yian Garuga
+1297,Arena,,no,Grudge Match: Uragaan
+1298,Arena,,no,Grudge Match: Seregios
+1299,Arena,,yes,Grudge Match: Great Maccao
+1300,Arena,,yes,Grudge Match: Gypceros
+1301,Arena,,yes,Grudge Match: Bird Wyverns
+1302,Arena,,yes,Grudge Match: Barroth
+1303,Arena,,yes,Grudge Match: Tetsucabra
+1304,Arena,,yes,Grudge Match: Congalala
+1305,Event Hub,3,no,DUMMY
+1306,Event Hub,1,no,Hunter Low-rank 2
+1307,Event Hub,1,no,Hunter Low-rank 3
+1308,Event Hub,3,no,DUMMY
+1309,Event Hub,3,no,DUMMY
+1310,Event Hub,3,no,DUMMY
+1311,Event Hub,3,no,A Season for Lava
+1312,Event Hub,2,yes,Nakayoshi: Silver Crystal
+1313,Event Hub,2,yes,Prowler Low-rank 2
+1314,Event Hub,2,yes,Prowler Low-rank 3
+1315,Event Hub,2,yes,CoroCoro: Lost in the Swamp
+1316,Event Hub,3,yes,The King of Lynians!
+1317,Event Hub,3,yes,Jump: Crimson Strongmen
+1318,Event Hub,2,yes,Initiate: Operation Moofah
+1319,Event Hub,2,yes,The Uniqlo Avant-garde
+1320,Event Hub,5,no,Jump: The Desert Crown
+1321,Event Hub,7,no,DUMMY
+1322,Event Hub,6,no,DUMMY
+1323,Event Hub,5,no,The Legend of Zelda: Power
+1324,Event Hub,7,no,Fire Emblem: Warding Despair
+1325,Event Hub,7,no,Strider: Frozen Mission
+1326,Event Hub,6,no,Okami: Most Wanted
+1327,Event Hub,7,no,Ghosts 'n Goblins: Seeing Red
+1328,Event Hub,1,no,Hunter High-rank 9
+1329,Event Hub,1,no,Hunter High-rank 10
+1330,Event Hub,7,no,Crows: The Black Crows
+1331,Event Hub,5,no,Yowamushi Pedal: Princess
+1332,Event Hub,7,no,Baki: Biggest vs. Strongest
+1333,Event Hub,6,no,CoroCoro: Rolling Bowlers
+1334,Event Hub,7,no,Ushio & Tora: White Mizutsune
+1335,Event Hub,7,no,Magi: Rescue from the Fall
+1336,Event Hub,7,no,The Exploding Flame King
+1337,Event Hub,7,no,Yu-Gi-Oh: A Beautiful Wyvern
+1338,Event Hub,7,no,Jump: Boiling Magma
+1339,Event Hub,7,no,Famitsu: Mizutsune Feature
+1340,Event Hub,7,no,Dengeki: Turbulent Seas
+1341,Event Hub,7,no,Uniqlo Shock Fest
+1342,Event Hub,7,no,DUMMY
+1343,Event Hub,7,no,DUMMY
+1344,Event Hub,7,no,DUMMY
+1345,Event Hub,6,no,DUMMY
+1346,Event Hub,7,no,DUMMY
+1347,Event Hub,7,no,Star Fox: Battle at Arctic Ridge
+1348,Event Hub,7,no,The Three Virtues
+1349,Event Hub,7,no,Metroid: Special Mission
+1350,Event Hub,7,no,The Steel Vanguard
+1351,Event Hub,7,no,The Voracious King
+1352,Event Hub,7,no,DMC: The Seltas Queen's Cry
+1353,Event Hub,7,no,Mega Man: Yellow Devil
+1354,Event Hub,7,no,Capcom: Brilliant Orchestra
+1355,Event Hub,7,no,Felyne Village: The Tourney
+1356,Event Hub,7,no,Fan Club: Great All Stars
+1357,Event Hub,7,no,Fan Club: Remobra Removal
+1358,Event Hub,7,no,Capcom: White & Black
+1359,Event Hub,7,no,Capcom: The Ruler's Rage
+1360,Event Hub,7,no,Moonlit Tryst
+1361,Event Hub,7,no,Raging Twins
+1362,Event Hub,7,no,All's Hair in Glove & War
+1363,Event Hub,7,no,A Golden Moon Rises
+1364,Event Hub,7,no,Silver and Gold
+1365,Event Hub,7,no,Secret Nibelsnarf Hunt
+1366,Event Hub,7,no,The Obvious Choice...
+1367,Event Hub,7,no,It Would Be a Shame If...
+1368,Event Hub,7,no,Not Stepping One Foot...
+1369,Event Hub,7,no,Picturesque Encounter
+1370,Event Hub,7,no,Absolute Power
+1371,Event Hub,7,no,A Land Draped in Fantasy
+1372,Event Hub,7,no,The Formless One
+1373,Event Hub,7,no,The White God Returns
+1374,Event Hub,7,no,Evil Descendeth Upon Us
+1375,Event Hub,7,no,Where Gods Fear to Tread
+1376,Event Hub,7,no,Harbinger of Death
+1377,Event Hub,7,no,No Party Poopers!
+1378,Event Hub,7,no,The Five Kings of Destruction
+1379,Event Hub,7,no,How It's Done
+1380,Event Hub,7,no,Unbridled Rage
+1381,Event Hub,7,no,Insanity and Destruction
+1382,Event Hub,7,no,Volcano Item Delivery
+1383,Event Hub,6,no,Anything For a Buck
+1384,Event Hub,7,no,A Mammoth Mistake
+1385,Event Hub,7,no,The Untamed Mountains
+1386,Event Hub,7,no,The Best of the Best
+1387,Event Hub,7,no,The Greatest Hunter
+1388,Event Hub,7,no,Retreat Run-in
+1389,Event Hub,7,no,Overcome with Awe
+1390,Event Hub,7,no,The Hammer and the Pike
+1391,Event Hub,5,yes,Case Closed: Monster Files
+1392,Event Hub,4,yes,DUMMY
+1393,Event Hub,4,yes,Prowler High-rank 3
+1394,Event Hub,4,yes,Prowler High-rank 4
+1395,Event Hub,4,yes,CoroCoro: Big Bad Bugs
+1396,Event Hub,4,yes,A Hero's Return
+1397,Event Hub,4,yes,Mario: The White Donkey Kong?
+1398,Event Hub,5,yes,Animal Crossing: Picnic Day
+1399,Event Hub,7,yes,SF: Ultimate Entrance Exam
+1400,Event Hub,7,yes,Fan Club: Arena Action
+1401,Event Hub,6,yes,Too Hot to Handle
+1402,Event Hub,6,yes,Making the Cut
+1403,Event Hub,7,yes,Catch a Rathalos by the Tail
+1404,Event Hub,G2,no,Famitsu: Kecha the Scoop!
+1405,Event Hub,G3,no,Dengeki: Top of Old Sparky
+1406,Event Hub,G2,no,Kingdom: Test of the Best!
+1407,Event Hub,G3,no,DUMMY
+1408,Event Hub,G4,no,Case Closed: Desert Arrest!
+1409,Event Hub,G3,no,Shonen: Winged Nocturne
+1410,Event Hub,G4,no,Drifters: Isle of Lost Souls
+1411,Event Hub,G4,no,The Legend of Zelda: Courage
+1412,Event Hub,G4,no,DUMMY
+1413,Event Hub,G4,no,Into the Maw of Darkness
+1414,Event Hub,G4,no,Fan Club: Climbing The Ranks
+1415,Event Hub,G4,no,URGENT: COAL MINERS NEEDED
+1416,Event Hub,G2,no,Frozen Free-For-All
+1417,Event Hub,G3,no,Nerscylla Nightmare
+1418,Event Hub,G2,no,It'll Come Out in the Wash
+1419,Event Hub,G3,no,My Love is Like a Chill Wind...?
+1420,Event Hub,G3,no,A Solid Argument
+1421,Event Hub,G4,no,Glimmers of False Hope
+1422,Event Hub,G4,no,Forewarned is Four-Horned
+1423,Event Hub,G4,no,Violence in the Verdure
+1424,Event Hub,G4,no,Paws Off My Fish!
+1425,Event Hub,G4,no,"Big, Bad 'n' Woolly"
+1426,Event Hub,G4,no,Blade Blazing Brightly Black
+1427,Event Hub,G4,no,Meat is Murder
+1428,Event Hub,G4,no,The Cry of Chaos
+1429,Event Hub,G4,no,Brutal Brachydios
+1430,Event Hub,G4,no,Bequest Quest
+1431,Event Hub,G4,no,"Forget Valstrax, Big Sis is Scarier!"
+1432,Event Hub,G4,no,"The Gloom of 1,001 Nights"
+1433,Event Hub,G4,no,A Terrible Light
+1434,Event Hub,G4,no,Legitimate Soaratorium Quest
+1435,Event Hub,G4,no,Lord of the Volcanic Hollow
+1436,Event Hub,G4,no,Welcome Back To Hell
+1437,Event Hub,G4,no,Monster on a Crusade
+1438,Event Hub,G4,no,Ukanlos-Made Global Cooling
+1439,Event Hub,G4,no,Lao-Shan Lung Time No See
+1440,Event Hub,G4,no,Alatreon and Alack
+1441,Event Hub,G4,no,End of a Dark History
+1442,Event Hub,G4,no,To Slay a Legend
+1443,Event Hub,G4,no,Defy the Prophecy
+1444,Event Hub,G4,no,Monster Hunter Channel I
+1445,Event Hub,G4,no,Monster Hunter Channel II
+1446,Event Hub,1,no,@
+1447,Event Hub,1,no,@
+1448,Event Hub,1,no,@
+1449,Event Hub,1,no,@
+1450,Event Hub,1,no,@
+1451,Event Hub,G2,yes,CoroCoro: Fart of Darkness
+1452,Event Hub,G3,yes,Baki: Deadly Claws
+1453,Event Hub,G1,yes,WORST: Skull Motif
+1454,Event Hub,G4,yes,DUMMY
+1455,Event Hub,G2,yes,The Legend of Zelda: Wisdom
+1456,Event Hub,G1,yes,Turnabout Takedown
+1457,Event Hub,G3,yes,Capcom: Prowler's Spirit
+1458,Event Hub,G1,yes,@
+1459,Event Hub,G1,yes,@
+1460,Event Hub,G1,yes,@
+1461,Event Hub,G1,yes,@
+1462,Event Hub,G1,yes,@
+1463,Event Hub,G1,yes,@
+1464,Event Hub,G1,yes,Prowler G-rank Quest 7
+1465,Event Hub,G1,yes,Prowler G-rank Quest 8
+1466,Event Arena,,no,XX Trials: Dreadqueen
+1467,Event Arena,,no,XX Trials: Thunderlord
+1468,Event Arena,,no,XX Trials: Silverwind
+1469,Event Arena,,no,XX Trials: Dreadking
+1470,Event Arena,,no,XX Trials: Grimclaw
+1471,Event Arena,,no,XX Trials: Gravios
+1472,Event Arena,,no,XX Trials: Elderfrost
+1473,Event Arena,,no,XX Trials: Hunt-a-thon I
+1474,Event Arena,,no,XX Trials: Hunt-a-thon II
+1475,Event Arena,,no,XX Trials: Stonefist
+1476,Event Arena,,no,XX Trials: Drilltusk
+1477,Event Arena,,no,XX Trials: Redhelm
+1478,Event Arena,,no,XX Trials: Deadeye
+1479,Event Arena,,no,XX Trials: Snowbaron
+1480,Event Arena,,no,XX Trials: Hunt-a-thon III
+1481,Event Arena,,no,@
+1482,Event Arena,,no,Event: Slay a Mizutsune
+1483,Event Arena,,no,Event: Slay a Glavenus
+1484,Event Arena,,no,Event: Slay a Gammoth
+1485,Event Arena,,no,Event: Slay an Astalos
+1486,Event Arena,,no,Event: Slay a Lagiacrus
+1487,Event Arena,,no,Event: Hunt-a-thon 1
+1488,Event Arena,,no,Event: Hunt-a-thon 2
+1489,Event Arena,,no,Event: Hunt-a-thon 3
+1490,Event Arena,,no,Event: Slay a Zinogre
+1491,Event Arena,,no,Event: Slay a Gore Magala
+1492,Event Arena,,no,Event: Slay a Tigrex
+1493,Event Arena,,no,Event: Slay a Rathalos
+1494,Event Arena,,no,Event: Slay a Nargacuga
+1495,Event Arena,,no,Event: Hunt-a-thon 4
+1496,Event Arena,,yes,XX Trials: Rathalos
+1497,Event Arena,,yes,XX Trials: Tigrex
+1498,Event Arena,,yes,XX Trials: Nargacuga
+1499,Event Arena,,yes,XX Trials: Zinogre
+1500,Event Arena,,yes,XX Trials: Brachydios
+1501,Event Arena,,yes,XX Trials: Hunt-a-thon IV
+1502,Event Arena,,yes,Quest Template
+1503,Event Arena,,yes,Event: Slay a Volvidon
+1504,Event Arena,,yes,Event: Slay a Royal Ludroth
+1505,Event Arena,,yes,Event: Slay a Lagombi
+1506,Event Arena,,yes,Event: Slay a Yian Kut-Ku
+1507,Event Arena,,yes,Event: Slay an Arzuros
+1508,Event Arena,,yes,Event: Hunt-a-thon 5

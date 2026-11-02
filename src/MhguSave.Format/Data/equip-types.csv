@@ -1,0 +1,24 @@
+type,name,kind
+1,Head,armor
+2,Chest,armor
+3,Arms,armor
+4,Waist,armor
+5,Legs,armor
+6,Talisman,talisman
+7,Great Sword,weapon
+8,Sword and Shield,weapon
+9,Hammer,weapon
+10,Lance,weapon
+11,Heavy Bowgun,weapon
+13,Light Bowgun,weapon
+14,Longsword,weapon
+15,Switch Axe,weapon
+16,Gunlance,weapon
+17,Bow,weapon
+18,Dual Blades,weapon
+19,Hunting Horn,weapon
+20,Insect Glaive,weapon
+21,Charge Blade,weapon
+22,Palico Weapon,palico
+23,Palico Head,palico
+24,Palico Body,palico

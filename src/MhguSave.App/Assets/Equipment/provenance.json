@@ -1,0 +1,43 @@
+{
+  "source": "https://github.com/gatheringhallstudios/MHGenDatabase",
+  "commit": "6ec3ce73f4f4def80f04413094fa0fc033787ee2",
+  "license": "MIT",
+  "notes": "Community MHGU category symbols, separate from locally extracted game sprites.",
+  "icons": [
+    {
+      "file": "armor_head.png",
+      "source": "app/src/main/icon-res/drawable/icon_armor_head.png",
+      "sha256": "e7ebbdc62c3c269ebd963dc3fe694a500428c625e81e629461d26eacac6a9c16"
+    },
+    {
+      "file": "armor_body.png",
+      "source": "app/src/main/icon-res/drawable/icon_armor_body.png",
+      "sha256": "39aafaff2c79ee1d169d53ad81a0c7fa6ad432f2862b1e9de845a8c4694c4728"
+    },
+    {
+      "file": "armor_arms.png",
+      "source": "app/src/main/icon-res/drawable/icon_armor_arms.png",
+      "sha256": "c72b0a96e4b25856c3aac22f6b7e479e81c9e9ed6e2721bf77334096ead914b2"
+    },
+    {
+      "file": "armor_waist.png",
+      "source": "app/src/main/icon-res/drawable/icon_armor_waist.png",
+      "sha256": "689907edd831ec1ebcd1fe457ecc9c7a0c71db80ce35bb58dec8882bb06d198f"
+    },
+    {
+      "file": "armor_legs.png",
+      "source": "app/src/main/icon-res/drawable/icon_armor_legs.png",
+      "sha256": "6e6dd7fd9d62b5a064b6fee5e9a38a86b506995dc5bc9069f8eb06caa132d29b"
+    },
+    {
+      "file": "palico_head.png",
+      "source": "app/src/main/icon-res/drawable/icon_palico_head.png",
+      "sha256": "3cfc30e1aa64c9618d04f3ce2b50bea5f8653c723a97733bdf252adcb351a68b"
+    },
+    {
+      "file": "palico_body.png",
+      "source": "app/src/main/icon-res/drawable/icon_palico_body.png",
+      "sha256": "bf977f0ecd056549c0d8ee1f766425d7b23bf9f456e71d762f0b5e7e9d6a9168"
+    }
+  ]
+}

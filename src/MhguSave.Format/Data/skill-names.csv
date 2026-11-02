@@ -1,0 +1,207 @@
+id,name
+0,(None)
+1,Poison
+2,Paralysis
+3,Sleep
+4,Stun
+5,Hearing
+6,Wind Res
+7,Tremor Res
+8,Bind Res
+9,Heat Res
+10,Cold Res
+11,CldBlooded
+12,HotBlooded
+13,Anti-Theft
+14,Def Lock
+15,Frenzy Res
+16,Biology
+17,Bleeding
+18,Attack
+19,Defense
+20,Health
+21,Fire Res
+22,Water Res
+23,Thdr Res
+24,Ice Res
+25,Dragon Res
+26,Blight Res
+27,Fire Atk
+28,Water Atk
+29,Thdr Atk
+30,Ice Atk
+31,Dragon Atk
+32,Elemental
+33,Status
+34,Sharpener
+35,Handicraft
+36,Sharpness
+37,Fencing
+38,Grinder
+39,Blunt
+40,Crit Draw
+41,PunishDraw
+42,Sheathing
+43,S.Polisher
+44,Blade Scl
+45,Reload Spd
+46,Recoil
+47,Precision
+48,Normal Up
+49,Pierce Up
+50,Pellet Up
+51,Heavy Up
+52,Normal S+
+53,Pierce S+
+54,Pellet S+
+55,Crag S+
+56,Clust S+
+57,Poison C+
+58,Para C+
+59,Sleep C+
+60,Power C+
+61,Elem C+
+62,C.Range C+
+63,Exhaust C+
+64,Blast C+
+65,Rapid Fire
+66,Dead Eye
+67,Loading
+68,Haphazard
+69,Ammo Saver
+70,Expert
+71,Tenderizer
+72,Chain Crit
+73,Crit Status
+74,Crit Elem
+75,Critical Up
+76,Neg AFF
+77,FastCharge
+78,Stamina
+79,Constitutn
+80,Stam Recov
+81,Long-Winded
+82,Evasion
+83,Evade Dist
+84,Bubble
+85,Guard
+86,Guard Up
+87,KO
+88,Stam Drain
+89,Maestro
+90,Artillery
+91,Destroyer
+92,Bomb Boost
+93,Gloves Off
+94,Spirit
+95,Unscathed
+96,Chance
+97,Drg Instinct
+98,Potential
+99,Survivor
+100,Furor
+101,Crisis
+102,Guts
+103,Sense
+104,TeamPlayer
+105,TeamLeader
+106,Mounting
+107,Vault
+108,Insight
+109,Aware
+110,SP Plus
+111,Psychic
+112,Perception
+113,Ranger
+114,Transportr
+115,Protection
+116,Hero Shield
+117,Rec Level
+118,Rec Speed
+119,Lasting Pwr
+120,Wide-Range
+121,Hunger
+122,Gluttony
+123,Eating
+124,LightEater
+125,Carnivore
+126,Mycology
+127,Botany
+128,Combo Rate
+129,Combo Plus
+130,SpdSetup
+131,Gathering
+132,Honey
+133,Charmer
+134,Whim
+135,Fate
+136,Carving
+137,Tranquilzr
+138,Bherna
+139,Kokoto
+140,Pokke
+141,Yukumo
+142,W.Airboat
+143,F.Tavern
+144,Redhelm
+145,Snowbaron
+146,Stonefist
+147,Drilltusk
+148,Dreadqueen
+149,C.beard
+150,Silverwind
+151,Deadeye
+152,Dreadking
+153,Thdrlord
+154,Grimclaw
+155,Hellblade
+156,Hazewing
+157,Shredclaw
+158,Divnsight
+159,Azurebolt
+160,Frostpeak
+161,Bloodlust
+162,True R.helm
+163,True Snwbrn
+164,True S.fist
+165,True D.tusk
+166,True Dreadq
+167,True C.brd
+168,True S.wind
+169,TrueDeadeye
+170,True Dreadk
+171,True T.lord
+172,True G.claw
+173,True Hellbld
+174,True H.wing
+175,True S.claw
+176,True Dvsight
+177,True A.bolt
+178,True F.peak
+179,True B.lust
+180,D. Fencing
+181,Edge Lore
+182,PowerEater
+183,Mechanic
+184,Brawn
+185,Prayer
+186,Covert
+187,Edgemaster
+188,SteadyHand
+189,Status Res
+190,Fury
+191,Nimbleness
+192,Sheathed
+193,Resilience
+194,Brutality
+195,Stalwart
+196,Prudence
+197,Amplify
+198,Hoarding
+199,Avarice
+200,Anti-Steel
+201,Anti-Haze
+202,Anti-Fire
+203,Torso Up
+204,Mystery
+205,Talisman+
