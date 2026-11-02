@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,6 +13,10 @@ namespace MhguSave.App.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
+    public string ApplicationVersion => typeof(MainViewModel).Assembly
+        .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+')[0] ?? "Development";
+    public string ApplicationTitle => $"MHGU Save Editor · {ApplicationVersion}" +
+        (ApplicationVersion.Contains('-') ? " · Early Access" : string.Empty);
     public string HunterArtworkKey => "artwork:hunter";
     public string VillageArtworkKey => "artwork:village";
     public bool HasGameVisuals => Services.GameVisuals.IsAvailable;

@@ -7,6 +7,11 @@ from a copied console backup.
 Status: **active development; known equipment issues and in-game validation remain.**
 The armor ID correction is included. Read [the known issues](docs/KNOWN_ISSUES.md)
 for remaining Palico storage, loadout-reference, decoration, and talisman problems.
+
+Windows x64 early-access downloads are available under
+[GitHub Releases](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases).
+Choose the per-user Setup installer or extract the portable ZIP. Both include the
+.NET runtime. See [the early-access instructions](packaging/EARLY-ACCESS.txt).
 The redesigned desktop UI includes sidebar navigation, searchable inventories, contextual
 equipment fields, character selection, an empty state, and unsaved-change prompts.
 The local visual build also includes original game item/material and equipment-class
@@ -77,6 +82,17 @@ dotnet publish src/MhguSave.App -c Release -r win-x64 --self-contained `
   -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true `
   -o artifacts/release/win-x64-desktop
 ```
+
+To create the public installer, portable ZIP, notices, and SHA-256 checksums from a
+clean Git commit, install Inno Setup and run:
+
+```powershell
+./tools/build-release.ps1 -InnoCompiler "C:\path\to\Inno Setup\ISCC.exe"
+```
+
+The release script exports tracked source before building, so local game assets
+and private saves cannot be picked up from the development workspace. Public
+downloads are experimental prereleases; the current equipment issues still apply.
 
 Tests (131 cases; 129 run using synthetic fixtures, and 2 real-save cases explicitly skip
 unless `MHGU_TEST_SAVE` is configured). Real-save tests write only to temporary copies:

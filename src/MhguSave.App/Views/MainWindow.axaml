@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:fmt="using:MhguSave.Format" xmlns:services="using:MhguSave.App.Services" xmlns:views="using:MhguSave.App.Views" x:Class="MhguSave.App.Views.MainWindow" x:DataType="vm:MainViewModel" Width="1380" Height="900" MinWidth="1120" MinHeight="740" Title="MHGU Save Editor · Armor IDs fixed" Background="#0E1623" FontFamily="Inter" FontSize="14" RequestedThemeVariant="Dark">
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:fmt="using:MhguSave.Format" xmlns:services="using:MhguSave.App.Services" xmlns:views="using:MhguSave.App.Views" x:Class="MhguSave.App.Views.MainWindow" x:DataType="vm:MainViewModel" Width="1380" Height="900" MinWidth="1120" MinHeight="740" Title="{Binding ApplicationTitle}" Background="#0E1623" FontFamily="Inter" FontSize="14" RequestedThemeVariant="Dark">
   <Window.Resources>
     <services:GameIconConverter x:Key="GameIcon"/>
   </Window.Resources>

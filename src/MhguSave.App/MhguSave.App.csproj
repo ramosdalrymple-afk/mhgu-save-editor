@@ -3,6 +3,10 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <Version>0.1.0-alpha.1</Version>
+    <Product>MHGU Save Editor</Product>
+    <Description>Early-access desktop save editor for Monster Hunter Generations Ultimate.</Description>
+    <RepositoryUrl>https://github.com/ramosdalrymple-afk/mhgu-save-editor</RepositoryUrl>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 

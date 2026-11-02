@@ -1,0 +1,33 @@
+MHGU Save Editor - Early Access
+
+Windows x64. The .NET runtime is included.
+
+INSTALLER
+Run the Setup executable. Installation is for the current Windows user and does
+not require administrator access. A Start menu shortcut is created; a desktop
+shortcut is optional. Uninstall from Windows Settings > Installed apps.
+
+PORTABLE
+Extract the complete ZIP to a folder you can write to, then run MhguSave.App.exe.
+
+OPENING A SAVE
+Select Open save and choose the file named system or system_backup. Start with
+a separate copy of your save folder. Close the emulator before writing changes.
+The editor creates timestamped backups alongside the files it writes.
+
+KNOWN LIMITATIONS
+This is an experimental prerelease. In-game confirmation remains necessary.
+- Avoid Palico equipment creation: it currently targets the hunter equipment box.
+- Keep worn or registered equipment intact: Clear slot does not update loadout
+  or My Set references, and the slot can later be reused by another equipment type.
+- Non-talisman jewel capacity is not checked against the piece's actual sockets.
+- Talisman rarity and charm origin are not synchronized automatically.
+See KNOWN-ISSUES.md for details.
+
+The Rathalos S and other armor save-ID corrections are included.
+Original game artwork, locally extracted sprites, saves, game archives, and keys
+are not distributed. Community armor category symbols and their notices are bundled.
+The Windows application and installer are unsigned.
+
+Source and updates:
+https://github.com/ramosdalrymple-afk/mhgu-save-editor
