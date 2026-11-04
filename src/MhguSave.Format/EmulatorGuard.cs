@@ -16,6 +16,9 @@ public static class EmulatorGuard
         ("suyu", "Suyu"),
         ("citron", "Citron"),
         ("kenjinx", "Kenji-NX"),
+        ("eden", "Eden"),
+        ("torzu", "torzu"),
+        ("mhgurecomp", "MHGU Recomp"),
     ];
 
     /// <summary>Names of the Switch emulators currently running, if any.</summary>

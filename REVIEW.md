@@ -1,5 +1,106 @@
 # Review and implementation notes
 
+## Native rarity pass: November 4, 2026
+
+Version `0.2.0-preview.3` uses the local game's eleven rarity colors for weapon,
+armor, talisman, and Palico gear icons and names. Rarity labels/colors also cover
+decorations, charm items, inventory searches, obtained-item entries, and loadout
+gear choices. Advanced equipment-ID previews update immediately; unknown IDs
+remain neutral. Native item sprites retain the game's intrinsic item colors.
+All 132 Guild Card awards now have individual native sprites.
+
+`tools/export_game_details.py` independently reads local game tables and records
+source hashes. It imports no reference-editor code or datasets. Optional game
+data and visuals remain excluded from source control and portable source builds.
+The native suite passes 159 tests, including coverage of every named equipment
+record, every item rarity, 264 tinted category sprites, awards, selection refresh,
+layout, and save round trips. Tests edit disposable copies only.
+
+## Native icon pass: November 4, 2026
+
+Version `0.2.0-preview.2` adds native icons to all eight navigation entries and all
+inner tabs, plus monster lists/inspectors, Palico lists/role choices, registered
+sets and gear pickers, jewel/charm pickers, quest rows and collection entries.
+Tab header strings and indices remain intact; compact headers keep the equipment
+tabs accessible at the minimum window size.
+
+The read-only local importer now obtains 2,990 item mappings, 24 equipment-category
+symbols, 137 monster mappings, 15 UI symbols and the actual 17-color item palette
+from the user's own NSO and RomFS. This corrects the earlier extended-item crop
+formula and avoids incorrectly treating later monsters as consecutive atlas cells.
+NSO segment hashes, table bounds, atlas dimensions and sprite content are checked
+before the manifest changes. Native armor symbols take priority, with bundled
+community symbols and original vector UI glyphs as fallbacks. Older incorrect
+armor manifest entries continue to be ignored. Source paths, hashes and crop
+metadata are recorded in the ignored local `native-icons-provenance.json`.
+
+Validation: **158 passed, 0 skipped**, both with the native asset pack and with
+`IncludeLocalGameVisuals=false` / `IncludeLocalGameCatalog=false`. This includes
+the two real-save checks, using a disposable copy of the Recomp save shown in the
+user's screenshot. Original-save and source-fixture SHA-256 values remained
+unchanged. An existing test's assumption that the first pouch item is always a
+Potion was corrected to validate the selected item's actual catalog name.
+
+New checks decode every mapped item/equipment/monster icon, test the nonsequential
+monster mapping, exercise fallback glyphs and selection refresh, check all eight
+navigation icons and tab bounds, and verify browsing does not mutate the save.
+Screenshots at 1120×740 and 1920×1080 are in `artifacts/native-icons`. The broader
+suite covers editing, save/reload, CSV, equipment-reference protection, invalid
+drafts, backups and keyboard/pointer workflows. Initial disk-space failures were
+resolved before the final successful runs; generated build output was cleaned
+through the SDK. No new gameplay edits were introduced by this icon pass.
+
+Local self-contained preview: `artifacts/release/win-x64-native-icons/MhguSave.App.exe`.
+It includes the user's private local art pack and is not a published release.
+See [GAME_VISUALS.md](tools/GAME_VISUALS.md) for reproduction and provenance.
+
+## Independent feature expansion: November 4, 2026
+
+Studied Scrimas/MHGU-Save-editor at
+`44bf9e998c20d8be96595e561c1915d8ee2911c1` and compared its format modules,
+documentation, data inventory, and UI capabilities with this application's source.
+The user requested independent implementations and discussion before additional
+reference-dataset reuse. No reference source or new reference datasets were imported.
+The new C#/Avalonia code adds:
+
+- Separate hunter/Palico equipment storage and protection for worn, set, and companion
+  references, including empty slots still referenced by another record.
+- 40 hunter My Sets and 24 Palico sets, names, compatible gear choices, decoration
+  copies, pigment, hunting style, Arts/SP flags, and registration of worn equipment.
+- Identity/growth editing for existing companions and hireables, unique Prowler/buddy
+  selection, and read-only ability inspection.
+- Character appearance editing with three synchronized copies, playtime editing with
+  authoritative and summary copies, and the corrected four-byte Courier counter.
+- A 137-index monster journal, slain/captured editing, and size-record inspection.
+- Individual Arts, awards, and obtained-item flags; award edits synchronize both maps.
+- Item-box CSV exchange, sorting, and lossless merging into 99-count stacks. Invalid
+  CSVs and merge overflow are rejected before replacing inventory.
+- MHGU Recomp, Eden, and torzu process checks in the production write guard.
+
+An independent Node.js importer reads three unencrypted English GMD message files
+from the user's own unpacked RomFS. It supplies optional monster, Hunter Art, and
+award labels/descriptions. Generated data and its hashes remain ignored by Git;
+clean source builds use ID fallbacks. The public release script also rejects an
+export containing these local catalogs. Existing community-catalog licensing is
+unchanged; no project relicensing was performed.
+
+Validation: **153 passed, 2 skipped** on the current labeled build. The skipped tests
+require `MHGU_TEST_SAVE`; no real fixture was configured for this work. The fallback
+catalog build also passed its full suite before the final guard/UI additions.
+The final no-catalog run passed all 21 targeted new-record and parity workflow checks.
+New checks cover literal save offsets, adjacent-byte preservation, protected-slot
+reuse, atomic rejection, pending drafts across character/page/owner changes,
+identity/role persistence, collection mirrors, CSV exchange, and inventory totals.
+Headless pointer/keyboard tests type into all three new pages and save with Ctrl+S.
+Screenshots at 1120×740, 1440×940, and 1920×1080 cover all eight pages and pinned actions.
+
+An editor instance remained open in the normal build directory, so final validation
+and packaging use isolated artifact directories without closing the user's session.
+The preview is `artifacts/release/win-x64-feature-preview/MhguSave.App.exe`, version
+`0.2.0-preview.1`. It is a local preview, not a published release. Full parity and
+in-game confirmation remain outstanding; [FEATURE_PARITY.md](docs/FEATURE_PARITY.md)
+is the current coverage tracker. The older sections below describe earlier builds.
+
 The subsequent visual pass adds an optional, local game-asset pack. It maps 2,990
 item IDs to original game icon sprites, adds weapon-class/category icons and static
 hunter/village artwork, and preserves icon updates when IDs change or slots are

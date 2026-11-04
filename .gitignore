@@ -8,6 +8,7 @@ artifacts/
 *.tmp-*
 *.recovery-*
 src/MhguSave.App/Assets/Game/
+src/MhguSave.Format/Data/Local/
 __pycache__/
 *.py[cod]
 

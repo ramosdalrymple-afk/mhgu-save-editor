@@ -2,13 +2,17 @@
 <UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="using:MhguSave.App.Views" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:fmt="using:MhguSave.Format" xmlns:services="using:MhguSave.App.Services" x:Class="MhguSave.App.Views.EquipmentView" x:DataType="vm:MainViewModel">
   <UserControl.Resources>
     <services:GameIconConverter x:Key="GameIcon"/>
+    <services:RarityBrushConverter x:Key="RarityBrush"/>
+    <DataTemplate x:Key="NativeItemChoice" x:DataType="fmt:CatalogChoice">
+      <Grid ColumnDefinitions="30,*" ToolTip.Tip="{Binding Display}"><views:GameIcon Key="{Binding IconKey}" Width="24" Height="24" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="{Binding Display}" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/></Grid>
+    </DataTemplate>
   </UserControl.Resources>
   <Grid RowDefinitions="Auto,*,Auto">
     <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,22">
-      <StackPanel Spacing="6">
+      <StackPanel Spacing="8">
         <TextBlock Text="03 / THE ARMORY" Classes="eyebrow" FontSize="10"/>
         <TextBlock Text="Equipment box" Classes="pageTitle"/>
-        <TextBlock Text="Build your loadout. Browse weapons, armor, talismans, and jewels." Classes="muted"/>
+        <TextBlock Text="Build your loadout. Browse weapons, armor, talismans, and jewels." Classes="muted pageDescription" TextWrapping="Wrap"/>
       </StackPanel>
       <Button Grid.Column="1" Content="+ Add equipment" Command="{Binding ShowAddEquipmentCommand}" Classes="primary" VerticalAlignment="Center"/>
     </Grid>
@@ -16,18 +20,19 @@
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="3*"/>
         <ColumnDefinition Width="24"/>
-        <ColumnDefinition Width="2*" MinWidth="360" MaxWidth="560"/>
+        <ColumnDefinition Width="2*" MinWidth="380" MaxWidth="520"/>
       </Grid.ColumnDefinitions>
-      <Grid RowDefinitions="Auto,Auto,*">
-        <Grid ColumnDefinitions="*,150">
+      <Grid RowDefinitions="Auto,Auto,Auto,*">
+        <ComboBox Name="EquipmentStoragePicker" ItemsSource="{Binding EquipmentStorageNames}" SelectedIndex="{Binding EquipmentStorage, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,12"/>
+        <Grid Grid.Row="1" ColumnDefinitions="*,150">
           <TextBox Text="{Binding EquipFilter, Mode=TwoWay}" PlaceholderText="Search equipment or slot…"/>
           <ComboBox Grid.Column="1" ItemsSource="{Binding EquipTypeNames}" SelectedItem="{Binding EquipTypeFilter, Mode=TwoWay}" Margin="12,0,0,0" HorizontalAlignment="Stretch" Name="EquipTypeFilterPicker"/>
         </Grid>
-        <Grid Grid.Row="1" ColumnDefinitions="*,Auto" Margin="0,12">
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto" Margin="0,12">
           <CheckBox Content="Hide empty slots" IsChecked="{Binding HideEmptyEquip}"/>
           <TextBlock Grid.Column="1" Text="{Binding EquipView.Count, StringFormat='{}{0} pieces shown'}" Classes="small" VerticalAlignment="Center"/>
         </Grid>
-        <ListBox Name="EquipmentList" Grid.Row="2" ItemsSource="{Binding EquipView}" SelectedItem="{Binding SelectedEquip, Mode=TwoWay}" Classes="records">
+        <ListBox Name="EquipmentList" Grid.Row="3" ItemsSource="{Binding EquipView}" SelectedItem="{Binding SelectedEquip, Mode=TwoWay}" Classes="records">
           <ListBox.ItemTemplate>
             <DataTemplate x:DataType="vm:EquipmentRow">
               <Grid ColumnDefinitions="44,42,*,64" Margin="2,7">
@@ -35,9 +40,9 @@
                   <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="30" Height="30" Stretch="Uniform"/>
                 </Border>
                 <TextBlock Grid.Column="1" Text="{Binding SlotNumber, StringFormat='# {0}'}" Classes="small" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <StackPanel Grid.Column="2" Spacing="6" VerticalAlignment="Center" Margin="6,0,12,0">
-                  <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
-                  <TextBlock Text="{Binding TypeName}" Classes="small"/>
+                <StackPanel Grid.Column="2" Spacing="8" VerticalAlignment="Center" Margin="6,0,12,0">
+                  <TextBlock Text="{Binding Name}" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                  <TextBlock Text="{Binding Details}" Classes="small" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}"/>
                 </StackPanel>
                 <Border Grid.Column="3" Background="#253741" CornerRadius="5" Padding="8,5" VerticalAlignment="Center" HorizontalAlignment="Right">
                   <TextBlock Text="{Binding Level, StringFormat='Lv. {0}'}" Classes="small"/>
@@ -47,70 +52,73 @@
           </ListBox.ItemTemplate>
         </ListBox>
       </Grid>
-      <Border Grid.Column="2" Classes="card" Padding="20,16">
+      <Border Grid.Column="2" Classes="card editorCard">
         <TabControl Name="EquipmentEditorTabs" Classes="inner" SelectedIndex="{Binding EquipmentPane, Mode=TwoWay}">
           <TabItem Header="Edit selected">
-            <Grid RowDefinitions="*,Auto" Margin="0,12,0,0" Classes="inputForm">
+            <Grid RowDefinitions="*,Auto" Margin="0,16,0,0" Classes="inputForm">
               <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Spacing="12" IsEnabled="{Binding HasEquipmentSelection}" Margin="0,0,10,12">
                   <Border Classes="inset" Margin="0,0,0,4">
                     <Grid ColumnDefinitions="48,*">
-                      <Image Source="{Binding SelectedEquip.IconKey, Converter={StaticResource GameIcon}}" Width="36" Height="36" VerticalAlignment="Center"/>
-                      <StackPanel Grid.Column="1" Spacing="6">
+                      <Image Source="{Binding PreviewIconKey, Converter={StaticResource GameIcon}}" Width="36" Height="36" VerticalAlignment="Center"/>
+                      <StackPanel Grid.Column="1" Spacing="8">
                         <TextBlock Text="{Binding SelectedEquip.TypeName, FallbackValue=EQUIPMENT, TargetNullValue=EQUIPMENT}" Classes="eyebrow"/>
-                        <TextBlock Text="{Binding SelectedEquip.Name, FallbackValue=Select a piece to edit, TargetNullValue=Select a piece to edit}" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                        <TextBlock Foreground="{Binding PreviewRarity, Converter={StaticResource RarityBrush}}" Text="{Binding PreviewName}" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                      <TextBlock Text="{Binding PreviewRarityLabel}" Foreground="{Binding PreviewRarity, Converter={StaticResource RarityBrush}}" FontWeight="SemiBold"/>
                       </StackPanel>
                     </Grid>
                   </Border>
                   <TextBlock Text="{Binding EquipmentDraftMessage}" Classes="small" TextWrapping="Wrap"/>
-                  <StackPanel Spacing="6">
+                  <TextBlock Text="{Binding SelectedEquip.Usage}" Classes="small" Foreground="#E6C990" TextWrapping="Wrap"/>
+                  <StackPanel Spacing="8">
                     <TextBlock Text="Upgrade level" Classes="label" TextWrapping="Wrap"/>
                     <views:IntegerInput Value="{Binding EditEquipLevel, Mode=TwoWay}" Minimum="1" Maximum="32" FormatString="0" Name="EditEquipLevelInput"/>
                   </StackPanel>
                   <Button Content="Use weapon maximum" Command="{Binding MaxSelectedEquipLevelCommand}" IsEnabled="{Binding CanUseEquipmentMaximum}"/>
                   <TextBlock Text="Socketed decorations" Classes="section" TextWrapping="Wrap"/>
-                  <StackPanel Spacing="6">
+                  <TextBlock Text="{Binding SocketCapacityHint}" Classes="small" TextWrapping="Wrap"/>
+                  <StackPanel Spacing="8">
                     <TextBlock Text="Jewel 1" Classes="label" TextWrapping="Wrap"/>
-                    <ComboBox ItemsSource="{Binding DecorationChoices}" SelectedItem="{Binding SelectedEditDeco1, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditDeco1Picker"/>
+                    <ComboBox ItemTemplate="{StaticResource NativeItemChoice}" ItemsSource="{Binding DecorationChoices}" SelectedItem="{Binding SelectedEditDeco1, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditDeco1Picker"/>
                   </StackPanel>
-                  <StackPanel Spacing="6">
+                  <StackPanel Spacing="8">
                     <TextBlock Text="Jewel 2" Classes="label" TextWrapping="Wrap"/>
-                    <ComboBox ItemsSource="{Binding DecorationChoices}" SelectedItem="{Binding SelectedEditDeco2, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditDeco2Picker"/>
+                    <ComboBox ItemTemplate="{StaticResource NativeItemChoice}" ItemsSource="{Binding DecorationChoices}" SelectedItem="{Binding SelectedEditDeco2, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditDeco2Picker"/>
                   </StackPanel>
-                  <StackPanel Spacing="6">
+                  <StackPanel Spacing="8">
                     <TextBlock Text="Jewel 3" Classes="label" TextWrapping="Wrap"/>
-                    <ComboBox ItemsSource="{Binding DecorationChoices}" SelectedItem="{Binding SelectedEditDeco3, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditDeco3Picker"/>
+                    <ComboBox ItemTemplate="{StaticResource NativeItemChoice}" ItemsSource="{Binding DecorationChoices}" SelectedItem="{Binding SelectedEditDeco3, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditDeco3Picker"/>
                   </StackPanel>
                   <StackPanel Spacing="12" IsVisible="{Binding IsTalisman}">
                     <TextBlock Text="Talisman" Classes="section" TextWrapping="Wrap"/>
                     <StackPanel Spacing="12">
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 1" Classes="label" TextWrapping="Wrap"/>
                         <ComboBox ItemsSource="{Binding SkillChoices}" SelectedItem="{Binding SelectedEditSkill1, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditSkill1Picker"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 1 points" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding EditEquipSkillPoints1, Mode=TwoWay}" Minimum="-128" Maximum="127" FormatString="0" Name="EditEquipSkillPoints1Input"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 2" Classes="label" TextWrapping="Wrap"/>
                         <ComboBox ItemsSource="{Binding SkillChoices}" SelectedItem="{Binding SelectedEditSkill2, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditSkill2Picker"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 2 points" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding EditEquipSkillPoints2, Mode=TwoWay}" Minimum="-128" Maximum="127" FormatString="0" Name="EditEquipSkillPoints2Input"/>
                       </StackPanel>
                       <Grid ColumnDefinitions="*,12,*">
                         <StackPanel>
-                          <StackPanel Spacing="6">
+                          <StackPanel Spacing="8">
                             <TextBlock Text="Decoration slots" Classes="label" TextWrapping="Wrap"/>
                             <views:IntegerInput Value="{Binding EditEquipSlots, Mode=TwoWay}" Minimum="0" Maximum="3" FormatString="0" Name="EditEquipSlotsInput"/>
                           </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
-                          <StackPanel Spacing="6">
+                          <StackPanel Spacing="8">
                             <TextBlock Text="Charm" Classes="label" TextWrapping="Wrap"/>
-                            <ComboBox ItemsSource="{Binding CharmChoices}" SelectedItem="{Binding SelectedEditCharm, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditCharmPicker"/>
+                            <ComboBox ItemTemplate="{StaticResource NativeItemChoice}" ItemsSource="{Binding CharmChoices}" SelectedItem="{Binding SelectedEditCharm, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedEditCharmPicker"/>
                           </StackPanel>
                         </StackPanel>
                       </Grid>
@@ -120,13 +128,13 @@
                     <TextBlock Text="Armor appearance" Classes="section" TextWrapping="Wrap"/>
                     <Grid ColumnDefinitions="*,12,*">
                       <StackPanel>
-                        <StackPanel Spacing="6">
+                        <StackPanel Spacing="8">
                           <TextBlock Text="Appearance ID" Classes="label" TextWrapping="Wrap"/>
                           <views:IntegerInput Value="{Binding EditTransmogId, Mode=TwoWay}" Minimum="0" Maximum="65535" FormatString="0" Name="EditTransmogIdInput"/>
                         </StackPanel>
                       </StackPanel>
                       <StackPanel Grid.Column="2">
-                        <StackPanel Spacing="6">
+                        <StackPanel Spacing="8">
                           <TextBlock Text="Source level" Classes="label" TextWrapping="Wrap"/>
                           <views:IntegerInput Value="{Binding EditTransmogLevel, Mode=TwoWay}" Minimum="1" Maximum="32" FormatString="0" Name="EditTransmogLevelInput"/>
                         </StackPanel>
@@ -137,13 +145,13 @@
                     <TextBlock Text="Kinsect" Classes="section" TextWrapping="Wrap"/>
                     <Grid ColumnDefinitions="*,12,*">
                       <StackPanel>
-                        <StackPanel Spacing="6">
+                        <StackPanel Spacing="8">
                           <TextBlock Text="Kinsect ID" Classes="label" TextWrapping="Wrap"/>
                           <views:IntegerInput Value="{Binding EditKinsectId, Mode=TwoWay}" Minimum="0" Maximum="255" FormatString="0" Name="EditKinsectIdInput"/>
                         </StackPanel>
                       </StackPanel>
                       <StackPanel Grid.Column="2">
-                        <StackPanel Spacing="6">
+                        <StackPanel Spacing="8">
                           <TextBlock Text="Kinsect level" Classes="label" TextWrapping="Wrap"/>
                           <views:IntegerInput Value="{Binding EditKinsectLevel, Mode=TwoWay}" Minimum="1" Maximum="256" FormatString="0" Name="EditKinsectLevelInput"/>
                         </StackPanel>
@@ -152,19 +160,19 @@
                   </StackPanel>
                   <Expander Header="Advanced IDs">
                     <StackPanel Spacing="12">
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Equipment ID" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding EditEquipId, Mode=TwoWay}" Minimum="0" Maximum="65535" FormatString="0" Name="EditEquipIdInput"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Jewel 1 ID" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding EditEquipDeco1, Mode=TwoWay}" Minimum="0" Maximum="65535" FormatString="0" Name="EditEquipDeco1Input"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Jewel 2 ID" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding EditEquipDeco2, Mode=TwoWay}" Minimum="0" Maximum="65535" FormatString="0" Name="EditEquipDeco2Input"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Jewel 3 ID" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding EditEquipDeco3, Mode=TwoWay}" Minimum="0" Maximum="65535" FormatString="0" Name="EditEquipDeco3Input"/>
                       </StackPanel>
@@ -172,15 +180,15 @@
                   </Expander>
                 </StackPanel>
               </ScrollViewer>
-              <WrapPanel Grid.Row="1" Margin="0,10,0,0">
+              <Border Grid.Row="1" Classes="actionBar"><WrapPanel>
                 <views:ValidatedButton Name="ApplyEquipmentButton" Content="Apply" Command="{Binding ApplySelectedEquipCommand}" IsEnabled="{Binding HasEquipmentSelection}" Classes="primary"/>
                 <Button Content="Reset fields" Command="{Binding ResetEquipmentEditorCommand}" IsEnabled="{Binding HasEquipmentDraft}"/>
                 <Button Content="Clear slot" Classes="danger" Command="{Binding ClearSelectedEquipCommand}" IsEnabled="{Binding HasEquipmentSelection}"/>
-              </WrapPanel>
+              </WrapPanel></Border>
             </Grid>
           </TabItem>
           <TabItem Header="Add gear">
-            <Grid RowDefinitions="*,Auto" Margin="0,12,0,0" Tag="CreationDraft" Classes="inputForm">
+            <Grid RowDefinitions="*,Auto" Margin="0,16,0,0" Tag="CreationDraft" Classes="inputForm">
               <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Spacing="12" Margin="0,0,10,12">
                   <TextBlock Text="Equipment type" Classes="label"/>
@@ -201,8 +209,8 @@
                         <Grid ColumnDefinitions="40,*" Margin="0,3">
                           <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="28" Height="28" VerticalAlignment="Center"/>
                           <StackPanel Grid.Column="1" Spacing="4">
-                            <TextBlock Text="{Binding Name}" FontWeight="Medium" TextTrimming="CharacterEllipsis"/>
-                            <TextBlock Text="{Binding Id, StringFormat='ID {0}'}" Classes="small"/>
+                            <TextBlock Text="{Binding Name}" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}" FontWeight="Medium" TextTrimming="CharacterEllipsis"/>
+                            <TextBlock Text="{Binding RarityLabel}" Classes="small" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}"/>
                           </StackPanel>
                         </Grid>
                       </DataTemplate>
@@ -212,44 +220,45 @@
                   <Grid ColumnDefinitions="*,16,140" Margin="0,4,0,0">
                     <StackPanel Spacing="8" VerticalAlignment="Center">
                       <TextBlock Text="SELECTED PIECE" Classes="eyebrow"/>
-                      <TextBlock Text="{Binding AddEquipName}" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                      <TextBlock Foreground="{Binding CreationRarity, Converter={StaticResource RarityBrush}}" Text="{Binding AddEquipName}" FontSize="17" FontWeight="SemiBold" TextWrapping="Wrap"/>
                     </StackPanel>
                     <StackPanel Grid.Column="2" Spacing="8">
                       <TextBlock Text="Upgrade level" Classes="label"/>
                       <views:IntegerInput Value="{Binding AddEquipLevel, Mode=TwoWay}" Minimum="1" Maximum="32" FormatString="0" Name="AddEquipLevelInput"/>
                     </StackPanel>
                   </Grid>
+                  <TextBlock Text="{Binding CreationRarityLabel}" Foreground="{Binding CreationRarity, Converter={StaticResource RarityBrush}}" FontWeight="SemiBold"/>
                   <TextBlock Text="{Binding AddLevelHint}" Classes="small" TextWrapping="Wrap"/>
                   <StackPanel Spacing="12" IsVisible="{Binding IsAddingTalisman}">
                     <TextBlock Text="Configure the talisman" Classes="section" TextWrapping="Wrap"/>
                     <StackPanel Spacing="12">
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 1" Classes="label" TextWrapping="Wrap"/>
                         <ComboBox ItemsSource="{Binding SkillChoices}" SelectedItem="{Binding SelectedAddSkill1, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedAddSkill1Picker"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 1 points" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding AddEquipSkillPoints1, Mode=TwoWay}" Minimum="-128" Maximum="127" FormatString="0" Name="AddEquipSkillPoints1Input"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 2" Classes="label" TextWrapping="Wrap"/>
                         <ComboBox ItemsSource="{Binding SkillChoices}" SelectedItem="{Binding SelectedAddSkill2, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedAddSkill2Picker"/>
                       </StackPanel>
-                      <StackPanel Spacing="6">
+                      <StackPanel Spacing="8">
                         <TextBlock Text="Skill 2 points" Classes="label" TextWrapping="Wrap"/>
                         <views:IntegerInput Value="{Binding AddEquipSkillPoints2, Mode=TwoWay}" Minimum="-128" Maximum="127" FormatString="0" Name="AddEquipSkillPoints2Input"/>
                       </StackPanel>
                       <Grid ColumnDefinitions="*,12,*">
                         <StackPanel>
-                          <StackPanel Spacing="6">
+                          <StackPanel Spacing="8">
                             <TextBlock Text="Decoration slots" Classes="label" TextWrapping="Wrap"/>
                             <views:IntegerInput Value="{Binding AddEquipSlots, Mode=TwoWay}" Minimum="0" Maximum="3" FormatString="0" Name="AddEquipSlotsInput"/>
                           </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
-                          <StackPanel Spacing="6">
+                          <StackPanel Spacing="8">
                             <TextBlock Text="Charm" Classes="label" TextWrapping="Wrap"/>
-                            <ComboBox ItemsSource="{Binding CharmChoices}" SelectedItem="{Binding SelectedAddCharm, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedAddCharmPicker"/>
+                            <ComboBox ItemTemplate="{StaticResource NativeItemChoice}" ItemsSource="{Binding CharmChoices}" SelectedItem="{Binding SelectedAddCharm, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280" Name="SelectedAddCharmPicker"/>
                           </StackPanel>
                         </StackPanel>
                       </Grid>
@@ -259,13 +268,13 @@
                     <TextBlock Text="Configure the kinsect" Classes="section" TextWrapping="Wrap"/>
                     <Grid ColumnDefinitions="*,12,*">
                       <StackPanel>
-                        <StackPanel Spacing="6">
+                        <StackPanel Spacing="8">
                           <TextBlock Text="Kinsect ID" Classes="label" TextWrapping="Wrap"/>
                           <views:IntegerInput Value="{Binding AddKinsectId, Mode=TwoWay}" Minimum="0" Maximum="255" FormatString="0" Name="AddKinsectIdInput"/>
                         </StackPanel>
                       </StackPanel>
                       <StackPanel Grid.Column="2">
-                        <StackPanel Spacing="6">
+                        <StackPanel Spacing="8">
                           <TextBlock Text="Kinsect level" Classes="label" TextWrapping="Wrap"/>
                           <views:IntegerInput Value="{Binding AddKinsectLevel, Mode=TwoWay}" Minimum="1" Maximum="256" FormatString="0" Name="AddKinsectLevelInput"/>
                         </StackPanel>
@@ -273,18 +282,20 @@
                     </Grid>
                   </StackPanel>
                   <Expander Header="Advanced equipment ID">
-                    <StackPanel Spacing="6">
+                    <StackPanel Spacing="8">
                       <TextBlock Text="Equipment ID" Classes="label" TextWrapping="Wrap"/>
                       <views:IntegerInput Value="{Binding AddEquipId, Mode=TwoWay}" Minimum="1" Maximum="65535" FormatString="0" Name="AddEquipIdInput"/>
                     </StackPanel>
                   </Expander>
                 </StackPanel>
               </ScrollViewer>
-              <views:ValidatedButton Name="AddEquipmentButton" Grid.Row="1" Content="Add to equipment box" Command="{Binding AddEquipmentCommand}" IsEnabled="{Binding CanAddEquipment}" Classes="primary" HorizontalAlignment="Stretch" Margin="0,12,0,0"/>
+              <Border Grid.Row="1" Classes="actionBar">
+                <views:ValidatedButton Name="AddEquipmentButton" Content="Add to equipment box" Command="{Binding AddEquipmentCommand}" IsEnabled="{Binding CanAddEquipment}" Classes="primary" HorizontalAlignment="Stretch"/>
+              </Border>
             </Grid>
           </TabItem>
           <TabItem Header="Jewels">
-            <Grid RowDefinitions="*,Auto" Margin="0,12,0,0" Tag="CreationDraft" Classes="inputForm">
+            <Grid RowDefinitions="*,Auto" Margin="0,16,0,0" Tag="CreationDraft" Classes="inputForm">
               <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Spacing="12" Margin="0,0,10,12">
                   <StackPanel Spacing="10" Margin="0,0,0,10">
@@ -297,20 +308,22 @@
                       <DataTemplate x:DataType="fmt:CatalogChoice">
                         <Grid ColumnDefinitions="28,*">
                           <Image Source="{Binding IconKey, Converter={StaticResource GameIcon}}" Width="24" Height="24"/>
-                          <TextBlock Grid.Column="1" Text="{Binding Display}" TextWrapping="Wrap"/>
+                          <TextBlock Grid.Column="1" Text="{Binding Display}" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}" TextWrapping="Wrap"/>
                         </Grid>
                       </DataTemplate>
                     </ListBox.ItemTemplate>
                   </ListBox>
                   <StackPanel Spacing="12" Margin="0,12,0,0">
-                    <StackPanel Spacing="6">
+                    <StackPanel Spacing="8">
                       <TextBlock Text="Quantity" Classes="label" TextWrapping="Wrap"/>
                       <views:IntegerInput Value="{Binding DecorationQuantity, Mode=TwoWay}" Minimum="1" Maximum="127" FormatString="0" Name="DecorationQuantityInput"/>
                     </StackPanel>
                   </StackPanel>
                 </StackPanel>
               </ScrollViewer>
-              <views:ValidatedButton Name="AddDecorationButton" Content="Add decoration to item box" Command="{Binding AddDecorationToBoxCommand}" Classes="primary" HorizontalAlignment="Stretch" Grid.Row="1" Margin="0,12,0,0"/>
+              <Border Grid.Row="1" Classes="actionBar">
+                <views:ValidatedButton Name="AddDecorationButton" Content="Add decoration to item box" Command="{Binding AddDecorationToBoxCommand}" Classes="primary" HorizontalAlignment="Stretch"/>
+              </Border>
             </Grid>
           </TabItem>
         </TabControl>

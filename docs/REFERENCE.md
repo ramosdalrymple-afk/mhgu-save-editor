@@ -44,7 +44,7 @@ Per character (`base +`):
 | Offset | Field |
 |---|---|
 | `0x000` | hunter name, char[32] UTF-8 |
-| `0x020` | play time, u32 seconds |
+| `0x020` | play time summary, u32 seconds (loaded value at `+0x2248B`, Card copy at `+0xC7AD1`) |
 | `0x024` | zenny (slot-header copy, rebuilt by the game) |
 | `0x028` | Hunter Rank, u16 (derived from HR points) |
 | `0x278` | item box, 2300 slots, 19 bits each (12 id + 7 count, LSB first) |
@@ -59,8 +59,11 @@ Per character (`base +`):
 | `0x2D77` | quests seen bitfield |
 | `0x2E77` | quests failed bitfield |
 | `0x3187` | quest sets, 100 bits |
-| `0x5E4E` | quest counter, u16 |
+| `0x5E4E` | Courier quest counter, u32 (repeat eligible hunts included) |
 | `0x62EE` | equipment box, 2000 × 36 B |
+| `0x17C2E` | Palico equipment box, 1000 × 36 B |
+| `0x208CE` | My Sets, 40 × 136 B; name at +0, gear indices at +42 |
+| `0x21E0E` | Palico equipment sets, 24 × 68 B |
 | `0xC8115` | guild card awards, 132 bits |
 | `0x22497` | items obtained bitfield (bit = item id 1-2990) |
 | `0x23B7D` | hunter name (player record copy) |
@@ -93,3 +96,11 @@ therefore:
 - `Data/skill-names.csv`, `Data/deco-names.csv` — from the same source (jewel and skill lists)
 
 Anyone reusing those files must respect their GPL-3.0 licence.
+
+The November 4 additions are independent C#/Avalonia implementations, with format
+observations cross-checked against reference revision
+`44bf9e998c20d8be96595e561c1915d8ee2911c1` (`equipment`, `sets`, `palico`, `character`,
+`monsters`, `progress`). No additional reference data files or source are imported.
+Optional new text catalogs come from the user's own RomFS through
+`tools/import-local-catalogs.mjs`, with source paths and SHA-256 hashes recorded locally.
+See [FEATURE_PARITY.md](FEATURE_PARITY.md) for detailed scope and remaining work.

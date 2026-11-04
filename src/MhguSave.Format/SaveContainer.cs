@@ -31,6 +31,7 @@ public sealed class SaveContainer
     private readonly byte[] _data;
     private readonly CharacterSlot[] _slots;
     internal byte[] OriginalHash { get; private set; }
+    internal byte[]? CompanionHash { get; private set; }
 
     private SaveContainer(byte[] data, string entryName)
     {
@@ -72,7 +73,10 @@ public sealed class SaveContainer
     public static SaveContainer Load(string path)
     {
         var name = Path.GetFileName(path);
-        return Parse(File.ReadAllBytes(path), name);
+        var save = Parse(File.ReadAllBytes(path), name);
+        if (SaveWriter.KnownFileNames.Contains(name, StringComparer.Ordinal))
+            save.CompanionHash = SaveWriter.ReadCompanionHash(Path.GetFullPath(path));
+        return save;
     }
 
     /// <summary>Reads and validates a save image.</summary>
@@ -135,9 +139,10 @@ public sealed class SaveContainer
 
     internal void MarkDirty() => IsDirty = true;
 
-    internal void AcceptChanges()
+    internal void AcceptChanges(byte[]? companionHash)
     {
         OriginalHash = SHA256.HashData(_data);
+        CompanionHash = companionHash;
         IsDirty = false;
     }
 

@@ -66,7 +66,7 @@ public sealed class EquipmentCatalog
 
     public IReadOnlyList<CatalogChoice> Decorations => _decorations
         .Where(p => p.Key > 0 && !string.IsNullOrWhiteSpace(p.Value))
-        .OrderBy(p => p.Value).Select(p => new CatalogChoice(p.Key, p.Value, DecorationSlots(p.Key)))
+        .OrderBy(p => p.Value).Select(p => new CatalogChoice(p.Key, p.Value, DecorationSlots(p.Key), IsItem: true))
         .Prepend(new CatalogChoice(0, "None")).ToArray();
 
     public bool HasEquipment(int type, int id) => id > 0 && _types.ContainsKey(type)
@@ -157,7 +157,7 @@ public sealed class EquipmentCatalog
         _decorations.TryGetValue(id, out var name) && !string.IsNullOrWhiteSpace(name) ? name : $"Jewel {id}";
 
     /// <summary>Number of slots a decoration occupies, 0 when unknown.</summary>
-    public int DecorationSlots(int id) => _decorationSlots.TryGetValue(id, out var size) ? size : 0;
+    public int DecorationSlots(int id) => GameRarity.DecorationCost(id) ?? _decorationSlots.GetValueOrDefault(id);
 
     private static IEnumerable<IReadOnlyList<string>> ReadCsv(Assembly assembly, string resourceName)
     {

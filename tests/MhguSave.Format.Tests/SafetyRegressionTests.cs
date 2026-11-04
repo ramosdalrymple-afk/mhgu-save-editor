@@ -55,6 +55,41 @@ public sealed class SafetyRegressionTests : IDisposable
         Assert.Equal(0, SaveContainer.Load(SiblingPath).Slots[0].Zenny);
     }
 
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void ChangedCompanionIsNotOverwrittenRegardlessOfWhichFileWasOpened(bool openBackup)
+    {
+        var openedPath = openBackup ? SiblingPath : SystemPath;
+        var companionPath = openBackup ? SystemPath : SiblingPath;
+        var opened = SaveContainer.Load(openedPath);
+        opened.Slots[0].Zenny = 500;
+        var newer = SaveContainer.Load(companionPath);
+        newer.Slots[0].Zenny = 987654;
+        File.WriteAllBytes(companionPath, newer.ToArray());
+
+        Assert.Contains("companion", Assert.Throws<IOException>(() => OfflineSaveWriter.Write(openedPath, opened)).Message);
+        Assert.Equal(0, SaveContainer.Load(openedPath).Slots[0].Zenny);
+        Assert.Equal(987654, SaveContainer.Load(companionPath).Slots[0].Zenny);
+        Assert.Empty(Directory.GetFiles(_directory, "*.bak-*"));
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void CompanionAppearanceOrDeletionRequiresReopening(bool appears)
+    {
+        if (appears) File.Delete(SiblingPath);
+        var save = SaveContainer.Load(SystemPath);
+        save.Slots[0].Zenny = 500;
+        if (appears) File.WriteAllBytes(SiblingPath, SyntheticSave.Create("system_backup"));
+        else File.Delete(SiblingPath);
+
+        Assert.Throws<IOException>(() => OfflineSaveWriter.Write(SystemPath, save));
+        Assert.Equal(0, SaveContainer.Load(SystemPath).Slots[0].Zenny);
+        Assert.Equal(appears, File.Exists(SiblingPath));
+    }
+
     [Fact]
     public void FailureReplacingSecondFileRestoresFirstEvenWithoutBackups()
     {

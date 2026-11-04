@@ -12,6 +12,8 @@
     <EmbeddedResource Include="Data\equip-names.csv" />
     <EmbeddedResource Include="Data\skill-names.csv" />
     <EmbeddedResource Include="Data\deco-names.csv" />
+    <EmbeddedResource Include="Data\Local\game-catalog.json" Condition="Exists('Data\Local\game-catalog.json') and '$(IncludeLocalGameCatalog)' != 'false'" />
+    <EmbeddedResource Include="Data\Local\game-rarity.json" Condition="Exists('Data\Local\game-rarity.json') and '$(IncludeLocalGameCatalog)' != 'false'" />
   </ItemGroup>
 
 </Project>

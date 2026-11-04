@@ -37,6 +37,8 @@ public sealed partial class ItemRow : ObservableObject
             OnPropertyChanged(nameof(Count));
             OnPropertyChanged(nameof(IsEmpty));
             OnPropertyChanged(nameof(IconKey));
+            OnPropertyChanged(nameof(Rarity));
+            OnPropertyChanged(nameof(RarityLabel));
         }
     }
 
@@ -54,6 +56,9 @@ public sealed partial class ItemRow : ObservableObject
     public bool IsEmpty => _list[Index].IsEmpty;
 
     public string IconKey => IsEmpty ? string.Empty : $"item:{Id}";
+
+    public int Rarity => IsEmpty ? 0 : GameRarity.Item(Id);
+    public string RarityLabel => GameRarity.Label(Rarity);
 
     public string Name => IsEmpty ? "(empty)" : _catalog.NameOf(_list[Index].Id);
 
@@ -73,5 +78,7 @@ public sealed partial class ItemRow : ObservableObject
         OnPropertyChanged(nameof(IsEmpty));
         OnPropertyChanged(nameof(Display));
         OnPropertyChanged(nameof(IconKey));
+        OnPropertyChanged(nameof(Rarity));
+        OnPropertyChanged(nameof(RarityLabel));
     }
 }

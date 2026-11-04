@@ -1,0 +1,32 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:views="using:MhguSave.App.Views" x:Class="MhguSave.App.Views.MonstersView" x:DataType="vm:MainViewModel">
+  <Grid RowDefinitions="Auto,*,Auto">
+    <StackPanel Spacing="8" Margin="0,0,0,20"><TextBlock Text="08 / HUNTING RECORDS" Classes="eyebrow"/><TextBlock Text="Monster journal" Classes="pageTitle"/><TextBlock Text="Browse the game's monster indices and edit your slain and captured totals." Classes="muted pageDescription" TextWrapping="Wrap"/></StackPanel>
+    <Grid Grid.Row="1" ColumnDefinitions="*,24,*">
+      <Grid RowDefinitions="Auto,*">
+        <TextBox Text="{Binding MonsterQuery, Mode=TwoWay}" PlaceholderText="Search monster name or index…" Margin="0,0,0,12"/>
+        <ListBox Grid.Row="1" Name="MonsterList" ItemsSource="{Binding Monsters}" SelectedItem="{Binding SelectedMonster, Mode=TwoWay}" Classes="records">
+          <ListBox.ItemTemplate><DataTemplate x:DataType="vm:MonsterChoice"><Grid ColumnDefinitions="58,*" Margin="2,6"><views:GameIcon Key="{Binding IconKey}" Width="48" Height="48" VerticalAlignment="Center"/><StackPanel Grid.Column="1" Spacing="5" VerticalAlignment="Center"><TextBlock Text="{Binding Name}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/><TextBlock Text="{Binding RecordLine}" Classes="small"/></StackPanel></Grid></DataTemplate></ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+      <Border Grid.Column="2" Classes="card editorCard">
+        <Grid RowDefinitions="*,Auto" Classes="inputForm">
+          <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel DataContext="{Binding MonsterDraft}" x:DataType="vm:MonsterEditor" Spacing="20" Classes="inputForm" Margin="0,0,10,0">
+              <Border Classes="inset"><Grid ColumnDefinitions="80,*"><views:GameIcon Key="{Binding IconKey}" Width="64" Height="64"/><TextBlock Grid.Column="1" Text="{Binding Name}" Classes="section" TextWrapping="Wrap" VerticalAlignment="Center"/></Grid></Border>
+              <Grid ColumnDefinitions="*,16,*">
+                <StackPanel Spacing="8"><TextBlock Text="Slain" Classes="label"/><views:IntegerInput Name="MonsterSlainInput" Value="{Binding Slain, Mode=TwoWay}" Minimum="0" Maximum="65535"/></StackPanel>
+                <StackPanel Grid.Column="2" Spacing="8"><TextBlock Text="Captured" Classes="label"/><views:IntegerInput Value="{Binding Captured, Mode=TwoWay}" Minimum="0" Maximum="65535"/></StackPanel>
+              </Grid>
+              <TextBlock Text="Hunted = slain + captured. Capturing a monster increases only the capture counter." Classes="small" TextWrapping="Wrap"/>
+              <TextBlock Text="Size records" Classes="section"/>
+              <TextBlock Text="{Binding SizeRecord}" Classes="muted" TextWrapping="Wrap"/>
+              <TextBlock Text="Size records are read-only until species-specific crown thresholds and size bounds are verified." Classes="small" TextWrapping="Wrap"/>
+            </StackPanel>
+          </ScrollViewer>
+          <Border Grid.Row="1" Classes="actionBar"><StackPanel Orientation="Horizontal" Spacing="12"><views:ValidatedButton Name="ApplyMonsterButton" Content="Apply record" Command="{Binding ApplyMonsterCommand}" Classes="primary"/><Button Content="Reset fields" Command="{Binding ResetMonsterCommand}"/></StackPanel></Border>
+        </Grid>
+      </Border>
+    </Grid>
+    <TextBlock Grid.Row="2" Text="{Binding MonsterStatus}" Classes="small" Margin="0,12,0,0" TextWrapping="Wrap"/>
+  </Grid>
+</UserControl>

@@ -3,7 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <Version>0.1.0-alpha.2</Version>
+    <Version>0.2.0-preview.5</Version>
     <Product>MHGU Save Editor</Product>
     <Description>Early-access desktop save editor for Monster Hunter Generations Ultimate.</Description>
     <RepositoryUrl>https://github.com/ramosdalrymple-afk/mhgu-save-editor</RepositoryUrl>
@@ -13,7 +13,8 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <AvaloniaResource Include="Assets\**" />
+    <AvaloniaResource Include="Assets\**" Exclude="Assets\Game\**" />
+    <AvaloniaResource Include="Assets\Game\**" Condition="'$(IncludeLocalGameVisuals)' != 'false'" />
   </ItemGroup>
 
   <ItemGroup>

@@ -39,6 +39,18 @@ fields scroll while Apply/Add actions remain pinned. Equipment retains its Edit,
 Add gear, and Jewels panels. Quest lists and bulk actions occupy separate columns.
 Collection actions appear as three equal cards.
 
+The expanded workspace adds My Sets/Palico sets, Palicoes, and Monster journal pages.
+The sidebar scrolls when needed. Each new editor keeps its Apply/Reset controls below
+a scrolling form. The profile includes appearance choices, and Collections adds a
+searchable individual-entry browser below its bulk actions. Item-box operations live
+in the heading's **Box tools** menu to retain space for editing at minimum window size.
+
+All eight sidebar entries now use matching 22 px game icons (with original vector
+fallbacks). Inner tab headers keep their string/automation labels and add 18 px icons;
+compact 13 px text and 8 px padding keep the three equipment tabs accessible at 1120 px.
+The native icon pack adds armor categories, monster portraits, Palico symbols,
+loadout gear choices, jewel/charm pickers, quest symbols, and collection entry icons.
+
 The optional local game artwork and icons remain supported. Without that pack,
 the native vector crest supplies the welcome/profile artwork. Public builds require
 no original game assets.

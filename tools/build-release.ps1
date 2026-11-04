@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$Version = '0.1.0-alpha.2',
+    [string]$Version = '0.2.0-preview.5',
     [Parameter(Mandatory = $true)][string]$InnoCompiler
 )
 
@@ -27,6 +27,9 @@ try {
     Expand-Archive -LiteralPath $archive -DestinationPath $sourceRoot
     if (Test-Path -LiteralPath (Join-Path $sourceRoot 'src/MhguSave.App/Assets/Game')) {
         throw 'Public releases must not contain locally extracted game assets'
+    }
+    if (Test-Path -LiteralPath (Join-Path $sourceRoot 'src/MhguSave.Format/Data/Local')) {
+        throw 'Public releases must not contain locally extracted game catalogs'
     }
 }
 finally { Pop-Location }

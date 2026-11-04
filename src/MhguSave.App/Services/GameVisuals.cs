@@ -14,7 +14,7 @@ public static class GameVisuals
 {
     private const string Root = "avares://MhguSave.App/Assets/Game/";
     private const string CategoryRoot = "avares://MhguSave.App/Assets/Equipment/";
-    // Explicit part symbols: the old common-atlas fallback was a Hunting Horn.
+    // Bundled community symbols remain available when the optional native pack is absent.
     private static readonly Dictionary<string, string> CategoryIcons = new()
     {
         ["equipment:1"] = "armor_head.png",
@@ -28,24 +28,28 @@ public static class GameVisuals
     private static readonly Lazy<Dictionary<string, string>> Manifest = new(ReadManifest);
     private static readonly Dictionary<string, Bitmap?> Cache = new();
 
-    public static bool IsAvailable => Manifest.Value.ContainsKey("artwork:hunter");
+    public static bool IsAvailable => Get("artwork:hunter") is not null;
 
-    public static bool HasIcon(string key) => Manifest.Value.ContainsKey(key);
+    public static bool HasIcon(string key) => Get(key) is not null;
 
     private static Dictionary<string, string> ReadManifest()
     {
         try
         {
             var uri = new Uri(Root + "manifest.json");
-            if (!AssetLoader.Exists(uri)) return new(CategoryIcons);
+            if (!AssetLoader.Exists(uri)) return new();
             using var stream = AssetLoader.Open(uri);
             var manifest = JsonSerializer.Deserialize<Dictionary<string, string>>(stream) ?? new();
-            foreach (var pair in CategoryIcons) manifest[pair.Key] = pair.Value;
+            // Older packs used an incorrect common-atlas crop for armor. Only the
+            // new exporter supplies verified native armor/category mappings.
+            foreach (var key in CategoryIcons.Keys)
+                if (manifest.TryGetValue(key, out var filename) && filename?.StartsWith("native-equipment-", StringComparison.Ordinal) != true)
+                    manifest.Remove(key);
             return manifest;
         }
         catch (Exception ex) when (ex is IOException or JsonException or InvalidOperationException)
         {
-            return new(CategoryIcons);
+            return new();
         }
     }
 
@@ -64,20 +68,29 @@ public static class GameVisuals
             {
                 try
                 {
-                    var uri = new Uri((CategoryIcons.ContainsKey(key) ? CategoryRoot : Root) + filename);
+                    var uri = new Uri(Root + filename);
                     if (AssetLoader.Exists(uri))
                     {
                         using var stream = AssetLoader.Open(uri);
                         bitmap = new Bitmap(stream);
                     }
                 }
-                catch (Exception ex) when (ex is IOException or ArgumentException or InvalidOperationException)
+                catch (Exception ex) when (ex is IOException or ArgumentException or InvalidOperationException or NotSupportedException or FormatException)
                 {
                     // A missing or invalid optional picture must not break the editor.
                 }
             }
+            if (bitmap is null && CategoryIcons.TryGetValue(key, out var fallback))
+            {
+                try
+                {
+                    using var stream = AssetLoader.Open(new Uri(CategoryRoot + fallback));
+                    bitmap = new Bitmap(stream);
+                }
+                catch (Exception ex) when (ex is IOException or ArgumentException or InvalidOperationException or NotSupportedException) { }
+            }
             // Only cache known keys: arbitrary unknown item IDs must not grow the cache.
-            if (Manifest.Value.ContainsKey(key)) Cache[key] = bitmap;
+            if (Manifest.Value.ContainsKey(key) || CategoryIcons.ContainsKey(key)) Cache[key] = bitmap;
             return bitmap;
         }
     }
@@ -86,7 +99,7 @@ public static class GameVisuals
 public sealed class GameIconConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        GameVisuals.Get(value as string);
+        IconSymbols.Get(value as string);
 
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
         throw new NotSupportedException();

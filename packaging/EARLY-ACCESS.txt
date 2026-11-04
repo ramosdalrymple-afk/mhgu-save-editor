@@ -17,11 +17,10 @@ The editor creates timestamped backups alongside the files it writes.
 
 KNOWN LIMITATIONS
 This is an experimental prerelease. In-game confirmation remains necessary.
-- Avoid Palico equipment creation: it currently targets the hunter equipment box.
-- Keep worn or registered equipment intact: Clear slot does not update loadout
-  or My Set references, and the slot can later be reused by another equipment type.
-- Non-talisman jewel capacity is not checked against the piece's actual sockets.
-- Talisman rarity and charm origin are not synchronized automatically.
+- Hunter weapons and armor require optional local socket tables to change jewel
+  setups. This package supports inspecting existing jewels and removing them.
+- Companion skills and monster sizes are available for inspection.
+- Talisman skill and origin rules are only partially validated.
 See KNOWN-ISSUES.md for details.
 
 The Rathalos S and other armor save-ID corrections are included.

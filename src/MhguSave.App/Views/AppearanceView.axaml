@@ -1,0 +1,22 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:services="using:MhguSave.App.Services" x:Class="MhguSave.App.Views.AppearanceView" x:DataType="vm:MainViewModel">
+  <UserControl.Resources><services:HexColorBrushConverter x:Key="HexColor"/></UserControl.Resources>
+  <Border Classes="card" Margin="0,20,0,0">
+    <StackPanel Spacing="16">
+      <TextBlock Text="Character appearance" Classes="section"/>
+      <TextBlock Text="Appearance is synchronized across the saved character and both summaries. The artwork above stays static." Classes="small" TextWrapping="Wrap"/>
+      <Grid ColumnDefinitions="3*,24,2*">
+      <ItemsControl ItemsSource="{Binding AppearanceDraft.Fields}">
+        <ItemsControl.ItemTemplate><DataTemplate x:DataType="vm:AppearanceField"><Grid ColumnDefinitions="104,*" Margin="0,0,0,12"><TextBlock Text="{Binding Label}" Classes="label" VerticalAlignment="Center"/><ComboBox Grid.Column="1" ItemsSource="{Binding Choices}" SelectedItem="{Binding Selected, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280"/></Grid></DataTemplate></ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <Border Grid.Column="2" Classes="inset" VerticalAlignment="Top"><StackPanel Spacing="16">
+      <StackPanel Spacing="6"><TextBlock Text="Colors" Classes="section"/><TextBlock Text="RRGGBBAA · FF is fully opaque" Classes="small" TextWrapping="Wrap"/></StackPanel>
+      <ItemsControl ItemsSource="{Binding AppearanceDraft.Colors}">
+        <ItemsControl.ItemTemplate><DataTemplate x:DataType="vm:LoadoutColor"><StackPanel Spacing="8" Margin="0,0,0,16"><TextBlock Text="{Binding Label}" Classes="label"/><Grid ColumnDefinitions="40,*"><Border Width="30" Height="30" CornerRadius="4" BorderBrush="#53616A" BorderThickness="1" Background="{Binding Hex, Converter={StaticResource HexColor}}" HorizontalAlignment="Left" VerticalAlignment="Center"/><TextBox Grid.Column="1" Text="{Binding Hex, Mode=TwoWay}" MaxLength="9"/></Grid></StackPanel></DataTemplate></ItemsControl.ItemTemplate>
+      </ItemsControl>
+      </StackPanel></Border>
+      </Grid>
+      <Border Classes="actionBar"><StackPanel Orientation="Horizontal" Spacing="12"><Button Content="Apply appearance" Command="{Binding ApplyAppearanceCommand}" Classes="primary"/><Button Content="Reset fields" Command="{Binding ResetAppearanceCommand}"/></StackPanel></Border>
+      <TextBlock Text="{Binding AppearanceStatus}" Classes="small" TextWrapping="Wrap"/>
+    </StackPanel>
+  </Border>
+</UserControl>

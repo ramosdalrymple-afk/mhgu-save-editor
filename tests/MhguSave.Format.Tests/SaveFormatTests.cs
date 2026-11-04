@@ -63,7 +63,7 @@ public class SaveContainerTests
 
         var name = Encoding.UTF8.GetBytes("keepitcosy");
         name.CopyTo(data.AsSpan(slot.BaseOffset + 0x00));
-        BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(slot.BaseOffset + 0x20), 33_512);
+        BinaryPrimitives.WriteUInt32LittleEndian(data.AsSpan(slot.BaseOffset + 0x2248B), 33_512);
         BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(slot.BaseOffset + 0x28), 42);
         SyntheticSave.WriteU32(data, slot.BaseOffset + 0x280F, 19_100);
         SyntheticSave.WriteU32(data, slot.BaseOffset + 0x2817, 16_825);

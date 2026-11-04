@@ -9,11 +9,13 @@ public sealed class SaveBitField
 {
     private readonly SaveContainer _save;
     private readonly int _byteOffset;
+    private readonly int? _mirrorOffset;
 
-    internal SaveBitField(SaveContainer save, int byteOffset, int bitCount)
+    internal SaveBitField(SaveContainer save, int byteOffset, int bitCount, int? mirrorOffset = null)
     {
         _save = save;
         _byteOffset = byteOffset;
+        _mirrorOffset = mirrorOffset;
         BitCount = bitCount;
     }
 
@@ -32,6 +34,7 @@ public sealed class SaveBitField
         {
             CheckBit(bit);
             _save.WriteBits(_byteOffset, bit, 1, value ? 1u : 0u);
+            if (_mirrorOffset is { } mirror) _save.WriteBits(mirror, bit, 1, value ? 1u : 0u);
         }
     }
 
@@ -53,6 +56,7 @@ public sealed class SaveBitField
     /// <summary>Sets every bit of the field, leaving bits outside it untouched.</summary>
     public void SetAll()
     {
+        if (_mirrorOffset is { } mirror) new SaveBitField(_save, mirror, BitCount).SetAll();
         var fullBytes = BitCount / 8;
         for (var i = 0; i < fullBytes; i++)
         {
@@ -73,6 +77,7 @@ public sealed class SaveBitField
     /// <summary>Clears every bit of the field, leaving bits outside it untouched.</summary>
     public void ClearAll()
     {
+        if (_mirrorOffset is { } mirror) new SaveBitField(_save, mirror, BitCount).ClearAll();
         var fullBytes = BitCount / 8;
         for (var i = 0; i < fullBytes; i++)
         {
@@ -100,7 +105,7 @@ public sealed class SaveBitField
 
         for (var bit = first; bit <= last; bit++)
         {
-            _save.WriteBits(_byteOffset, bit, 1, 1);
+            this[bit] = true;
         }
     }
 

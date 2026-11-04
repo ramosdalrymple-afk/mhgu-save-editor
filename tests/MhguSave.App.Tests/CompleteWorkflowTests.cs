@@ -94,9 +94,10 @@ public sealed class CompleteWorkflowTests : IDisposable
         Vm.SaveCommand.Execute(null);
         Assert.False(Vm.HasUnsavedChanges, Vm.Status);
         var saved = SaveContainer.Load(SavePath);
-        Assert.Equal(type, saved.Slots[0].EquipmentBox[index].Type);
-        Assert.Equal(id, saved.Slots[0].EquipmentBox[index].Id);
-        Assert.Equal(3, saved.Slots[0].EquipmentBoxUsed);
+        var box = type >= 22 ? saved.Slots[0].PalicoEquipmentBox : saved.Slots[0].EquipmentBox;
+        Assert.Equal(type, box[index].Type);
+        Assert.Equal(id, box[index].Id);
+        Assert.Equal(type >= 22 ? 2 : 3, saved.Slots[0].EquipmentBoxUsed);
         Vm.Load(SavePath);
         Assert.Equal(type, Vm.EquipRows[index].Type);
     }
@@ -141,6 +142,34 @@ public sealed class CompleteWorkflowTests : IDisposable
         Assert.Contains("need 4 slots", Vm.Status);
         Assert.Equal(original, File.ReadAllBytes(SavePath));
         Assert.Equal(0, Vm.EquipRows[0].Piece.Deco1);
+    }
+
+    [Fact]
+    public void WeaponSocketCapacityFollowsTheSelectedLevelAndFailsClosedWithoutTables()
+    {
+        Vm.SelectedEquip = Vm.EquipRows[0]; // Petrified Blade starts with zero sockets.
+        Vm.EditEquipDeco1 = 2638;
+        var original = File.ReadAllBytes(SavePath);
+        Vm.SaveCommand.Execute(null);
+        Assert.Equal(original, File.ReadAllBytes(SavePath));
+        Assert.True(Vm.HasEquipmentDraft);
+        if (GameRarity.SocketCapacity(7, 1, 1) is null)
+        {
+            Assert.Contains("capacity is unavailable", Vm.Status);
+            return;
+        }
+
+        Assert.Contains("0 available", Vm.Status);
+        Vm.EditEquipLevel = 6;
+        Vm.SaveCommand.Execute(null);
+        Assert.False(Vm.HasUnsavedChanges, Vm.Status);
+        var equipped = SaveContainer.Load(SavePath).Slots[0].EquipmentBox[0];
+        Assert.Equal(6, equipped.Level);
+        Assert.Equal(2638, equipped.Deco1);
+        Vm.EditEquipLevel = 1;
+        Vm.SaveCommand.Execute(null);
+        Assert.Contains("0 available", Vm.Status);
+        Assert.Equal(6, SaveContainer.Load(SavePath).Slots[0].EquipmentBox[0].Level);
     }
 
     [Fact]
@@ -234,7 +263,7 @@ public sealed class CompleteWorkflowTests : IDisposable
         Vm.SaveCommand.Execute(null);
         var slot = SaveContainer.Load(SavePath).Slots[0];
         Assert.Equal(1509, slot.SeenQuests.SetCount());
-        Assert.Equal(100, slot.QuestCounter);
+        Assert.Equal(100u, slot.QuestCounter);
         Assert.Equal(100, slot.CompletedQuestSets.SetCount());
         Assert.Equal(2990, slot.ItemsObtained.SetCount());
         Assert.Equal(132, slot.Awards.SetCount());

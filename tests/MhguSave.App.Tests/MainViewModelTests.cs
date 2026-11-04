@@ -59,7 +59,7 @@ public class MainViewModelTests
 
             Assert.Equal(row.Id, (int)viewModel.EditPouchId);
             Assert.Equal(row.Count, (int)viewModel.EditPouchCount);
-            Assert.Equal("Potion", viewModel.PouchRows.First(candidate => !candidate.IsEmpty).Name);
+            Assert.Equal(MhguSave.Format.ItemCatalog.LoadEmbedded().NameOf(row.Id), row.Name);
         }
         finally
         {

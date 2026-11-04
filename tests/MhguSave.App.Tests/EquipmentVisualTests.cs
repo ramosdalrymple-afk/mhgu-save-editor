@@ -32,7 +32,8 @@ public class EquipmentVisualTests
         save.Slots[0].Name = "Visual Hunter";
         save.Slots[0].VillageStar = 1;
         int[] types = [1, 2, 3, 4, 5, 6, 22, 23, 24, 7];
-        foreach (var type in types) save.Slots[0].EquipmentBox.Add(new EquipmentSlot { Type = type, Id = 1 });
+        foreach (var type in types)
+            (type >= 22 ? save.Slots[0].PalicoEquipmentBox : save.Slots[0].EquipmentBox).Add(new EquipmentSlot { Type = type, Id = 1 });
         File.WriteAllBytes(path, save.ToArray());
         var vm = TestEditor.Create();
         vm.Load(path);
@@ -63,16 +64,17 @@ public class EquipmentVisualTests
                 icon.Save(encoded, new Avalonia.Media.Imaging.PngBitmapEncoderOptions());
                 Assert.True(hashes.Add(Convert.ToHexString(SHA256.HashData(encoded.ToArray()))), "Armor parts must not reuse another category's sprite.");
                 vm.AddEquipType = type;
+                vm.EquipmentStorage = type >= 22 ? 1 : 0;
                 Settle();
                 var pick = vm.EquipmentMatches[0];
                 var row = vm.EquipRows.Single(r => r.Type == type);
                 Assert.Equal(pick.IconKey, row.IconKey);
-                Assert.Equal(pick.IconKey, vm.EquipmentTypes.Single(t => t.Code == type).IconKey);
+                Assert.Equal($"equipment:{type}", vm.EquipmentTypes.Single(t => t.Code == type).IconKey);
                 var image = equipment.FindControl<ListBox>("EquipmentCatalogList")!.GetVisualDescendants()
                     .OfType<Image>().First(i => Equals(i.DataContext, pick));
-                Assert.Same(icon, image.Source);
+                Assert.Same(IconSymbols.Get(pick.IconKey), image.Source);
             }
-            vm.AddEquipType = 2; Settle();
+            vm.EquipmentStorage = 0; vm.AddEquipType = 2; Settle();
             var button = equipment.FindControl<Button>("AddEquipmentButton")!;
             var bounds = button.TranslatePoint(new Point(0, 0), window)!.Value;
             Assert.InRange(bounds.Y, 0, window.ClientSize.Height - button.Bounds.Height);

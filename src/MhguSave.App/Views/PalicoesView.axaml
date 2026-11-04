@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:views="using:MhguSave.App.Views" x:Class="MhguSave.App.Views.PalicoesView" x:DataType="vm:MainViewModel">
+  <UserControl.Resources>
+    <DataTemplate x:Key="PalicoChoiceTemplate" x:DataType="vm:PalicoChoice">
+      <Grid ColumnDefinitions="30,*"><views:GameIcon Key="{Binding IconKey}" Width="24" Height="24" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="{Binding Label}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/></Grid>
+    </DataTemplate>
+  </UserControl.Resources>
+  <Grid RowDefinitions="Auto,Auto,*,Auto">
+    <StackPanel Spacing="8" Margin="0,0,0,20"><TextBlock Text="07 / PALICO BOARD" Classes="eyebrow"/><TextBlock Text="Your hunting companions" Classes="pageTitle"/><TextBlock Text="Edit companions and Palicoes for hire, and choose the team you take hunting." Classes="muted pageDescription" TextWrapping="Wrap"/></StackPanel>
+    <Border Grid.Row="1" Classes="card editorCard" Padding="16" Margin="0,0,0,20">
+      <Grid ColumnDefinitions="*,12,*,12,*">
+        <StackPanel Spacing="8"><TextBlock Text="Prowler" Classes="label"/><ComboBox ItemTemplate="{StaticResource PalicoChoiceTemplate}" ItemsSource="{Binding PalicoRoleChoices}" SelectedItem="{Binding SelectedProwler, Mode=TwoWay}" HorizontalAlignment="Stretch"/></StackPanel>
+        <StackPanel Grid.Column="2" Spacing="8"><TextBlock Text="Hunting buddy 1" Classes="label"/><ComboBox ItemTemplate="{StaticResource PalicoChoiceTemplate}" ItemsSource="{Binding PalicoRoleChoices}" SelectedItem="{Binding SelectedBuddy1, Mode=TwoWay}" HorizontalAlignment="Stretch"/></StackPanel>
+        <StackPanel Grid.Column="4" Spacing="8"><TextBlock Text="Hunting buddy 2" Classes="label"/><ComboBox ItemTemplate="{StaticResource PalicoChoiceTemplate}" ItemsSource="{Binding PalicoRoleChoices}" SelectedItem="{Binding SelectedBuddy2, Mode=TwoWay}" HorizontalAlignment="Stretch"/></StackPanel>
+      </Grid>
+    </Border>
+    <Grid Grid.Row="2" ColumnDefinitions="240,24,*">
+      <Grid RowDefinitions="Auto,*"><ComboBox ItemsSource="{Binding PalicoOwners}" SelectedIndex="{Binding PalicoOwner, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,12"/><ListBox Grid.Row="1" Name="PalicoList" ItemTemplate="{StaticResource PalicoChoiceTemplate}" ItemsSource="{Binding Palicoes}" SelectedItem="{Binding SelectedPalico, Mode=TwoWay}" Classes="records"/></Grid>
+      <Border Grid.Column="2" Classes="card editorCard">
+        <Grid RowDefinitions="*,Auto" Classes="inputForm">
+          <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel DataContext="{Binding PalicoDraft}" x:DataType="vm:PalicoEditor" Spacing="20" Margin="0,0,10,0" Classes="inputForm">
+              <StackPanel Spacing="8">
+                <StackPanel Orientation="Horizontal" Spacing="10"><views:GameIcon Key="ui:palico" Width="26" Height="26"/><TextBlock Text="Companion details" Classes="section" VerticalAlignment="Center"/></StackPanel>
+                <TextBlock Text="Name" Classes="label"/><TextBox Name="PalicoNameInput" Text="{Binding Name, Mode=TwoWay}"/>
+              </StackPanel>
+              <Grid ColumnDefinitions="2*,16,3*">
+                <StackPanel Spacing="8"><TextBlock Text="Level" Classes="label"/><views:IntegerInput Name="PalicoLevelInput" Value="{Binding Level, Mode=TwoWay}" Minimum="1" Maximum="99"/></StackPanel>
+                <StackPanel Grid.Column="2" Spacing="8"><TextBlock Text="Experience" Classes="label"/><views:IntegerInput Value="{Binding Experience, Mode=TwoWay}" Minimum="0" Maximum="4294967295"/></StackPanel>
+              </Grid>
+              <TextBlock Text="Experience is stored separately from level." Classes="small"/>
+              <TextBlock Text="{Binding ForteName, StringFormat='Forte · {0}'}" Classes="section"/>
+              <StackPanel Spacing="8"><TextBlock Text="Target preference" Classes="label"/><ComboBox ItemsSource="{Binding Targets}" SelectedItem="{Binding Target, Mode=TwoWay}" HorizontalAlignment="Stretch"/></StackPanel>
+              <StackPanel Spacing="8"><TextBlock Text="Greeting" Classes="label"/><TextBox Text="{Binding Greeting, Mode=TwoWay}"/></StackPanel>
+              <StackPanel Spacing="8"><TextBlock Text="Original owner" Classes="label"/><TextBox Text="{Binding OriginalOwner, Mode=TwoWay}"/></StackPanel>
+              <Expander Header="Support moves &amp; skills · inspection">
+                <StackPanel Spacing="10">
+                  <TextBlock Text="Equipped support move IDs" Classes="label"/><TextBlock Text="{Binding EquippedMoves}" TextWrapping="Wrap"/>
+                  <TextBlock Text="Equipped skill IDs" Classes="label"/><TextBlock Text="{Binding EquippedSkills}" TextWrapping="Wrap"/>
+                  <TextBlock Text="Learned support move IDs" Classes="label"/><TextBlock Text="{Binding LearnedMoves}" TextWrapping="Wrap"/>
+                  <TextBlock Text="Learned skill IDs" Classes="label"/><TextBlock Text="{Binding LearnedSkills}" TextWrapping="Wrap"/>
+                  <TextBlock Text="Forte, move lists, skills and appearance are preserved. Their editing is still pending." Classes="small" TextWrapping="Wrap"/>
+                </StackPanel>
+              </Expander>
+            </StackPanel>
+          </ScrollViewer>
+          <Border Grid.Row="1" Classes="actionBar"><StackPanel Orientation="Horizontal" Spacing="12" IsVisible="{Binding PalicoDraft, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <views:ValidatedButton Name="ApplyPalicoButton" Content="Apply Palico" Classes="primary" Command="{Binding ApplyPalicoCommand}"/>
+            <Button Content="Reset fields" Command="{Binding ResetPalicoCommand}"/>
+          </StackPanel></Border>
+        </Grid>
+      </Border>
+    </Grid>
+    <TextBlock Grid.Row="3" Text="{Binding PalicoStatus}" Classes="small" Margin="0,12,0,0" TextWrapping="Wrap"/>
+  </Grid>
+</UserControl>

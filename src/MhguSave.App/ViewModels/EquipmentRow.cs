@@ -27,11 +27,16 @@ public sealed class EquipmentRow : ObservableObject
 
     public int SlotNumber => Index + 1;
 
+    public string Usage => string.Join(" · ", _box.References(Index));
+
     public EquipmentSlot Piece => _box[Index];
 
     public bool IsEmpty => Piece.IsEmpty;
 
-    public string IconKey => IsEmpty ? string.Empty : $"equipment:{Type}";
+    public int Rarity => IsEmpty ? 0 : GameRarity.Equipment(Type, Id);
+    public string RarityLabel => GameRarity.Label(Rarity);
+    public string Details => TypeName + (Rarity > 0 ? $" · {RarityLabel}" : "");
+    public string IconKey => IsEmpty ? string.Empty : GameRarity.Icon(Type, Rarity);
 
     public int Type => Piece.Type;
 
@@ -76,6 +81,9 @@ public sealed class EquipmentRow : ObservableObject
         OnPropertyChanged(nameof(EditorTitle));
         OnPropertyChanged(nameof(MaxLevel));
         OnPropertyChanged(nameof(IconKey));
+        OnPropertyChanged(nameof(Rarity));
+        OnPropertyChanged(nameof(RarityLabel));
+        OnPropertyChanged(nameof(Details));
         PieceChanged?.Invoke(this, EventArgs.Empty);
     }
 

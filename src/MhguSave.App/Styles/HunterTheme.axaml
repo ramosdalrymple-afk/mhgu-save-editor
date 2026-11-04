@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:views="using:MhguSave.App.Views" xmlns:services="using:MhguSave.App.Services">
   <Styles.Resources>
+    <ControlTheme x:Key="CompactNumberSpinner" TargetType="ButtonSpinner" BasedOn="{StaticResource {x:Type ButtonSpinner}}">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Name="NumberChrome" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+            <Grid ColumnDefinitions="*,Auto">
+              <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+              <Grid Grid.Column="1" Width="30" RowDefinitions="*,*" IsVisible="{TemplateBinding ShowButtonSpinner}">
+                <RepeatButton Name="PART_IncreaseButton" Width="30" MinWidth="0" MinHeight="0" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="0,4,0,0" Background="Transparent" BorderBrush="#36444D" BorderThickness="1,0,0,1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsTabStop="False" AutomationProperties.Name="Increase value">
+                  <PathIcon Width="10" Height="5" Data="M0,5 L5,0 10,5"/>
+                </RepeatButton>
+                <RepeatButton Name="PART_DecreaseButton" Grid.Row="1" Width="30" MinWidth="0" MinHeight="0" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="0,0,4,0" Background="Transparent" BorderBrush="#36444D" BorderThickness="1,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsTabStop="False" AutomationProperties.Name="Decrease value">
+                  <PathIcon Width="10" Height="5" Data="M0,0 L5,5 10,0"/>
+                </RepeatButton>
+              </Grid>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+    <services:TabIconKeyConverter x:Key="TabIconKey"/>
     <SolidColorBrush x:Key="GuildGold">#D8B976</SolidColorBrush>
     <SolidColorBrush x:Key="GuildIce">#8AC6D4</SolidColorBrush>
     <SolidColorBrush x:Key="GuildText">#F1EEE5</SolidColorBrush>
@@ -49,18 +69,18 @@
     <Setter Property="CornerRadius" Value="6"/>
     <Setter Property="Padding" Value="24"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton))">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton))">
     <Setter Property="CornerRadius" Value="5"/>
     <Setter Property="Padding" Value="16,10"/>
     <Setter Property="MinHeight" Value="40"/>
     <Setter Property="HorizontalContentAlignment" Value="Center"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton)).primary">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton)).primary">
     <Setter Property="Background" Value="#D8B976"/>
     <Setter Property="Foreground" Value="#211D14"/>
     <Setter Property="FontWeight" Value="SemiBold"/>
   </Style>
-  <Style Selector="WrapPanel &gt; :is(Button):not(:is(ToggleButton))">
+  <Style Selector="WrapPanel &gt; :is(Button):not(:is(ToggleButton)):not(:is(RepeatButton))">
     <Setter Property="Margin" Value="0,0,8,8"/>
   </Style>
   <Style Selector="TextBox">
@@ -107,8 +127,19 @@
     </Setter>
   </Style>
   <Style Selector="TabControl.inner TabItem">
-    <Setter Property="FontSize" Value="14"/>
-    <Setter Property="Padding" Value="16,10"/>
+    <Setter Property="FontSize" Value="13"/>
+    <Setter Property="Padding" Value="8,10"/>
+    <Setter Property="HeaderTemplate">
+      <DataTemplate x:CompileBindings="False">
+        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <views:GameIcon Key="{Binding Converter={StaticResource TabIconKey}}" Width="18" Height="18"/>
+          <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+        </StackPanel>
+      </DataTemplate>
+    </Setter>
+  </Style>
+  <Style Selector="TabControl.inner">
+    <Setter Property="Padding" Value="0"/>
   </Style>
   <Style Selector="TextBlock.eyebrow">
     <Setter Property="Foreground" Value="#9CAEB9"/>
@@ -130,17 +161,17 @@
     <Setter Property="Foreground" Value="{DynamicResource GuildText}"/>
     <Setter Property="Background" Value="#101920"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton))">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton))">
     <Setter Property="Background" Value="#283640"/>
     <Setter Property="Foreground" Value="{DynamicResource GuildText}"/>
     <Setter Property="BorderBrush" Value="#46535B"/>
     <Setter Property="BorderThickness" Value="1"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton)):pointerover /template/ ContentPresenter#PART_ContentPresenter">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton)):pointerover /template/ ContentPresenter#PART_ContentPresenter">
     <Setter Property="Background" Value="#344853"/>
     <Setter Property="BorderBrush" Value="#8AC6D4"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton)).primary">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton)).primary">
     <Setter Property="Background">
       <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
         <GradientStop Color="#E6CA8B" Offset="0"/>
@@ -150,16 +181,16 @@
     <Setter Property="BorderBrush" Value="#EAD49F"/>
     <Setter Property="Foreground" Value="#211D14"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton)).primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton)).primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
     <Setter Property="Background" Value="#F0D89F"/>
     <Setter Property="Foreground" Value="#211D14"/>
     <Setter Property="BorderBrush" Value="#FFF0C7"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton)).primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton)).primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
     <Setter Property="Background" Value="#BFA062"/>
     <Setter Property="Foreground" Value="#211D14"/>
   </Style>
-  <Style Selector=":is(Button):not(:is(ToggleButton)).danger">
+  <Style Selector=":is(Button):not(:is(ToggleButton)):not(:is(RepeatButton)).danger">
     <Setter Property="Foreground" Value="#F0B3A2"/>
     <Setter Property="BorderBrush" Value="#795048"/>
     <Setter Property="Background" Value="#35282A"/>
@@ -235,5 +266,96 @@
   </Style>
   <Style Selector="ListBox.nav:disabled">
     <Setter Property="Opacity" Value="0.5"/>
+  </Style>
+  <Style Selector=":is(NumericUpDown) /template/ ButtonSpinner#PART_Spinner">
+    <Setter Property="Theme" Value="{StaticResource CompactNumberSpinner}"/>
+  </Style>
+  <Style Selector=":is(NumericUpDown)">
+    <Setter Property="MinHeight" Value="42"/>
+    <Setter Property="Padding" Value="10,8"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+  </Style>
+  <Style Selector=":is(NumericUpDown):focus-within /template/ ButtonSpinner /template/ Border#NumberChrome">
+    <Setter Property="BorderBrush" Value="{DynamicResource GuildGold}"/>
+  </Style>
+  <Style Selector=":is(NumericUpDown).invalidDraft /template/ ButtonSpinner /template/ Border#NumberChrome">
+    <Setter Property="BorderBrush" Value="#EF997F"/>
+  </Style>
+  <Style Selector="TextBlock.small">
+    <Setter Property="LineHeight" Value="18"/>
+  </Style>
+  <Style Selector="TextBlock.label">
+    <Setter Property="Foreground" Value="#C4D0D6"/>
+    <Setter Property="LineHeight" Value="18"/>
+  </Style>
+  <Style Selector="TextBlock.section">
+    <Setter Property="FontSize" Value="18"/>
+    <Setter Property="LineHeight" Value="24"/>
+  </Style>
+  <Style Selector="Border.editorCard">
+    <Setter Property="Padding" Value="20"/>
+    <Setter Property="CornerRadius" Value="8"/>
+  </Style>
+  <Style Selector="Border.actionBar">
+    <Setter Property="Margin" Value="0,16,0,0"/>
+    <Setter Property="Padding" Value="0,14,0,0"/>
+    <Setter Property="BorderBrush" Value="#36444D"/>
+    <Setter Property="BorderThickness" Value="0,1,0,0"/>
+  </Style>
+  <Style Selector="Border.inventoryAction">
+    <Setter Property="Margin" Value="0,12,0,0"/>
+    <Setter Property="Padding" Value="0,10,0,0"/>
+  </Style>
+  <Style Selector="TextBox">
+    <Setter Property="MinHeight" Value="42"/>
+    <Setter Property="Padding" Value="12,9"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="ComboBox">
+    <Setter Property="MinHeight" Value="42"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+  </Style>
+  <Style Selector="TabControl.inner TabItem">
+    <Setter Property="Padding" Value="10,10"/>
+    <Setter Property="Margin" Value="0,0,6,0"/>
+  </Style>
+  <Style Selector="ListBox.nav ListBoxItem">
+    <Setter Property="MinHeight" Value="44"/>
+    <Setter Property="Padding" Value="12,10"/>
+    <Setter Property="Margin" Value="0,2"/>
+  </Style>
+  <Style Selector="Expander">
+    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    <Setter Property="Margin" Value="0,4,0,0"/>
+  </Style>
+  <Style Selector="Border.workspaceSummary">
+    <Setter Property="Padding" Value="20,12"/>
+    <Setter Property="Margin" Value="0,0,0,20"/>
+  </Style>
+  <Style Selector="Window.compact TextBlock.pageDescription">
+    <Setter Property="IsVisible" Value="False"/>
+  </Style>
+  <Style Selector="Window.compact TextBlock.statCaption">
+    <Setter Property="IsVisible" Value="False"/>
+  </Style>
+  <Style Selector="Window.compact TextBlock.inventoryCatalogStatus">
+    <Setter Property="IsVisible" Value="False"/>
+  </Style>
+  <Style Selector="Grid.workspaceContent">
+    <Setter Property="Margin" Value="28,20"/>
+  </Style>
+  <Style Selector="Window.compact Grid.workspaceContent">
+    <Setter Property="Margin" Value="24,12"/>
+  </Style>
+  <Style Selector="Window.compact Border.inventoryAction">
+    <Setter Property="Margin" Value="0,8,0,0"/>
+    <Setter Property="Padding" Value="0,8,0,0"/>
+  </Style>
+  <Style Selector="Window.compact Border.workspaceSummary">
+    <Setter Property="Padding" Value="16,8"/>
+    <Setter Property="Margin" Value="0,0,0,16"/>
+  </Style>
+  <Style Selector="Window.compact Border.editorCard">
+    <Setter Property="Padding" Value="16"/>
   </Style>
 </Styles>

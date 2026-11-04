@@ -42,6 +42,12 @@ public partial class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(IsEquipmentSection));
         OnPropertyChanged(nameof(IsQuestsSection));
         OnPropertyChanged(nameof(IsUnlocksSection));
+        OnPropertyChanged(nameof(IsLoadoutsSection));
+        OnPropertyChanged(nameof(IsPalicoesSection));
+        OnPropertyChanged(nameof(IsMonstersSection));
+        if (value == 5 && LoadoutDraft?.IsDirty != true) RefreshLoadouts();
+        if (value == 6 && PalicoDraft?.IsDirty != true) RefreshPalicoes();
+        if (value == 7 && MonsterDraft?.IsDirty != true) RefreshMonsters();
     }
     public ObservableCollection<EquipmentPick> EquipmentMatches { get; } = [];
     [ObservableProperty] private string _equipmentQuery = string.Empty;
@@ -92,9 +98,23 @@ public partial class MainViewModel : ViewModelBase
     {
         base.OnPropertyChanged(e);
         TrackEditorChange(e.PropertyName);
+        if (e.PropertyName is nameof(EditEquipId) or nameof(EditEquipType) or nameof(SelectedEquip))
+        {
+            OnPropertyChanged(nameof(PreviewRarity));
+            OnPropertyChanged(nameof(PreviewRarityLabel));
+            OnPropertyChanged(nameof(PreviewIconKey));
+            OnPropertyChanged(nameof(PreviewName));
+        }
+        if (e.PropertyName is nameof(AddEquipId) or nameof(AddEquipType))
+        {
+            OnPropertyChanged(nameof(CreationRarity));
+            OnPropertyChanged(nameof(CreationRarityLabel));
+        }
+        if (e.PropertyName is nameof(EditEquipId) or nameof(EditEquipType) or nameof(EditEquipLevel) or nameof(EditEquipSlots) or nameof(SelectedEquip))
+            OnPropertyChanged(nameof(SocketCapacityHint));
         if (e.PropertyName == nameof(IsLoaded)) OnPropertyChanged(nameof(CanAddEquipment));
         if (!_syncing && IsLoaded && e.PropertyName is nameof(HunterName) or nameof(Zenny)
-            or nameof(Wycademy) or nameof(HrPoints) or nameof(VillageStar) or nameof(HubStar) or nameof(QuestCounter))
+            or nameof(Wycademy) or nameof(HrPoints) or nameof(VillageStar) or nameof(HubStar) or nameof(QuestCounter) or nameof(PlayTimeSeconds))
             HasUnsavedChanges = true;
     }
 
@@ -172,6 +192,7 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty] private decimal _villageStar;
     [ObservableProperty] private decimal _hubStar;
     [ObservableProperty] private decimal _questCounter;
+    [ObservableProperty] private decimal _playTimeSeconds;
 
     // ---- item box / pouch ------------------------------------------------------------
     public ObservableCollection<ItemRow> BoxRows { get; } = [];
@@ -239,7 +260,7 @@ public partial class MainViewModel : ViewModelBase
 
     // ---- loading ---------------------------------------------------------------------
 
-    public void Load(string path)
+    public bool Load(string path)
     {
         try
         {
@@ -265,10 +286,12 @@ public partial class MainViewModel : ViewModelBase
             UpdateEmulatorWarning();
 
             Status = $"Loaded {new FileInfo(path).Length:N0} bytes. Editing slot {slot.Index + 1} of 3.";
+            return true;
         }
         catch (Exception ex) when (ex is SaveFormatException or IOException or UnauthorizedAccessException)
         {
             Status = "Could not open save: " + ex.Message;
+            return false;
         }
     }
 
@@ -287,6 +310,11 @@ public partial class MainViewModel : ViewModelBase
         for (var i = 0; i < slot.Pouch.Count; i++) PouchRows.Add(new ItemRow(slot.Pouch, i, _catalog));
         FillQuestRows(slot);
         FillEquipRows(slot);
+        RefreshLoadouts();
+        RefreshPalicoes();
+        RefreshCollectionEntries();
+        RefreshMonsters();
+        RefreshAppearance();
         RefreshFilters();
         RefreshQuestFilters();
         RefreshEquipFilters();
@@ -308,6 +336,7 @@ public partial class MainViewModel : ViewModelBase
         VillageStar = _slot.VillageStar;
         HubStar = _slot.HubStar;
         QuestCounter = _slot.QuestCounter;
+        PlayTimeSeconds = _slot.PlayTimeSeconds;
         RefreshSummary();
     }
 
@@ -321,7 +350,7 @@ public partial class MainViewModel : ViewModelBase
         if (_save?.IsDirty == true) HasUnsavedChanges = true;
         var slot = _slot;
         BoxStat = $"{slot.ItemBox.UsedCount():N0} / 2,300";
-        EquipStat = $"{slot.EquipmentBoxUsed:N0} / 2,000";
+        EquipStat = $"{slot.EquipmentBoxUsed:N0} H · {slot.PalicoEquipmentBox.UsedCount():N0} P";
         QuestStat = $"{slot.QuestsClearedCount:N0} / 1,509";
         RankLine = $"HR {slot.HunterRank}   ({slot.HrPoints:N0} HR points)";
         PlayTimeLine = $"{FormatPlayTime(slot.PlayTimeSeconds)}   ({slot.PlayTimeSeconds:N0} s)";
@@ -494,9 +523,10 @@ public partial class MainViewModel : ViewModelBase
     {
         EquipRows.Clear();
 
-        for (var index = 0; index < slot.EquipmentBox.Count; index++)
+        var box = EquipmentStorage == 1 ? slot.PalicoEquipmentBox : slot.EquipmentBox;
+        for (var index = 0; index < box.Count; index++)
         {
-            var row = new EquipmentRow(slot.EquipmentBox, index, _equipCatalog);
+            var row = new EquipmentRow(box, index, _equipCatalog);
             row.PieceChanged += OnEquipmentRowChanged;
             EquipRows.Add(row);
         }
@@ -609,6 +639,11 @@ public partial class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(CanUseEquipmentMaximum));
     }
 
+    public bool HasNoItemMatches => ItemNameMatches.Count == 0;
+    public string ItemSearchHint => string.IsNullOrWhiteSpace(ItemNameQuery)
+        ? "Search for an item or enter its ID below."
+        : "No items match this search.";
+
     partial void OnItemNameQueryChanged(string value)
     {
         ItemNameMatches.Clear();
@@ -616,6 +651,8 @@ public partial class MainViewModel : ViewModelBase
         {
             ItemNameMatches.Add(new ItemPick(id, name));
         }
+        OnPropertyChanged(nameof(HasNoItemMatches));
+        OnPropertyChanged(nameof(ItemSearchHint));
     }
 
     partial void OnSelectedItemPickChanged(ItemPick? value)
@@ -673,10 +710,7 @@ public partial class MainViewModel : ViewModelBase
         }
     }
 
-    public void Revert()
-    {
-        if (_path is not null) Load(_path);
-    }
+    public bool Revert() => _path is not null && Load(_path);
 
     private void ApplyCharacterFields()
     {
@@ -702,14 +736,16 @@ public partial class MainViewModel : ViewModelBase
         RequireInteger(HrPoints, 0, uint.MaxValue, "HR points");
         RequireInteger(VillageStar, 1, 10, "Village stars");
         RequireInteger(HubStar, 0, 13, "Hub stars");
-        RequireInteger(QuestCounter, 0, ushort.MaxValue, "Quest counter");
+        RequireInteger(QuestCounter, 0, uint.MaxValue, "Quest counter");
+        RequireInteger(PlayTimeSeconds, 0, uint.MaxValue, "Play time");
         if (_slot.Name != name) _slot.Name = name;
         if (_slot.Zenny != Zenny) _slot.Zenny = (int)Zenny;
         if (_slot.WycademyPoints != Wycademy) _slot.WycademyPoints = (int)Wycademy;
         if (_slot.HrPoints != HrPoints) _slot.HrPoints = (uint)HrPoints;
         if (_slot.VillageStar != VillageStar) _slot.VillageStar = (ushort)VillageStar;
         if (_slot.HubStar != HubStar) _slot.HubStar = (ushort)HubStar;
-        if (_slot.QuestCounter != QuestCounter) _slot.QuestCounter = (ushort)QuestCounter;
+        if (_slot.QuestCounter != QuestCounter) _slot.QuestCounter = (uint)QuestCounter;
+        if (_slot.PlayTimeSeconds != PlayTimeSeconds) _slot.PlayTimeSeconds = (uint)PlayTimeSeconds;
     }
 
     [RelayCommand]
@@ -867,6 +903,7 @@ public partial class MainViewModel : ViewModelBase
         }
 
         _slot.ItemsObtained.SetRange(1, 2990);
+        RefreshCollectionEntries();
         RefreshSummary();
         Status = "All item ids 1-2990 marked as obtained (materials known to the Smithy). Press Save.";
     }
@@ -880,6 +917,7 @@ public partial class MainViewModel : ViewModelBase
         }
 
         _slot.Awards.SetAll();
+        RefreshCollectionEntries();
         RefreshSummary();
         Status = "All 132 Guild Card awards granted. Press Save.";
     }
@@ -893,6 +931,7 @@ public partial class MainViewModel : ViewModelBase
         }
 
         _slot.UnlockAllHunterArts();
+        RefreshCollectionEntries();
         RefreshSummary();
         Status = "All Hunter Arts unlocked. Press Save.";
     }
@@ -1122,9 +1161,10 @@ public partial class MainViewModel : ViewModelBase
             return;
         }
 
-        HasEquipmentDraft = false;
         var row = SelectedEquip;
-        row.Clear();
+        try { row.Clear(); }
+        catch (ArgumentException ex) { EquipStatus = Status = ex.Message; return; }
+        HasEquipmentDraft = false;
         _ = HideEmptyEquip = true;
         RefreshEquipFilters();
         EquipStatus = $"Equipment slot {row.SlotNumber} cleared.";
@@ -1184,7 +1224,8 @@ public partial class MainViewModel : ViewModelBase
         {
             ConfigureNewEquipment(piece);
             if (!ApplyPendingEditors()) return;
-            index = _slot.EquipmentBox.Add(piece);
+            var destination = type >= 22 ? _slot.PalicoEquipmentBox : _slot.EquipmentBox;
+            index = destination.Add(piece);
         }
         catch (ArgumentException ex)
         {
@@ -1198,6 +1239,7 @@ public partial class MainViewModel : ViewModelBase
             return;
         }
 
+        EquipmentStorage = type >= 22 ? 1 : 0;
         var row = EquipRows[index];
         row.Refresh();
         EquipFilter = string.Empty;
@@ -1221,7 +1263,12 @@ public partial class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(IsAddingGlaive));
     }
 
-    partial void OnAddEquipIdChanged(decimal value) => UpdateAddEquipName();
+    partial void OnAddEquipIdChanged(decimal value)
+    {
+        if (IsAddingTalisman && ValidInteger(value, 1, 10))
+            AddEquipCharm = value <= 2 ? 353 : value <= 4 ? 354 : value <= 7 ? 355 : 356;
+        UpdateAddEquipName();
+    }
 
     private void UpdateAddEquipName()
     {

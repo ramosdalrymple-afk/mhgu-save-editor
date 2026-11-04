@@ -12,13 +12,13 @@ character switching, and automatic backups.
 
 ## Download
 
-**[Early Access · v0.1.0-alpha.2](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/tag/v0.1.0-alpha.2)**
+**[Early Access · v0.2.0-preview.5](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/tag/v0.2.0-preview.5)**
 
 | Package | Best for |
 | --- | --- |
-| [Windows installer](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.1.0-alpha.2/MHGU-Save-Editor-0.1.0-alpha.2-win-x64-Setup.exe) | Install for your Windows user with Start menu and optional desktop shortcuts. |
-| [Portable ZIP](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.1.0-alpha.2/MHGU-Save-Editor-0.1.0-alpha.2-win-x64-Portable.zip) | Extract the complete archive and run `MhguSave.App.exe`. |
-| [SHA-256 checksums](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.1.0-alpha.2/SHA256SUMS.txt) | Verify the downloaded installer or ZIP. |
+| [Windows installer](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.2.0-preview.5/MHGU-Save-Editor-0.2.0-preview.5-win-x64-Setup.exe) | Install for your Windows user with Start menu and optional desktop shortcuts. |
+| [Portable ZIP](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.2.0-preview.5/MHGU-Save-Editor-0.2.0-preview.5-win-x64-Portable.zip) | Extract the complete archive and run `MhguSave.App.exe`. |
+| [SHA-256 checksums](https://github.com/ramosdalrymple-afk/mhgu-save-editor/releases/download/v0.2.0-preview.5/SHA256SUMS.txt) | Verify the downloaded installer or ZIP. |
 
 Requires **Windows 10 or later, x64**. Both packages include the .NET runtime;
 no separate runtime installation is needed. Release notes accompany each build.
@@ -32,6 +32,11 @@ no separate runtime installation is needed. Release notes accompany each build.
 - **Quest journal** — search quests, manage completion flags, and apply filtered or bulk updates.
 - **Collections** — manage material knowledge, Guild Card awards, and Hunter Art unlocks.
 - **Multiple characters** — switch between occupied slots and save their changes together.
+- **Registered sets** — edit 40 hunter My Sets and 24 Palico equipment sets, with named gear, style, arts, SP flags, and armor pigment.
+- **Palico board** — edit existing companions and hireables, then select your Prowler and hunting buddies.
+- **Monster journal** — edit slain/captured counts and inspect size records for all 137 indices.
+- **Appearance and collections** — edit character appearance and playtime; toggle individual Arts, awards, and obtained items.
+- **Inventory tools** — sort and merge box stacks, or export/import a box CSV from the **Box tools** menu.
 - **Save protection** — timestamped backups, paired save writing, external-change detection, and a guard for recognized emulator processes.
 
 The cover-inspired interface combines dark steel, gold, and pale blue with clear
@@ -81,7 +86,7 @@ To produce the Windows installer, portable ZIP, notices, and checksums from a
 clean commit, install Inno Setup and run:
 
 ```powershell
-./tools/build-release.ps1 -InnoCompiler "C:\path\to\Inno Setup\ISCC.exe"
+./tools/build-release.ps1 -Version 0.2.0-preview.5 -InnoCompiler "C:\path\to\Inno Setup\ISCC.exe"
 ```
 
 The release builder exports tracked source before packaging. Private saves,
@@ -101,6 +106,7 @@ keys, game archives, and locally imported game artwork are excluded.
 
 - [Interface design](docs/UI_DESIGN.md)
 - [Technical reference](docs/REFERENCE.md)
+- [Reference comparison and remaining feature work](docs/FEATURE_PARITY.md)
 - [Armor catalog mapping](tools/ARMOR_CATALOG.md)
 - [Optional local game visuals](tools/GAME_VISUALS.md)
 - [Third-party notices](packaging/THIRD-PARTY-NOTICES.md)

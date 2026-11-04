@@ -148,4 +148,36 @@ public sealed class PackedItemList
 
         return index;
     }
+
+    /// <summary>Validate the entire replacement before changing any packed bits.</summary>
+    public void ReplaceAll(IReadOnlyList<ItemSlot> items)
+    {
+        if (items.Count != Count) throw new ArgumentException($"Expected exactly {Count} inventory slots.");
+        foreach (var item in items)
+            if ((uint)item.Id > MaxId || (uint)item.Count > MaxCount)
+                throw new ArgumentException("An item ID or count exceeds its binary storage range.");
+        for (var i = 0; i < Count; i++) this[i] = items[i];
+    }
+
+    public void SortById() => ReplaceAll(Enumerable.Range(0, Count).Select(i => this[i])
+        .OrderBy(item => item.IsEmpty ? int.MaxValue : item.Id).ToArray());
+
+    /// <summary>Merge to normal 99-count stacks without losing excess quantities.</summary>
+    public void MergeStacks()
+    {
+        var merged = new List<ItemSlot>();
+        foreach (var group in Enumerable.Range(0, Count).Select(i => this[i]).Where(i => !i.IsEmpty).GroupBy(i => i.Id))
+        {
+            var remaining = group.Sum(i => i.Count);
+            while (remaining > 0)
+            {
+                var count = Math.Min(99, remaining);
+                merged.Add(new(group.Key, count));
+                remaining -= count;
+            }
+        }
+        if (merged.Count > Count) throw new ArgumentException("There is not enough room to merge into 99-count stacks without losing items.");
+        while (merged.Count < Count) merged.Add(ItemSlot.Empty);
+        ReplaceAll(merged);
+    }
 }

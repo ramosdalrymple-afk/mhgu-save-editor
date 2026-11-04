@@ -7,7 +7,7 @@ namespace MhguSave.Format;
 /// the pointer table at <c>0x34</c> (relative to <c>0x24</c>) so the layout also holds for
 /// slots 2 and 3 and for saves with a different stride.
 /// </summary>
-public sealed class CharacterSlot
+public sealed partial class CharacterSlot
 {
     // Slot header (summary rebuilt by the game from live state on each save).
     private const int NameOffset = 0x000;
@@ -74,10 +74,13 @@ public sealed class CharacterSlot
         SeenQuests = new SaveBitField(save, baseOffset + QuestSeenMapOffset, QuestClearMapBits);
         FailedQuests = new SaveBitField(save, baseOffset + QuestFailedMapOffset, QuestClearMapBits);
         CompletedQuestSets = new SaveBitField(save, baseOffset + QuestSetMapOffset, QuestSetBits);
-        Awards = new SaveBitField(save, baseOffset + AwardsOffset, AwardBits);
+        Awards = new SaveBitField(save, baseOffset + AwardsOffset, AwardBits, baseOffset + 0x3157);
         ItemsObtained = new SaveBitField(save, baseOffset + ItemsObtainedOffset, ItemIdBits);
 
-        EquipmentBox = new EquipmentBox(save, baseOffset + EquipmentBoxOffset);
+        EquipmentBox = new EquipmentBox(save, baseOffset + EquipmentBoxOffset,
+            references: index => FindEquipmentReferences(false, index));
+        PalicoEquipmentBox = new EquipmentBox(save, baseOffset + 0x17C2E, 1000, true,
+            index => FindEquipmentReferences(true, index));
     }
 
     /// <summary>Zero-based slot number.</summary>
@@ -109,11 +112,16 @@ public sealed class CharacterSlot
         }
     }
 
-    /// <summary>Total play time in seconds (the Guild Card keeps its own copy).</summary>
+    /// <summary>Total play time in seconds; writes synchronize the loaded record and both summaries.</summary>
     public uint PlayTimeSeconds
     {
-        get => _save.ReadUInt32(BaseOffset + PlayTimeOffset);
-        set => _save.WriteUInt32(BaseOffset + PlayTimeOffset, value);
+        get => _save.ReadUInt32(BaseOffset + 0x2248B);
+        set
+        {
+            _save.WriteUInt32(BaseOffset + 0x2248B, value);
+            _save.WriteUInt32(BaseOffset + PlayTimeOffset, value);
+            _save.WriteUInt32(BaseOffset + 0xC7AD1, value);
+        }
     }
 
     /// <summary>0 = male, 1 = female, 2 = Prowler.</summary>
@@ -225,10 +233,10 @@ public sealed class CharacterSlot
     }
 
     /// <summary>Number of quests completed, as counted by the game.</summary>
-    public ushort QuestCounter
+    public uint QuestCounter
     {
-        get => _save.ReadUInt16(BaseOffset + QuestCounterOffset);
-        set => _save.WriteUInt16(BaseOffset + QuestCounterOffset, value);
+        get => _save.ReadUInt32(BaseOffset + QuestCounterOffset);
+        set => _save.WriteUInt32(BaseOffset + QuestCounterOffset, value);
     }
 
     /// <summary>Village star level, 1-10.</summary>
@@ -284,8 +292,28 @@ public sealed class CharacterSlot
     public int UnlockedHunterArtCount => Enumerable.Range(1, 70).Concat(Enumerable.Range(HunterArtHighFirst,
         HunterArtHighLast - HunterArtHighFirst + 1)).Count(id => _save.ReadBits(BaseOffset + HunterArtsOffset, id, 1) != 0);
 
-    /// <summary>The 2000-record equipment box (weapons, armor, talismans, Palico gear).</summary>
+    public bool IsHunterArtUnlocked(int id)
+    {
+        ValidateHunterArt(id);
+        return _save.ReadBits(BaseOffset + HunterArtsOffset, id, 1) != 0;
+    }
+
+    public void SetHunterArtUnlocked(int id, bool value)
+    {
+        ValidateHunterArt(id);
+        _save.WriteBits(BaseOffset + HunterArtsOffset, id, 1, value ? 1u : 0u);
+    }
+
+    private static void ValidateHunterArt(int id)
+    {
+        if (id is not (>= 1 and <= 70 or >= 83 and <= 190)) throw new ArgumentOutOfRangeException(nameof(id));
+    }
+
+    /// <summary>The 2000-record hunter equipment box.</summary>
     public EquipmentBox EquipmentBox { get; }
+
+    /// <summary>The separate 1000-record Palico equipment box.</summary>
+    public EquipmentBox PalicoEquipmentBox { get; }
 
     private string ReadString(int offset, int length)
     {

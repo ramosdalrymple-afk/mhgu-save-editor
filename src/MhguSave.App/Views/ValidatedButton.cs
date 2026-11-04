@@ -23,7 +23,7 @@ public class ValidatedButton : Button
                 vm.Status = $"Enter a whole number from {invalid.Minimum} to {invalid.Maximum} in the highlighted field.";
                 vm.EquipStatus = vm.Status;
             }
-            DataValidationErrors.SetError(invalid, new ArgumentException("Enter a whole number within the allowed range."));
+            invalid.MarkInvalidDraft();
             invalid.BringIntoView();
             invalid.Focus();
             return;

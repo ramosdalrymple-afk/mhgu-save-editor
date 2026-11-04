@@ -1,0 +1,80 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="using:MhguSave.App.ViewModels" xmlns:services="using:MhguSave.App.Services" xmlns:views="using:MhguSave.App.Views" x:Class="MhguSave.App.Views.LoadoutsView" x:DataType="vm:MainViewModel">
+  <UserControl.Resources><services:RarityBrushConverter x:Key="RarityBrush"/><services:HexColorBrushConverter x:Key="HexColor"/></UserControl.Resources>
+  <Grid RowDefinitions="Auto,*,Auto">
+    <StackPanel Spacing="8" Margin="0,0,0,20">
+      <TextBlock Text="06 / REGISTERED LOADOUTS" Classes="eyebrow"/>
+      <TextBlock Text="My Sets &amp; Palico sets" Classes="pageTitle"/>
+      <TextBlock Text="Arrange equipment from your boxes. Set selections preserve the pieces and their decorations." Classes="muted pageDescription" TextWrapping="Wrap"/>
+    </StackPanel>
+    <Grid Grid.Row="1" ColumnDefinitions="210,24,*">
+  <Grid RowDefinitions="Auto,*">
+        <ComboBox ItemsSource="{Binding LoadoutOwners}" SelectedIndex="{Binding LoadoutOwner, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,12"/>
+        <ListBox Grid.Row="1" Name="LoadoutList" ItemsSource="{Binding Loadouts}" SelectedItem="{Binding SelectedLoadout, Mode=TwoWay}" Classes="records">
+          <ListBox.ItemTemplate><DataTemplate x:DataType="vm:LoadoutChoice"><Grid ColumnDefinitions="28,*"><views:GameIcon Key="{Binding IconKey}" Width="22" Height="22" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="{Binding Label}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/></Grid></DataTemplate></ListBox.ItemTemplate>
+        </ListBox>
+      </Grid>
+      <Border Grid.Column="2" Classes="card editorCard">
+  <Grid RowDefinitions="*,Auto" Classes="inputForm">
+          <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel DataContext="{Binding LoadoutDraft}" x:DataType="vm:LoadoutEditor" Spacing="20" Margin="0,0,10,0" Classes="inputForm">
+              <StackPanel Spacing="8">
+                <TextBlock Text="Set details" Classes="section"/>
+                <TextBlock Text="Set name" Classes="label"/>
+                <TextBox Name="LoadoutNameInput" Text="{Binding Name, Mode=TwoWay}"/>
+                <TextBlock Text="Up to 10 characters. Equipment references the slots in the matching box." Classes="small" TextWrapping="Wrap"/>
+              </StackPanel>
+              <TextBlock Text="Equipment pieces" Classes="section"/>
+              <ItemsControl ItemsSource="{Binding Pieces}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:LoadoutPiece">
+                    <Grid ColumnDefinitions="72,*" Margin="0,0,0,12">
+                      <TextBlock Text="{Binding Label}" Classes="label" VerticalAlignment="Center"/>
+                      <ComboBox Grid.Column="1" ItemsSource="{Binding Choices}" SelectedItem="{Binding Selected, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280">
+                        <ComboBox.ItemTemplate><DataTemplate x:DataType="vm:GearChoice"><Grid ColumnDefinitions="30,*"><views:GameIcon Key="{Binding IconKey}" Width="24" Height="24"/><StackPanel Grid.Column="1" Spacing="2"><TextBlock Text="{Binding Label}" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}" TextTrimming="CharacterEllipsis"/><TextBlock Text="{Binding RarityLabel}" Foreground="{Binding Rarity, Converter={StaticResource RarityBrush}}" FontSize="10"/></StackPanel></Grid></DataTemplate></ComboBox.ItemTemplate>
+                      </ComboBox>
+                    </Grid>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+              <StackPanel IsVisible="{Binding IsHunter}" Spacing="20">
+                <TextBlock Text="Hunting style &amp; Hunter Arts" Classes="section"/>
+                <ComboBox Name="LoadoutStylePicker" ItemsSource="{Binding Styles}" SelectedItem="{Binding Style, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
+                <StackPanel Spacing="8"><TextBlock Text="Art 1" Classes="label"/><ComboBox ItemsSource="{Binding ArtChoices}" SelectedItem="{Binding Art1Choice, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280"/></StackPanel>
+                <StackPanel Spacing="8"><TextBlock Text="Art 2" Classes="label"/><ComboBox ItemsSource="{Binding ArtChoices}" SelectedItem="{Binding Art2Choice, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280"/></StackPanel>
+                <StackPanel Spacing="8"><TextBlock Text="Art 3" Classes="label"/><ComboBox ItemsSource="{Binding ArtChoices}" SelectedItem="{Binding Art3Choice, Mode=TwoWay}" HorizontalAlignment="Stretch" MaxDropDownHeight="280"/></StackPanel>
+                <Expander Header="Advanced Hunter Art IDs"><StackPanel Spacing="12"><TextBlock Text="Art IDs: 0 removes an art. Incompatible, locked, and extra-slot arts are saved with warnings." Classes="small" TextWrapping="Wrap"/>
+                <Grid ColumnDefinitions="*,12,*,12,*">
+                  <StackPanel Spacing="8"><TextBlock Text="Art 1" Classes="label"/><views:IntegerInput Value="{Binding Art1, Mode=TwoWay}" Minimum="0" Maximum="255"/><CheckBox Content="SP Art" IsChecked="{Binding Sp1}"/></StackPanel>
+                  <StackPanel Grid.Column="2" Spacing="8"><TextBlock Text="Art 2" Classes="label"/><views:IntegerInput Value="{Binding Art2, Mode=TwoWay}" Minimum="0" Maximum="255"/><CheckBox Content="SP Art" IsChecked="{Binding Sp2}"/></StackPanel>
+                  <StackPanel Grid.Column="4" Spacing="8"><TextBlock Text="Art 3" Classes="label"/><views:IntegerInput Value="{Binding Art3, Mode=TwoWay}" Minimum="0" Maximum="255"/><CheckBox Content="SP Art" IsChecked="{Binding Sp3}"/></StackPanel>
+                </Grid>
+                </StackPanel></Expander>
+                <TextBlock Text="Armor pigment" Classes="section"/>
+                <TextBlock Text="Colors use RRGGBBAA. FF is opaque. Default uses the armor's original color." Classes="small" TextWrapping="Wrap"/>
+                <ItemsControl ItemsSource="{Binding Colors}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="vm:LoadoutColor">
+                      <Grid ColumnDefinitions="72,40,*,100" Margin="0,0,0,12">
+                        <TextBlock Text="{Binding Label}" VerticalAlignment="Center"/>
+                        <Border Grid.Column="1" Width="28" Height="28" CornerRadius="4" BorderThickness="1" BorderBrush="#53616A" Background="{Binding Hex, Converter={StaticResource HexColor}}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <TextBox Grid.Column="2" Text="{Binding Hex, Mode=TwoWay}" Margin="0,0,12,0" MaxLength="9"/>
+                        <CheckBox Grid.Column="3" Content="Default" IsChecked="{Binding UseDefault}"/>
+                      </Grid>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+            </StackPanel>
+          </ScrollViewer>
+          <Border Grid.Row="1" Classes="actionBar"><WrapPanel Orientation="Horizontal">
+            <views:ValidatedButton Name="ApplyLoadoutButton" Content="Apply set" Command="{Binding ApplyLoadoutCommand}" Classes="primary" Margin="0,0,10,8"/>
+            <Button Content="Register worn gear" Command="{Binding RegisterCurrentLoadoutCommand}" Margin="0,0,10,8" IsVisible="{Binding LoadoutDraft.IsHunter}"/>
+            <Button Content="Reset fields" Command="{Binding ResetLoadoutCommand}" Margin="0,0,10,8"/>
+            <Button Content="Clear set" Command="{Binding ClearLoadoutCommand}" Classes="danger" Margin="0,0,0,8"/>
+          </WrapPanel></Border>
+        </Grid>
+      </Border>
+    </Grid>
+    <TextBlock Grid.Row="2" Text="{Binding LoadoutStatus}" Classes="small" TextWrapping="Wrap" Margin="0,12,0,0"/>
+  </Grid>
+</UserControl>

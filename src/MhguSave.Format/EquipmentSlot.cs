@@ -184,7 +184,7 @@ public sealed class EquipmentSlot
     }
 }
 
-/// <summary>The 2000-record equipment box of one character.</summary>
+/// <summary>A hunter or Palico equipment box belonging to one character.</summary>
 public sealed class EquipmentBox
 {
     /// <summary>Number of records in the box.</summary>
@@ -192,15 +192,31 @@ public sealed class EquipmentBox
 
     private readonly SaveContainer _save;
     private readonly int _offset;
+    private readonly int _count;
+    private readonly bool _palico;
+    private readonly Func<int, IReadOnlyList<string>> _references;
 
-    internal EquipmentBox(SaveContainer save, int byteOffset)
+    internal EquipmentBox(SaveContainer save, int byteOffset, int count = Capacity, bool palico = false,
+        Func<int, IReadOnlyList<string>>? references = null)
     {
         _save = save;
         _offset = byteOffset;
+        _count = count;
+        _palico = palico;
+        _references = references ?? (_ => Array.Empty<string>());
     }
 
     /// <summary>Number of records the box can hold.</summary>
-    public int Count => Capacity;
+    public int Count => _count;
+
+    public bool IsPalico => _palico;
+
+    /// <summary>Equipped and registered uses, including references to an empty record.</summary>
+    public IReadOnlyList<string> References(int index)
+    {
+        CheckIndex(index);
+        return _references(index);
+    }
 
     /// <summary>Reads or writes one record.</summary>
     public EquipmentSlot this[int index]
@@ -213,6 +229,16 @@ public sealed class EquipmentBox
         set
         {
             CheckIndex(index);
+            ArgumentNullException.ThrowIfNull(value);
+            var current = this[index];
+            if (value.IsEmpty || value.Type != current.Type || value.Id != current.Id)
+            {
+                var uses = References(index);
+                if (uses.Count != 0)
+                    throw new ArgumentException("This slot is used by " + string.Join(", ", uses) + ". Remove those references before replacing or clearing it.");
+            }
+            if (!value.IsEmpty && (value.Type is >= 22 and <= 24) != _palico)
+                throw new ArgumentException(_palico ? "Only Palico equipment belongs in this box." : "Palico equipment belongs in the separate Palico box.");
             var span = _save.Raw.AsSpan(_offset + (index * EquipmentSlot.RecordSize), EquipmentSlot.RecordSize);
             if (value.IsEmpty)
             {
@@ -235,7 +261,7 @@ public sealed class EquipmentBox
     public int UsedCount()
     {
         var used = 0;
-        for (var i = 0; i < Capacity; i++)
+        for (var i = 0; i < Count; i++)
         {
             if (!this[i].IsEmpty)
             {
@@ -249,9 +275,10 @@ public sealed class EquipmentBox
     /// <summary>Index of the first empty record, or -1 when the box is full.</summary>
     public int FirstEmptyIndex()
     {
-        for (var i = 0; i < Capacity; i++)
+        for (var i = 0; i < Count; i++)
         {
-            if (this[i].IsEmpty)
+            if (_save.Raw.AsSpan(_offset + i * EquipmentSlot.RecordSize, EquipmentSlot.RecordSize).IndexOfAnyExcept((byte)0) < 0
+                && References(i).Count == 0)
             {
                 return i;
             }
@@ -279,9 +306,9 @@ public sealed class EquipmentBox
 
     private void CheckIndex(int index)
     {
-        if ((uint)index >= Capacity)
+        if ((uint)index >= Count)
         {
-            throw new ArgumentOutOfRangeException(nameof(index), index, $"Equipment index must be 0-{Capacity - 1}.");
+            throw new ArgumentOutOfRangeException(nameof(index), index, $"Equipment index must be 0-{Count - 1}.");
         }
     }
 }

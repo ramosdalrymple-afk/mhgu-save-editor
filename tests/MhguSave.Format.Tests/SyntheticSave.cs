@@ -37,6 +37,28 @@ internal static class SyntheticSave
         WriteU32(data, 0x38, Slot2Pointer);
         WriteU32(data, 0x3C, Slot3Pointer);
 
+        foreach (var pointer in new[] { Slot1Pointer, Slot2Pointer, Slot3Pointer })
+        {
+            var start = pointer + SaveContainer.HeaderSize;
+            data.AsSpan(start + 0x23B39, 14).Fill(255);
+            data.AsSpan(start + 0x23B9D, 3).Fill(255);
+            for (var i = 0; i < 40; i++)
+            {
+                var at = start + 0x208CE + i * 136;
+                data[at] = data[at + 1] = data[at + 2] = (byte)'-';
+                data.AsSpan(at + 42, 14).Fill(255);
+                data.AsSpan(at + 125, 5).Fill(1);
+                data[at + 130] = 6;
+            }
+            for (var i = 0; i < 24; i++)
+            {
+                var at = start + 0x21E0E + i * 68;
+                data[at] = data[at + 1] = data[at + 2] = (byte)'-';
+                data.AsSpan(at + 42, 6).Fill(255);
+                data.AsSpan(at + 48, 3).Fill(1);
+            }
+        }
+
         return data;
     }
 

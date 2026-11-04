@@ -263,7 +263,7 @@ public class WindowWorkflowTests
             Assert.True(vm.QuestView[0].IsCleared);
             Save();
             Assert.True(SaveContainer.Load(path).Slots[0].IsQuestCleared(vm.QuestView[0].Index));
-            Assert.Equal(100, SaveContainer.Load(path).Slots[0].QuestCounter);
+            Assert.Equal(100u, SaveContainer.Load(path).Slots[0].QuestCounter);
             Capture("quest-progress");
 
             Navigate(4);
@@ -287,7 +287,10 @@ public class WindowWorkflowTests
             Assert.Contains("whole number", vm.Status);
             TypeNumber(window.FindControl<NumericUpDown>("AddBoxCountInput")!, "2");
             Click(window.FindControl<Button>("AddBoxItemButton")!);
-            Assert.Equal(usedBeforeInvalidAdd + 1, vm.BoxRows.Count(r => !r.IsEmpty));
+            var usedAfterCorrection = vm.BoxRows.Count(r => !r.IsEmpty);
+            if (usedAfterCorrection != usedBeforeInvalidAdd + 1) Capture("inventory-invalid-recovery");
+            Assert.True(usedAfterCorrection == usedBeforeInvalidAdd + 1,
+                $"Expected one added stack, found {usedAfterCorrection - usedBeforeInvalidAdd}. ID {vm.AddItemId}, quantity {vm.AddItemCount}. {vm.Status}");
             Assert.Equal(2, vm.SelectedBox!.Count);
             Save();
             var beforeInvalidEdit = File.ReadAllBytes(path);
@@ -295,6 +298,14 @@ public class WindowWorkflowTests
             Click(window.FindControl<Button>("SaveButton")!);
             Assert.Equal(beforeInvalidEdit, File.ReadAllBytes(path));
             Assert.Contains("Fix", vm.Status);
+            TypeNumber(window.FindControl<NumericUpDown>("EditBoxCountInput")!, "abc");
+            window.FindControl<TabControl>("BoxEditorTabs")!.SelectedIndex = 1; Settle();
+            vm.Zenny = 5556;
+            Click(window.FindControl<Button>("SaveButton")!);
+            Assert.Equal(beforeInvalidEdit, File.ReadAllBytes(path));
+            Assert.Contains("Fix EditBoxCount", vm.Status);
+            window.FindControl<TabControl>("BoxEditorTabs")!.SelectedIndex = 0; Settle();
+            vm.Zenny = 5555;
             TypeNumber(window.FindControl<NumericUpDown>("EditBoxCountInput")!, "12");
             Save();
             Assert.Equal(12, SaveContainer.Load(path).Slots[0].ItemBox[vm.SelectedBox.Index].Count);

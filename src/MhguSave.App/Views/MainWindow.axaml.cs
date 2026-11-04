@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 using Avalonia.Input;
 using Avalonia.Platform.Storage;
 using Avalonia.VisualTree;
@@ -15,6 +16,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        SizeChanged += (_, _) => Classes.Set("compact", ClientSize.Height < 820);
+        Opened += (_, _) => Classes.Set("compact", ClientSize.Height < 820);
         Closing += OnClosing;
     }
 
@@ -46,8 +49,8 @@ public partial class MainWindow : Window
 
     private bool TrySave()
     {
-        var invalidDraft = this.GetVisualDescendants().OfType<IntegerInput>().FirstOrDefault(input =>
-            input.HasInvalidDraft && !input.GetVisualAncestors().OfType<Control>().Any(parent => Equals(parent.Tag, "CreationDraft")));
+        var invalidDraft = this.GetLogicalDescendants().OfType<IntegerInput>().FirstOrDefault(input =>
+            input.HasInvalidDraft && !input.IsCreationInput);
         if (invalidDraft is not null)
         {
             if (ViewModel is not null) ViewModel.Status = $"Fix {invalidDraft.Name?.Replace("Input", "") ?? "the numeric field"} before saving.";
@@ -125,7 +128,13 @@ public partial class MainWindow : Window
 
     private async void OnRevertClick(object? sender, RoutedEventArgs e)
     {
-        if (await ResolveUnsavedChanges()) ViewModel?.Revert();
+        if (await ResolveUnsavedChanges() && ViewModel?.Revert() == true) ResetInvalidDrafts();
+    }
+
+    private void ResetInvalidDrafts()
+    {
+        foreach (var input in this.GetLogicalDescendants().OfType<IntegerInput>().Where(input => input.HasInvalidDraft))
+            input.ResetInvalidDraft();
     }
 
     private MainViewModel? ViewModel => DataContext as MainViewModel;
@@ -146,7 +155,7 @@ public partial class MainWindow : Window
         var path = files.FirstOrDefault()?.TryGetLocalPath();
         if (path is not null)
         {
-            if (await ResolveUnsavedChanges()) ViewModel?.Load(path);
+            if (await ResolveUnsavedChanges() && ViewModel?.Load(path) == true) ResetInvalidDrafts();
         }
     }
 
@@ -168,5 +177,28 @@ public partial class MainWindow : Window
         {
             ViewModel?.LoadItemNames(path);
         }
+    }
+
+    private async void OnImportBoxCsvClick(object? sender, RoutedEventArgs e)
+    {
+        var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Import item box replacement (slot,id,name,count)",
+            AllowMultiple = false,
+            FileTypeFilter = [new FilePickerFileType("CSV") { Patterns = ["*.csv"] }],
+        });
+        if (files.FirstOrDefault()?.TryGetLocalPath() is { } path) ViewModel?.ImportItemBoxCsv(path);
+    }
+
+    private async void OnExportBoxCsvClick(object? sender, RoutedEventArgs e)
+    {
+        var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export item box",
+            SuggestedFileName = "mhgu-item-box.csv",
+            DefaultExtension = "csv",
+            FileTypeChoices = [new FilePickerFileType("CSV") { Patterns = ["*.csv"] }],
+        });
+        if (file?.TryGetLocalPath() is { } path) ViewModel?.ExportItemBoxCsv(path);
     }
 }

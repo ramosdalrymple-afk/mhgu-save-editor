@@ -47,11 +47,11 @@ public sealed class EditorRegressionTests : IDisposable
         _vm.AddEquipType = 18;
         _vm.EquipmentQuery = "Petrified Daggers";
         var pick = _vm.EquipmentMatches.First(hit => hit.Name == "Petrified Daggers");
-        Assert.Equal("equipment:18", pick.IconKey);
+        Assert.Equal(GameRarity.Icon(18, GameRarity.Equipment(18, pick.Id)), pick.IconKey);
         _vm.SelectedEquipmentPick = pick;
         _vm.AddEquipmentCommand.Execute(null);
         var row = _vm.SelectedEquip!;
-        Assert.Equal("equipment:18", row.IconKey);
+        Assert.Equal(pick.IconKey, row.IconKey);
         row.Clear();
         Assert.Equal(string.Empty, row.IconKey);
     }
@@ -175,7 +175,7 @@ public sealed class EditorRegressionTests : IDisposable
         _vm.MarkAllQuestsClearedCommand.Execute(null);
         Assert.Equal(100, _vm.QuestCounter);
         _vm.SaveCommand.Execute(null);
-        Assert.Equal(100, SaveContainer.Load(SavePath).Slots[0].QuestCounter);
+        Assert.Equal(100u, SaveContainer.Load(SavePath).Slots[0].QuestCounter);
         Assert.True(_vm.HasUnsavedChanges == false, _vm.Status);
     }
 

@@ -10,12 +10,29 @@ namespace MhguSave.App.ViewModels;
 
 public partial class MainViewModel
 {
+    public string[] EquipmentStorageNames { get; } = ["Hunter box · 2,000", "Palico box · 1,000"];
+    [ObservableProperty] private int _equipmentStorage;
+    private bool _switchingEquipmentStorage;
+    partial void OnEquipmentStorageChanged(int oldValue, int newValue)
+    {
+        if (_slot is null || _switchingEquipmentStorage) return;
+        _switchingEquipmentStorage = true;
+        try
+        {
+            if (!ApplyPendingEditors()) { EquipmentStorage = oldValue; return; }
+            SelectedEquip = null;
+            FillEquipRows(_slot);
+            RefreshEquipFilters();
+            EquipStatus = newValue == 1 ? "Browsing the Palico equipment box." : "Browsing the hunter equipment box.";
+        }
+        finally { _switchingEquipmentStorage = false; }
+    }
     public IReadOnlyList<CatalogChoice> SkillChoices { get; private set; } = [];
     public IReadOnlyList<CatalogChoice> DecorationChoices { get; private set; } = [];
     public IReadOnlyList<CatalogChoice> CharmChoices { get; } =
     [
-        new(353, "Mystery Charm"), new(354, "Shining Charm"),
-        new(355, "Timeworn Charm"), new(356, "Enduring Charm"),
+        new(353, "Mystery Charm", IsItem: true), new(354, "Shining Charm", IsItem: true),
+        new(355, "Timeworn Charm", IsItem: true), new(356, "Enduring Charm", IsItem: true),
     ];
     public ObservableCollection<CatalogChoice> DecorationMatches { get; } = [];
     [ObservableProperty] private int _equipmentPane = 1;
@@ -28,7 +45,7 @@ public partial class MainViewModel
     [ObservableProperty] private decimal _addEquipSkillPoints2;
     [ObservableProperty] private decimal _addEquipSlots;
     [ObservableProperty] private decimal _addEquipCharm = 353;
-    [ObservableProperty] private decimal _addKinsectId;
+    [ObservableProperty] private decimal _addKinsectId = 1;
     [ObservableProperty] private decimal _addKinsectLevel = 1;
     [ObservableProperty] private bool _hasEquipmentDraft;
     [ObservableProperty] private bool _hasBoxDraft;
@@ -37,6 +54,16 @@ public partial class MainViewModel
     private bool _refreshingViews;
     private bool _selectionGuard;
 
+    public int PreviewRarity => ValidInteger(EditEquipType, 1, 24) && ValidInteger(EditEquipId, 1, 65535)
+        ? GameRarity.Equipment((int)EditEquipType, (int)EditEquipId) : 0;
+    public string PreviewRarityLabel => GameRarity.Label(PreviewRarity);
+    public string PreviewIconKey => HasEquipmentSelection && ValidInteger(EditEquipType, 1, 24)
+        ? GameRarity.Icon((int)EditEquipType, PreviewRarity) : "";
+    public string PreviewName => HasEquipmentSelection && ValidInteger(EditEquipType, 1, 24) && ValidInteger(EditEquipId, 1, 65535)
+        ? _equipCatalog.NameOf((int)EditEquipType, (int)EditEquipId) : "Select a piece to edit";
+    public int CreationRarity => ValidInteger(AddEquipType, 1, 24) && ValidInteger(AddEquipId, 1, 65535)
+        ? GameRarity.Equipment((int)AddEquipType, (int)AddEquipId) : 0;
+    public string CreationRarityLabel => GameRarity.Label(CreationRarity);
     public bool HasEquipmentSelection => SelectedEquip is { IsEmpty: false };
     public bool CanUseEquipmentMaximum => HasEquipmentSelection && ValidInteger(EditEquipType, 1, 24) && ValidInteger(EditEquipId, 1, 65535) && _equipCatalog.TypeOf((int)EditEquipType).IsWeapon
         && _equipCatalog.HasEquipment((int)EditEquipType, (int)EditEquipId);
@@ -91,6 +118,10 @@ public partial class MainViewModel
 
     private bool ApplyPendingEditors()
     {
+        if (!ApplyLoadoutDraft()) return false;
+        if (!ApplyPalicoDraft()) return false;
+        if (!ApplyMonsterDraft()) return false;
+        if (!ApplyAppearanceDraft()) return false;
         if (HasEquipmentDraft && !TryApplyEquipment(SelectedEquip)) return false;
         if (HasBoxDraft && !TryApplyItem(SelectedBox, EditBoxId, EditBoxCount, "box")) return false;
         if (HasPouchDraft && !TryApplyItem(SelectedPouch, EditPouchId, EditPouchCount, "pouch")) return false;
@@ -106,10 +137,16 @@ public partial class MainViewModel
         HasEquipmentDraft = false;
         LoadEquipmentEditor(SelectedEquip);
         EquipStatus = "Equipment editor reset to the last applied values.";
+        RecomputeUnsavedChanges();
+    }
+
+    private void RecomputeUnsavedChanges()
+    {
         HasUnsavedChanges = _save?.IsDirty == true || HasBoxDraft || HasPouchDraft || _slot is not null &&
             (HunterName != _slot.Name || Zenny != _slot.Zenny || Wycademy != _slot.WycademyPoints
              || HrPoints != _slot.HrPoints || VillageStar != _slot.VillageStar || HubStar != _slot.HubStar
-             || QuestCounter != _slot.QuestCounter);
+             || QuestCounter != _slot.QuestCounter || PlayTimeSeconds != _slot.PlayTimeSeconds)
+            || HasEquipmentDraft || LoadoutDraft?.IsDirty == true || PalicoDraft?.IsDirty == true || MonsterDraft?.IsDirty == true || AppearanceDraft?.IsDirty == true;
     }
 
     [RelayCommand]
@@ -138,16 +175,43 @@ public partial class MainViewModel
         EquipStatus = Status = $"Added {SelectedDecoration.Name} ×{DecorationQuantity} to item box slot {index + 1}. Save changes to write.";
     }
 
-    private void ValidateDecorations(EquipmentSlot piece, EquipmentSlot? original = null)
+    public string SocketCapacityHint
+    {
+        get
+        {
+            if (!HasEquipmentSelection || !ValidInteger(EditEquipType, 1, 24) ||
+                !ValidInteger(EditEquipId, 1, 65535) || !ValidInteger(EditEquipLevel, 1, 32)) return "";
+            int? capacity = IsTalisman
+                ? ValidInteger(EditEquipSlots, 0, 3) ? (int)EditEquipSlots : null
+                : GameRarity.SocketCapacity((int)EditEquipType, (int)EditEquipId, (int)EditEquipLevel);
+            return capacity is int sockets ? $"Socket capacity: {sockets}" : "Socket capacity is unavailable for this piece and level.";
+        }
+    }
+
+    private void ValidateDecorations(EquipmentSlot piece, EquipmentSlot original)
     {
         var ids = piece.Decorations;
-        for (var i = 0; i < ids.Length; i++)
-            if (!_equipCatalog.HasDecoration(ids[i]) && (original is null || original.Decorations[i] != ids[i]))
-                throw new ArgumentException($"Decoration {i + 1} is not a known jewel. Choose a named decoration or None.");
-        var occupied = ids.Sum(_equipCatalog.DecorationSlots);
-        var capacity = piece.Type == EquipmentSlot.TalismanType ? piece.SlotCount : 3;
+        if (ids.All(id => id == 0)) return;
+        // Keep existing jewels when the edit cannot change their socket requirements.
+        if (piece.Id == original.Id && piece.Type == original.Type && piece.Level == original.Level &&
+            piece.SlotCount == original.SlotCount && ids.SequenceEqual(original.Decorations)) return;
+
+        var occupied = 0;
+        foreach (var id in ids.Where(id => id != 0))
+        {
+            var cost = _equipCatalog.DecorationSlots(id);
+            if (!_equipCatalog.HasDecoration(id) || cost is < 1 or > 3)
+                throw new ArgumentException($"Jewel ID {id} has no verified socket cost. Choose a supported jewel or None.");
+            occupied += cost;
+        }
+        var capacity = piece.Type == EquipmentSlot.TalismanType ? piece.SlotCount
+            : GameRarity.SocketCapacity(piece.Type, piece.Id, piece.Level);
+        if (occupied > 3 && capacity is null)
+            throw new ArgumentException($"These jewels need {occupied} slots; equipment can have at most 3.");
+        if (capacity is null)
+            throw new ArgumentException("Socket capacity is unavailable for this piece and level. Import the local game tables or remove its jewels before changing this setup.");
         if (occupied > capacity)
-            throw new ArgumentException($"These jewels need {occupied} slots; this piece has at most {capacity} available.");
+            throw new ArgumentException($"These jewels need {occupied} slots; this piece has {capacity} available at level {piece.Level}.");
     }
 
     private void ConfigureNewEquipment(EquipmentSlot piece)

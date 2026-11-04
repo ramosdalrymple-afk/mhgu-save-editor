@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless;
+using Avalonia.Input;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using MhguSave.App.Views;
@@ -30,7 +31,9 @@ public class WorkspaceLayoutTests
         var saveDirectory = Path.Combine(directory, new string('x', 110));
         Directory.CreateDirectory(saveDirectory);
         var path = Path.Combine(saveDirectory, "system");
-        var save = SaveContainer.Parse(SyntheticSave.Create(), "system");
+        var data = SyntheticSave.Create();
+        System.Text.Encoding.UTF8.GetBytes("Miso").CopyTo(data.AsSpan(SyntheticSave.Slot1Pointer + 36 + 0x23BB6));
+        var save = SaveContainer.Parse(data, "system");
         save.Slots[0].Name = "Guild Hunter";
         save.Slots[0].VillageStar = 1;
         save.Slots[0].ItemBox[0] = new ItemSlot(9, 99);
@@ -69,13 +72,51 @@ public class WorkspaceLayoutTests
             Assert.True(vm.IsLoaded, vm.Status);
             var navigation = window.GetVisualDescendants().OfType<ListBox>().Single(l => l.Classes.Contains("nav"));
             var saveButton = window.FindControl<Button>("SaveButton")!;
-            for (var section = 0; section < 5; section++)
+            for (var section = 0; section < 8; section++)
             {
                 vm.SelectedSection = section; Settle();
                 AssertInViewport(saveButton);
-                foreach (var item in navigation.GetVisualDescendants().OfType<ListBoxItem>()) AssertInViewport(item);
-                Capture(new[] { "profile", "inventory", "equipment", "quests", "collections" }[section]);
+                foreach (var item in navigation.GetVisualDescendants().OfType<ListBoxItem>().Where(i => i.IsSelected))
+                {
+                    item.BringIntoView(); Settle(); AssertInViewport(item);
+                }
+                Capture(new[] { "profile", "inventory", "equipment", "quests", "collections", "loadouts", "palicoes", "monsters" }[section]);
             }
+            vm.SelectedSection = 1; Settle();
+            window.FindControl<TabControl>("BoxEditorTabs")!.SelectedIndex = 1;
+            vm.AddItemId = 4095; vm.AddItemCount = 127; Settle();
+            var countInput = window.FindControl<IntegerInput>("AddBoxCountInput")!;
+            countInput.BringIntoView(); Settle();
+            foreach (var name in new[] { "AddBoxIdInput", "AddBoxCountInput" })
+            {
+                var number = window.FindControl<IntegerInput>(name)!;
+                var text = number.GetVisualDescendants().OfType<TextBox>().Single(t => t.Name == "PART_TextBox");
+                Assert.True(text.Bounds.Width >= 70, $"{name}: number text must have space beside the stepper ({text.Bounds.Width}).");
+                var arrows = number.GetVisualDescendants().OfType<RepeatButton>().ToArray();
+                Assert.Equal(2, arrows.Length);
+                Assert.All(arrows, arrow => Assert.InRange(arrow.Bounds.Width, 20, 32));
+            }
+            AssertInViewport(window.FindControl<Button>("AddBoxItemButton")!);
+            Capture("inventory-add");
+            vm.AddItemCount = 126; Settle();
+            var up = countInput.GetVisualDescendants().OfType<RepeatButton>().Single(b => b.Name == "PART_IncreaseButton");
+            var upPoint = up.TranslatePoint(new Point(up.Bounds.Width / 2, up.Bounds.Height / 2), window)!.Value;
+            window.MouseDown(upPoint, MouseButton.Left); window.MouseUp(upPoint, MouseButton.Left); Settle();
+            Assert.Equal(127, vm.AddItemCount);
+            vm.ItemNameQuery = "Potion"; Settle();
+            var catalog = window.FindControl<ListBox>("BoxItemCatalogList")!;
+            Assert.True(catalog.Bounds.Height >= 46, "The item catalog needs room for a complete search result.");
+            Capture("inventory-search");
+            window.FindControl<TabControl>("InventoryTabs")!.SelectedIndex = 1; Settle();
+            window.FindControl<TabControl>("PouchEditorTabs")!.SelectedIndex = 1; Settle();
+            AssertInViewport(window.FindControl<Button>("AddPouchItemButton")!);
+            Capture("pouch-add");
+            vm.SelectedSection = 5; Settle();
+            AssertInViewport(window.GetVisualDescendants().OfType<LoadoutsView>().Single().FindControl<Button>("ApplyLoadoutButton")!);
+            vm.SelectedSection = 6; Settle();
+            AssertInViewport(window.GetVisualDescendants().OfType<PalicoesView>().Single().FindControl<Button>("ApplyPalicoButton")!);
+            vm.SelectedSection = 7; Settle();
+            AssertInViewport(window.GetVisualDescendants().OfType<MonstersView>().Single().FindControl<Button>("ApplyMonsterButton")!);
             vm.SelectedSection = 2;
             vm.EquipmentPane = 1; Settle();
             var equipment = window.GetVisualDescendants().OfType<EquipmentView>().Single();
